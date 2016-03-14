@@ -1,0 +1,2 @@
+# active-mode
+docker run -it --rm --name ftp-server -p 5051:21 -v /Users/cbadenes/Downloads/ftp:/home/ftpusers/librairy cbadenes/ftp:1.0 /usr/sbin/pure-ftpd -c 50 -C 10 -U 000:000 -l puredb:/etc/pure-ftpd/pureftpd.pdb
