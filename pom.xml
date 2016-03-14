@@ -1136,7 +1136,32 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>Temporary Staging Repository</name>
+			<url>file://${project.build.directory}/mvn-repo</url>
+		</repository>
+	</distributionManagement>
+
 	<repositories>
+
+		<!-- External Libraries -->
+		<repository>
+			<id>external-libs</id>
+			<url>https://raw.github.com/cbadenes/external-libs/mvn-repo/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+
+		<!-- Apache Camel Rest Servlets -->
+		<repository>
+			<id>maven-restlet</id>
+			<name>Public online Restlet repository</name>
+			<url>http://maven.restlet.org</url>
+		</repository>
 
 		<!-- Test Utils Repository -->
 		<repository>

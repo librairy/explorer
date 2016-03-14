@@ -1,1 +1,0 @@
-docker run -it --rm --name librairy-api -p 8888:8080 cbadenes/librairy-api:0.1
