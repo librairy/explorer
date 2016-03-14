@@ -13,6 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.java.version>1.8</project.java.version>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<docker.image.prefix>cbadenes</docker.image.prefix>
 
 		<!-- Maven Plugins -->
 		<maven.appassembler.plugin.version>1.9</maven.appassembler.plugin.version>
@@ -997,7 +998,6 @@
 				</configuration>
 			</plugin>
 
-
 			<!-- Maven Compiler Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -1115,10 +1115,40 @@
 				</configuration>
 			</plugin>
 
+			<!-- Docker Plugin -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.2.3</version>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker/api</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.war</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
 	<repositories>
+
+		<!-- Test Utils Repository -->
+		<repository>
+			<id>test-utils</id>
+			<url>https://raw.github.com/cbadenes/test-utils/mvn-repo/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+
+		<!-- Librairy Repository -->
 		<repository>
 			<id>librairy-mvn-repo</id>
 			<url>https://raw.github.com/librairy/boot/mvn-repo/</url>
