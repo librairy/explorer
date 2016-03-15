@@ -62,7 +62,7 @@
             <!-- we specify the base.path using relative notation, that means the actual path will be calculated at runtime as
                  http://server:port/contextpath/rest -->
             <param-name>base.path</param-name>
-            <param-value>0.1</param-value>
+            <param-value>0.2</param-value>
         </init-param>
         <init-param>
             <!-- we specify the api.path using relative notation, that means the actual path will be calculated at runtime as
@@ -72,7 +72,7 @@
         </init-param>
         <init-param>
             <param-name>api.version</param-name>
-            <param-value>0.1</param-value>
+            <param-value>0.2</param-value>
         </init-param>
         <init-param>
             <param-name>api.title</param-name>
@@ -94,7 +94,7 @@
     <!-- define that url path for the Camel Servlet to use -->
     <servlet-mapping>
         <servlet-name>CamelServlet</servlet-name>
-        <url-pattern>/0.1/*</url-pattern>
+        <url-pattern>/0.2/*</url-pattern>
     </servlet-mapping>
 
     <!-- enable CORS filter so people can use swagger ui to browse and test the apis -->
@@ -106,7 +106,7 @@
     <filter-mapping>
         <filter-name>RestSwaggerCorsFilter</filter-name>
         <url-pattern>/api-docs/*</url-pattern>
-        <url-pattern>/0.1/*</url-pattern>
+        <url-pattern>/0.2/*</url-pattern>
     </filter-mapping>
 
 </web-app>

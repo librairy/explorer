@@ -44,7 +44,7 @@ public class RestRouteBuilder extends RouteBuilder {
                 .dataFormatProperty("json.in.disableFeatures", "FAIL_ON_UNKNOWN_PROPERTIES,ADJUST_DATES_TO_CONTEXT_TIME_ZONE")
 //                .dataFormatProperty("json.out.disableFeatures", "WRITE_NULL_MAP_VALUES")
                 .dataFormatProperty("xml.out.mustBeJAXBElement", "false")
-                .contextPath("api/0.1")
+                .contextPath("api/0.2")
                 .port(port);
 
 
