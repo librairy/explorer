@@ -25,7 +25,7 @@
   <script type="text/javascript">
     $(function () {
       window.swaggerUi = new SwaggerUi({
-      url: "http://drinventor.dia.fi.upm.es:8080/api/api-docs",
+      url: window.location.href + "api-docs",
       dom_id: "swagger-ui-container",
       supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
       onComplete: function(swaggerApi, swaggerUi){
@@ -57,11 +57,29 @@
 <body class="swagger-section">
 <div id='header'>
   <div class="swagger-ui-wrap"/>
-  <a id="logo" href="http://www.drinventor.eu">Repository of Research Objects</a>
-</div>
+    <a id="logo" href="http://drinventor.eu/">Librairy Explorer</a>
+  </div>
 </div>
 
 <div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
 <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+
+
+
+<div id="footer">
+  <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+  <hr>
+  <div class="swagger-ui-wrap"/>
+  <table style="width:100%">
+    <tr>
+      <td><img src="images/logo_dri.png" width="33" height="33" alt="dr inventor"></td>
+      <td><center>This research project receives funding from the European Commission&#39;s Seventh Framework Programme.<br/>Activity ICT (FP7-ICT-2013.8.1), Grant agreement no: 611383</center></td>
+      <td><img src="images/euflag.jpg" width="33" height="33" alt="european"></td>
+    </tr>
+  </table>
+</div>
+
+
+</div>
 </body>
 </html>

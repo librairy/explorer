@@ -9,11 +9,13 @@
 	<description>librairy explorer</description>
 
 	<properties>
+		<!-- Docker -->
+		<docker.image.prefix>cbadenes</docker.image.prefix>
+
 		<!-- Project Details -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.java.version>1.8</project.java.version>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<docker.image.prefix>cbadenes</docker.image.prefix>
 
 		<!-- Maven Plugins -->
 		<maven.appassembler.plugin.version>1.9</maven.appassembler.plugin.version>
@@ -308,11 +310,6 @@
 				<artifactId>lucene-core</artifactId>
 				<version>${lucene.version}</version>
 			</dependency>
-			<!--<dependency>-->
-			<!--<groupId>org.apache.lucene</groupId>-->
-			<!--<artifactId>lucene-analyzers</artifactId>-->
-			<!--<version>${lucene.version}</version>-->
-			<!--</dependency>-->
 			<dependency>
 				<groupId>org.apache.lucene</groupId>
 				<artifactId>lucene-analyzers-common</artifactId>
@@ -858,7 +855,6 @@
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 
 		<!-- Logging -->
 		<dependency>
