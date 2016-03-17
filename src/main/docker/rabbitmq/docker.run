@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -it --rm --name event-bus -p 5040:15672 -p 5041:5672 librairy/event-bus:1.0

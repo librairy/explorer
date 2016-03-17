@@ -1,0 +1,47 @@
+column-db:
+  container_name: column-db
+  image: librairy/column-db:1.0
+  expose:
+    - "9042"
+    - "9160"
+  ports:
+    - "5010:8080"
+    - "5011:9042"
+    - "5012:9160"
+document-db:
+  container_name: document-db
+  image: librairy/document-db:1.0
+  expose:
+    - "9200"
+    - "9300"
+  ports:
+    - "5020:9200"
+    - "5021:9300"
+graph-db:
+  container_name: graph-db
+  image: librairy/graph-db:1.0
+  expose:
+    - "7474"
+  ports:
+    - "5030:7474"
+event-bus:
+  container_name: event-bus
+  image: librairy/event-bus:1.0
+  expose:
+    - "15672"
+    - "5672"
+  ports:
+    - "5040:15672"
+    - "5041:5672"
+explorer:
+  container_name: explorer
+  image: librairy/explorer:latest
+  expose:
+    - "8080"
+  ports:
+    - "8080:8080"
+  links:
+    - column-db
+    - document-db
+    - graph-db
+    - event-bus

@@ -1,0 +1,1 @@
+docker build -t librairy/explorer:1.0 .

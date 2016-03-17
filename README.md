@@ -1,6 +1,6 @@
 # Librairy Explorer  [![Build Status](https://travis-ci.org/librairy/explorer.svg?branch=develop)](https://travis-ci.org/librairy/explorer)
 
-Librairy Explorer allows managing digital objects.
+Librairy Explorer deploy the storage systems 
 
 
 ## Get Start!

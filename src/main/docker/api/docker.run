@@ -1,8 +1,0 @@
-#!/bin/bash
-docker run -it --rm --name explorer -p 8080:8080 \
-    -e "LIBRAIRY_HOME=/usr/local/tomcat" \
-    -e "COLUMN_DB_HOST=wiig.dia.fi.upm.es" \
-    -e "DOCUMENT_DB_HOST=wiig.dia.fi.upm.es" \
-    -e "GRAPH_DB_HOST=wiig.dia.fi.upm.es" \
-    -e "MESSAGE_BROKER_HOST=wiig.dia.fi.upm.es" \
-     cbadenes/librairy-explorer

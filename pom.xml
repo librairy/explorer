@@ -2,15 +2,15 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.librairy</groupId>
-	<artifactId>librairy-explorer</artifactId>
+	<artifactId>explorer</artifactId>
 	<version>0.2</version>
 	<packaging>war</packaging>
-	<name>librairy-explorer</name>
+	<name>explorer</name>
 	<description>librairy explorer</description>
 
 	<properties>
 		<!-- Docker -->
-		<docker.image.prefix>cbadenes</docker.image.prefix>
+		<docker.image.prefix>librairy</docker.image.prefix>
 
 		<!-- Project Details -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -1094,19 +1094,35 @@
 						</systemProperty>
 						<systemProperty>
 							<name>COLUMN_DB_HOST</name>
-							<value>wiig.dia.fi.upm.es</value>
+							<value>192.168.99.100</value>
+						</systemProperty>
+						<systemProperty>
+							<name>COLUMN_DB_PORT</name>
+							<value>5011</value>
 						</systemProperty>
 						<systemProperty>
 							<name>DOCUMENT_DB_HOST</name>
-							<value>wiig.dia.fi.upm.es</value>
+							<value>192.168.99.100</value>
+						</systemProperty>
+						<systemProperty>
+							<name>DOCUMENT_DB_PORT</name>
+							<value>5021</value>
 						</systemProperty>
 						<systemProperty>
 							<name>GRAPH_DB_HOST</name>
-							<value>wiig.dia.fi.upm.es</value>
+							<value>192.168.99.100</value>
+						</systemProperty>
+						<systemProperty>
+							<name>GRAPH_DB_PORT</name>
+							<value>5030</value>
 						</systemProperty>
 						<systemProperty>
 							<name>MESSAGE_BROKER_HOST</name>
-							<value>wiig.dia.fi.upm.es</value>
+							<value>192.168.99.100</value>
+						</systemProperty>
+						<systemProperty>
+							<name>MESSAGE_BROKER_PORT</name>
+							<value>5041</value>
 						</systemProperty>
 					</systemProperties>
 				</configuration>
@@ -1119,7 +1135,7 @@
 				<version>0.2.3</version>
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>src/main/docker/api</dockerDirectory>
+					<dockerDirectory>src/main/docker/explorer</dockerDirectory>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
@@ -1127,6 +1143,9 @@
 							<include>${project.build.finalName}.war</include>
 						</resource>
 					</resources>
+					<imageTags>
+						<imageTag>${project.version}</imageTag>
+					</imageTags>
 				</configuration>
 			</plugin>
 

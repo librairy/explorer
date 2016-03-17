@@ -1,5 +1,5 @@
 FROM cassandra:2.2.4
-MAINTAINER Carlos Badenes <cbadenes@gmail.com>
+MAINTAINER Librairy <librairy.framework@gmail.com>
 
 ENV CASSANDRA_START_RPC true
 ENV CATALINA_HOME /usr/local/apache-tomcat-7.0.30
@@ -18,10 +18,13 @@ RUN set -x \
 	&& rm helenos.zip \
 	&& chmod -R 777 $CATALINA_HOME
 
+COPY cql/*.cql /tmp/
+
+COPY sh/*.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/*.sh
+
 COPY custom-entrypoint.sh /custom-entrypoint.sh
 ENTRYPOINT ["/custom-entrypoint.sh"]
 
 EXPOSE 7000 7001 7199 8080 9042 9160
-CMD ["cassandra", "-f"]
-#CMD ["/usr/local/apache-tomcat-7.0.30/bin/catalina.sh", "start"]
-
+CMD ["cassandra","-f"]
