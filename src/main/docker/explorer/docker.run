@@ -1,2 +1,1 @@
-#!/bin/bash
 docker run -it --rm --name explorer -p 8080:8080 --link column-db --link document-db --link graph-db --link event-bus librairy/explorer
