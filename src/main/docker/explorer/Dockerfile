@@ -3,8 +3,6 @@ MAINTAINER Librairy <librairy.framework@gmail.com>
 
 ADD api.war /usr/local/tomcat/webapps/api.war
 
-VOLUME /usr/local/tomcat/logs
-
 ENV LIBRAIRY_HOME /usr/local/tomcat
 
 ENV COLUMN_DB_HOST column-db
@@ -18,6 +16,8 @@ ENV GRAPH_DB_PORT 7474
 
 ENV MESSAGE_BROKER_HOST event-bus
 ENV MESSAGE_BROKER_PORT 5672
+
+VOLUME $LIBRAIRY_HOME
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]

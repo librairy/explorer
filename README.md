@@ -6,22 +6,28 @@ Librairy Explorer deploy the storage systems as well as a REST-API to explore th
 
 In our opinion, the best documentation are examples, take a look at some address ones.
 
+## Architecture
+
+...
+
 ## Get Start!
 
-The only prerequisite to consider is [Docker](https://www.docker.com/). You have to be installed the Docker daemon to deploy **librairy** in your system.
+The only prerequisite to consider is to have installed [Docker](https://www.docker.com/) in your system.
 
-And then, run **explorer** by using the following `docker-compose.yml`:  
+And now, run `docker-compose up` by using this file `docker-compose.yml`:  
 
 ```yml
 column-db:
   container_name: column-db
   image: librairy/column-db:1.0
+  restart: always
   expose:
     - "9042"
     - "9160"
 document-db:
   container_name: document-db
   image: librairy/document-db:1.0
+  restart: always
   expose:
     - "9200"
     - "9300"
@@ -30,6 +36,7 @@ document-db:
 graph-db:
   container_name: graph-db
   image: librairy/graph-db:1.0
+  restart: always
   expose:
     - "7474"
   ports:
@@ -37,12 +44,14 @@ graph-db:
 event-bus:
   container_name: event-bus
   image: librairy/event-bus:1.0
+  restart: always
   expose:
     - "15672"
     - "5672"
 explorer:
   container_name: explorer
   image: librairy/explorer:latest
+  restart: always
   expose:
     - "8080"
   ports:
@@ -54,7 +63,7 @@ explorer:
     - event-bus
 ```
 
-
+That's all!! **librairy explorer** should be run in your system now!
 
 Instead of deploy all containers as a whole, you can deploy each of them independently. It is useful to run the service distributed in several host-machines.
 
