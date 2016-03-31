@@ -18,10 +18,6 @@ The next figure tries to clarify the distinction between `documents` and `items`
 A `document` describes a file not the content, and may aggregates more `documents` as far as contains new files inside.
 Instead, an `item` is an abstract entity containing only one kind of data (e.g. text, image, workflow, etc) retrieved from a `document`.
 
-
-While a `document` corresponds to
-file that may contain multiple formats, an `item` is an abstract entity containing only one kind of data (e.g. text, image, workflow, etc)
-
 ![paper](https://dl.dropboxusercontent.com/u/299257/epnoi/images/paper-to-resources.png)
 
 
