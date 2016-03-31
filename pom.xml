@@ -7,7 +7,31 @@
 	<packaging>war</packaging>
 	<name>explorer</name>
 	<description>librairy explorer</description>
-
+	<url>https://github.com/librairy/boot</url>
+	<organization>
+		<name>Ontology Engineering Group</name>
+		<url>http://www.oeg-upm.net</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+	<inceptionYear>2016</inceptionYear>
+	<scm>
+		<url>https://github.com/librairy/boot</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>cbadenes</id>
+			<name>Carlos Badenes Olmedo</name>
+			<email>cbadenes at fi.upm.es</email>
+		</developer>
+	</developers>
+	<prerequisites>
+		<maven>3.0.0</maven>
+	</prerequisites>
 	<properties>
 		<!-- Docker -->
 		<docker.image.prefix>librairy</docker.image.prefix>
