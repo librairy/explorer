@@ -1,17 +1,30 @@
 # Librairy Explorer  [![Release Status](https://travis-ci.org/librairy/explorer.svg?branch=master)](https://travis-ci.org/librairy/explorer) [![Dev Status](https://travis-ci.org/librairy/explorer.svg?branch=develop)](https://travis-ci.org/librairy/explorer) [![Doc](https://raw.githubusercontent.com/librairy/resources/master/figures/interface.png)](https://rawgit.com/librairy/explorer/doc/report/index.html)
 
-It provides a RESTful-API for **librairy** as well as a harvester module to retrieve the full-text content (and tokens) from local files.
+It provides programmatic access to functionality and content of the system. Different facades are offered based on the type of the operation:
+- **Management**: Create/Read/Update/Delete (CRUD) resources.
+- **Read**: Get a resource by a key, e.g. by `uri`.
+- **Search**: Get a sorted list of resources based on a internal criteria, i.e. based only on content of the resource. For example, resources containing the word `graphic` in their title.
+- **Exploration**: Find a path or get resources based on relationships.
+
+Each of them is presented as a *RESTful-API* using [JSON](http://json.org) as the return format.
 
 ## Data Model
 
+Data is organized internally as follows:
+
 ![Data Model](https://dl.dropboxusercontent.com/u/299257/librairy/figures/data-modelv0.2.png)
+
+The next figure tries to clarify the distinction between `documents` and `items`. While a `document` corresponds to a
+file that may contain multiple formats, an `item` is an abstract entity containing only one kind of data (e.g. text, image, workflow, etc)
+
+![paper](https://dl.dropboxusercontent.com/u/299257/epnoi/images/paper-to-resources.png)
 
 
 ## Get Start!
 
 The only prerequisite to consider is to have installed [Docker-Compose](https://docs.docker.com/compose/) in your system.
 
-Create a file named `docker-compose.yml` containing the following services:
+Once it is installed, create a file named `docker-compose.yml` containing the following services:
 
 ```yml
 column-db:
@@ -60,51 +73,76 @@ and then, deploy it by typing:
 $ docker-compose up
 ```
 
-That's all!! **librairy explorer** should be run in your system now!. Check it by: [http://localhost:8080/api](http://localhost:8080/api).
+That's all!! **librairy explorer** should be run in your system now.
+
+Verify that it works on: [http://localhost:8080/api](http://localhost:8080/api).
 
 Note that by using Docker from OS X, the host address is not `localhost`. See [here](https://docs.docker.com/engine/installation/mac/) for more details.
 
-## Adding Files
+## Endpoints
 
-Once **librairy** is running, files placed in the `/input` folder will be automatically processed and new *documents* and *items* will be created internally from them.
-Also, new *domains* can be created to group existing *documents* or even new *sources* can also be created to define new repositories of *documents*.
+As previously mentioned, several facades are deployed to support different type of requests.
 
-Feel free to organize your data as your convenience, either by using the internal harvester to automatically process the files or directly creating resources by using the RESTful-API.
+### Management
+
+Oriented to manage data. This service, along with [librairy-boot](https://github.com/librairy/boot), are the entry point for external services.
+
+- **swagger-endpoint**: [http://localhost:8080/api](http://localhost:8080/api).
+- **ws-endpoint**: [http://localhost:8080/api](http://localhost:8080/api/<version>). *the version number is displayed at the bottom left on swagger-endpoint *
+
+Feel free to organize your data as your convenience, either by using the librairy-harvester or directly creating resources by using this RESTful-API.
+
+### Read
+
+Oriented to get detailed information of a resource.
+
+- **swagger-endpoint**: [http://localhost:8080/api](http://localhost:8080/api).
+- **ws-endpoint**: [http://localhost:8080/api](http://localhost:8080/api/<version>). *the version number is displayed at the bottom left on swagger-endpoint *
+- **CQl-HTTP-endpoint**: [http://localhost:5011](http://localhost:5011) . More info Cassandra Query Language [here](http://cassandra.apache.org/doc/cql3/CQL.html)
+- **CQl-Thrift-endpoint**: [http://localhost:5012](http://localhost:5012) . More info about Thrift Serialization [here](https://thrift.apache.org/)
+
+### Search
+
+Oriented to find resources based on their content.
+
+- **rest-endpoint**: [http://localhost:5020/research/_search](http://localhost:5020/research/_search). More info [here](https://www.elastic.co/guide/en/elasticsearch/guide/current/_talking_to_elasticsearch.html)
+- **binary-endpoint**: [http://localhost:5020](http://localhost:5020). More info [here](https://www.elastic.co/guide/en/elasticsearch/guide/current/_talking_to_elasticsearch.html)
+
+
+### Exploration
+
+Oriented to find path based on relationships.
+
+- **rest-endpoint**: [http://localhost:5030/db/data/transaction/commit](http://localhost:5030/db/data/transaction/commit). More info [here](http://neo4j.com/docs/stable/rest-api.html)
+- **CYPHER-endpoint**: [http://localhost:5030](http://localhost:5030). More info [here](http://neo4j.com/developer/cypher-query-language/)
+
 
 ## Distributed Deployment
 
-Instead of deploy all containers as a whole, you can deploy each of them independently. It is useful to run the service distributed in several host-machines.
+Instead of deploy all containers as a whole, you can deploy each of them independently. It is useful to run the service in a distributed way deployed in several host-machines.
 
-#### Column-oriented Database
+- **Column-oriented Database**:
+    ```sh
+    $ docker run -it --rm --name column-db -p 5010:8080 -p 5011:9042 -p 5012:9160 librairy/column-db:1.0
+    ```
 
-```sh
-docker run -it --rm --name column-db -p 5010:8080 -p 5011:9042 -p 5012:9160 librairy/column-db:1.0
-```
+- **Document-oriented Database**:
+    ```sh
+    $ docker run -it --rm --name document-db -p 5020:9200 -p 5021:9300 librairy/document-db:1.0
+    ```
 
-#### Document-oriented Database
+- **Graph-oriented Database**:
+    ```sh
+    $ docker run -it --rm --name graph-db -p 5030:7474 librairy/graph-db:1.0
+    ```
 
-```sh
-docker run -it --rm --name document-db -p 5020:9200 -p 5021:9300 librairy/document-db:1.0
-```
-
-#### Graph-oriented Database
-
-```sh
-docker run -it --rm --name graph-db -p 5030:7474 librairy/graph-db:1.0
-```
-
-#### Message Broker
-
-```sh
-docker run -it --rm --name event-bus -p 5040:15672 -p 5041:5672 librairy/event-bus:1.0
-```
-
-#### Explorer
-
-```sh
-docker run -it --rm --name explorer -p 8080:8080 --link column-db --link document-db --link graph-db --link event-bus librairy/explorer
-```
-
-
+- **Message Broker**:
+    ```sh
+    $ docker run -it --rm --name event-bus -p 5040:15672 -p 5041:5672 librairy/event-bus:1.0
+    ```
+- **Explorer**:
+    ```sh
+    $ docker run -it --rm --name explorer -p 8080:8080 --link column-db --link document-db --link graph-db --link event-bus librairy/explorer
+    ```
 
 Remember that by using the flags: `-it --rm`, the services runs in foreground mode. Instead, you can deploy it in background mode as domain service by using: `-d --restart=always`
