@@ -37,16 +37,16 @@ event-bus:
   ports:
     - "5040:15672"
     - "5041:5672"
-#explorer:
-#  container_name: explorer
-#  image: librairy/explorer:latest
-#  restart: always
-#  expose:
-#    - "8080"
-#  ports:
-#    - "8080:8080"
-#  links:
-#    - column-db
-#    - document-db
-#    - graph-db
-#    - event-bus
+explorer:
+  container_name: explorer
+  image: librairy/explorer:latest
+  restart: always
+  expose:
+    - "8080"
+  ports:
+    - "8080:8080"
+  links:
+    - column-db
+    - document-db
+    - graph-db
+    - event-bus
