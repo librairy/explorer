@@ -16,7 +16,7 @@ Data is organized internally as follows:
 
 The next figure tries to clarify the distinction between `documents` and `items`.
 A `document` describes a file not the content, and may aggregates more `documents` as far as contains new files inside.
-Instead, an `item` is an abstract entity containing only one kind of data (e.g. text, image, workflow, etc) retrieved from a `document`.   
+Instead, an `item` is an abstract entity containing only one kind of data (e.g. text, image, workflow, etc) retrieved from a `document`.
 
 ![paper](https://dl.dropboxusercontent.com/u/299257/epnoi/images/paper-to-resources.png)
 
