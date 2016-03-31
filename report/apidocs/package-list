@@ -1,0 +1,6 @@
+org.librairy.api
+org.librairy.api.converters
+org.librairy.api.model.relations
+org.librairy.api.model.resources
+org.librairy.api.rest
+org.librairy.api.services
