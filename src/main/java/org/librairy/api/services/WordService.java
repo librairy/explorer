@@ -72,7 +72,7 @@ public class WordService extends AbstractResourceService<Word> {
     public EmbeddedI getDomains(String startId, String endId) {
         String startUri = uriGenerator.from(Resource.Type.WORD, startId);
         String endUri = uriGenerator.from(Resource.Type.DOMAIN, endId);
-        Optional<EmbeddedI> result = udm.find(Relation.Type.EMBEDDED_IN).btw(startUri, endUri).stream().map(relation -> (EmbeddedIn) relation).map(relation -> new EmbeddedI(relation.getUri(), relation.getCreationTime(), relation.getVector())).findFirst();
+        Optional<EmbeddedI> result = udm.find(Relation.Type.EMBEDDED_IN).btw(startUri, endUri).stream().map(relation -> (EmbeddedIn) relation).map(relation -> new EmbeddedI(relation.getUri(), relation.getCreationTime())).findFirst();
         return (result.isPresent()) ? result.get() : null;
     }
 
@@ -80,7 +80,6 @@ public class WordService extends AbstractResourceService<Word> {
         String startUri = uriGenerator.from(Resource.Type.WORD, startId);
         String endUri = uriGenerator.from(Resource.Type.DOMAIN, endId);
         EmbeddedIn relation = Relation.newEmbeddedIn(startUri, endUri);
-        relation.setVector(rel.getVector());
         udm.save(relation);
     }
 

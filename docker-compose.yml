@@ -13,6 +13,7 @@ services:
      - graph-db
      - event-bus
    networks:
+     - "default"
      - "db"
      - "events"
 networks:

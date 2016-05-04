@@ -21,7 +21,7 @@ Instead, an `item` is an abstract entity containing only one kind of data (e.g. 
 ![paper](https://dl.dropboxusercontent.com/u/299257/epnoi/images/paper-to-resources.png)
 
 
-## Get Start!
+## Get Started!
 
 The only prerequisite to consider is to have installed [Docker-Compose](https://docs.docker.com/compose/) in your system.
 

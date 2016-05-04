@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<name>explorer</name>
 	<description>librairy explorer</description>
-	<url>https://github.com/librairy/boot</url>
+	<url>https://github.com/librairy/explorer</url>
 	<organization>
 		<name>Ontology Engineering Group</name>
 		<url>http://www.oeg-upm.net</url>
@@ -20,7 +20,7 @@
 	</licenses>
 	<inceptionYear>2016</inceptionYear>
 	<scm>
-		<url>https://github.com/librairy/boot</url>
+		<url>https://github.com/librairy/explorer</url>
 	</scm>
 	<developers>
 		<developer>
@@ -1091,6 +1091,12 @@
 				</executions>
 			</plugin>
 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+			</plugin>
+
 			<!-- WAR -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -1144,7 +1150,7 @@
 						</systemProperty>
 						<systemProperty>
 							<name>COLUMN_DB_HOST</name>
-							<value>192.168.99.100</value>
+							<value>wiener.dia.fi.upm.es</value>
 						</systemProperty>
 						<systemProperty>
 							<name>COLUMN_DB_PORT</name>
@@ -1152,7 +1158,7 @@
 						</systemProperty>
 						<systemProperty>
 							<name>DOCUMENT_DB_HOST</name>
-							<value>192.168.99.100</value>
+							<value>wiener.dia.fi.upm.es</value>
 						</systemProperty>
 						<systemProperty>
 							<name>DOCUMENT_DB_PORT</name>
@@ -1160,7 +1166,7 @@
 						</systemProperty>
 						<systemProperty>
 							<name>GRAPH_DB_HOST</name>
-							<value>192.168.99.100</value>
+							<value>wiener.dia.fi.upm.es</value>
 						</systemProperty>
 						<systemProperty>
 							<name>GRAPH_DB_PORT</name>
@@ -1168,7 +1174,7 @@
 						</systemProperty>
 						<systemProperty>
 							<name>MESSAGE_BROKER_HOST</name>
-							<value>192.168.99.100</value>
+							<value>wiener.dia.fi.upm.es</value>
 						</systemProperty>
 						<systemProperty>
 							<name>MESSAGE_BROKER_PORT</name>
@@ -1185,7 +1191,7 @@
 				<version>0.2.3</version>
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>src/main/docker/explorer</dockerDirectory>
+					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>

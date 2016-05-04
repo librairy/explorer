@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Configuration
 @ComponentScan({"org.librairy.api", "org.librairy.storage", "org.librairy.eventbus"})
-@PropertySource({"classpath:api.properties", "classpath:eventbus.properties", "classpath:storage.properties"})
+@PropertySource({"classpath:api.properties", "classpath:boot.properties"})
 public class Config {
 
 

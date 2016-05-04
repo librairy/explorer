@@ -1,1 +1,0 @@
-docker run -it --rm --name document-db -p 5020:9200 -p 5021:9300 librairy/document-db:1.0
