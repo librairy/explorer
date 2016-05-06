@@ -1,5 +1,6 @@
 package org.librairy.api.services;
 
+import com.google.common.base.Strings;
 import org.librairy.api.model.relations.RelationI;
 import org.librairy.api.model.resources.SourceI;
 import org.librairy.model.domain.relations.Relation;
@@ -33,7 +34,8 @@ public class SourceService extends AbstractResourceService<Source> {
 
         Source source = Resource.newSource();
         BeanUtils.copyProperties(resource, source);
-        source.setUri(uriGenerator.newFor(Resource.Type.SOURCE));
+        if (Strings.isNullOrEmpty(resource.getName())) resource.setName(resource.getUrl());
+        source.setUri(uriGenerator.basedOnContent(Resource.Type.SOURCE,resource.getName()));
         source.setCreationTime(TimeUtils.asISO());
         udm.save(source);
         return source;
