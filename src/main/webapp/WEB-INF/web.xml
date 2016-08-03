@@ -76,11 +76,11 @@
         </init-param>
         <init-param>
             <param-name>api.title</param-name>
-            <param-value>api</param-value>
+            <param-value>API</param-value>
         </init-param>
         <init-param>
             <param-name>api.description</param-name>
-            <param-value>DrInventor application programming interface</param-value>
+            <param-value>librairy application programming interface</param-value>
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>

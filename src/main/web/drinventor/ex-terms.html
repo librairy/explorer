@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="DrInventor Repository">
+    <meta name="author" content="cbadenes">
+
+    <title>drinventor repository</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">DrInventor Repository</a>
+          </div>
+          <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav side-nav">
+                  <!--<li class="active">
+                      <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                  </li>-->
+                  <li class="active">
+                      <a href="javascript:;" data-toggle="collapse" data-target="#explore"><i class="fa fa-fw fa-search"></i> Explore <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="explore">
+                          <li>
+                            <a href="ex-corpus.html"><i class="fa fa-copy"></i> Corpus</a>
+                          </li>
+                          <li>
+                              <a href="ex-documents.html"><i class="fa fa-file-text-o"></i> Documents</a>
+                          </li>
+                          <li>
+                              <a href="ex-topics.html"><i class="fa fa-tags"></i> Topics</a>
+                          </li>
+                          <li>
+                              <a href="ex-terms.html"><i class="fa fa-comment-o"></i> Terms</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="javascript:;" data-toggle="collapse" data-target="#discover"><i class="fa fa-fw fa-magic"></i> Discover <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="discover">
+                          <li>
+                              <a href="dis-relations.html"><i class="fa fa-exchange"></i> Relations</a>
+                          </li>
+                          <li>
+                              <a href="dis-matches.html"><i class="fa fa-search-plus"></i> Matches</a>
+                          </li>
+                          <li>
+                              <a href="dis-paths.html"><i class="fa fa-sitemap"></i> Paths</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Terms
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-database"></i>  <a href="index.html">Repository</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-comment-o"></i> Terms
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-copy fa-fw"></i> Documents</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Termhood</th>
+                                                <th>CValue</th>
+                                                <th>Consensus</th>
+                                                <th>Probability</th>
+                                                <th>Times</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/b0b1ac5f2ef83ccfbc4e31dff14c84f4'>future work</a></td>
+                                          <td>0.78669</td>
+                                          <td>0.89776</td>
+                                          <td>0.45936</td>
+                                          <td>0.00241</td>
+                                          <td>439</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/7412df2b1db8cd2a5d4aafdb6c2090d3'>research</a></td>
+                                          <td>0.77645</td>
+                                          <td>0.5529</td>
+                                          <td>1</td>
+                                          <td>0.00593</td>
+                                          <td>1081</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/aef019c2802ef4257ce36c2205aebf8a'>anonymous reviewers</a></td>
+                                          <td>0.73762</td>
+                                          <td>0.81167</td>
+                                          <td>0.43928</td>
+                                          <td>0.00217</td>
+                                          <td>396</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/ea9f6aca279138c58f705c8d4cb4b8ce'>method</a></td>
+                                          <td>0.65575</td>
+                                          <td>0.43504</td>
+                                          <td>0.7941</td>
+                                          <td>0.00466</td>
+                                          <td>850</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/5799333f071e3783db558d9863574ce0'>national science foundation</a></td>
+                                          <td>0.64494</td>
+                                          <td>0.78943</td>
+                                          <td>0.16742</td>
+                                          <td>0.0009</td>
+                                          <td>164</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/da907a1b8f74e6922d93b025eecfb852'>future</a></td>
+                                          <td>0.63171</td>
+                                          <td>0.38893</td>
+                                          <td>0.79082</td>
+                                          <td>0.00421</td>
+                                          <td>767</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/40dc311948467fad298ecd205f404d8'>science foundation</a></td>
+                                          <td>0.5822</td>
+                                          <td>0.58211</td>
+                                          <td>0.30381</td>
+                                          <td>0.0016</td>
+                                          <td>292</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/51e0aa57f13de299bef2d0c6e59dc72'>reviewers</a></td>
+                                          <td>0.57</td>
+                                          <td>0.31206</td>
+                                          <td>0.71321</td>
+                                          <td>0.0035</td>
+                                          <td>639</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/20f35e630daf44dbfa4c3f68f5399d8c'>model</a></td>
+                                          <td>0.55688</td>
+                                          <td>0.34127</td>
+                                          <td>0.6208</td>
+                                          <td>0.00366</td>
+                                          <td>667</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/54b53072540eeeb8f8e9343e71f28176'>system</a></td>
+                                          <td>0.52318</td>
+                                          <td>0.30694</td>
+                                          <td>0.56571</td>
+                                          <td>0.00329</td>
+                                          <td>600</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/ac5552fd6a3c08ad22387efbe42d137d'>models</a></td>
+                                          <td>0.50444</td>
+                                          <td>0.29054</td>
+                                          <td>0.53057</td>
+                                          <td>0.00312</td>
+                                          <td>568</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/78805a221a988e79ef3f42d7c5bfd418'>image</a></td>
+                                          <td>0.48507</td>
+                                          <td>0.28081</td>
+                                          <td>0.48221</td>
+                                          <td>0.00301</td>
+                                          <td>549</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/338ea96a44f5f7a980863d04c50dfedc'>motion</a></td>
+                                          <td>0.44458</td>
+                                          <td>0.23828</td>
+                                          <td>0.41814</td>
+                                          <td>0.00256</td>
+                                          <td>466</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/d302e976c9dd527a9521a88c012437c5'>surface</a></td>
+                                          <td>0.44101</td>
+                                          <td>0.23008</td>
+                                          <td>0.41989</td>
+                                          <td>0.00247</td>
+                                          <td>450</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/59b514174bffe4ae402b3d63aad79fe0'>images</a></td>
+                                          <td>0.44067</td>
+                                          <td>0.22905</td>
+                                          <td>0.42049</td>
+                                          <td>0.00246</td>
+                                          <td>448</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/434990c8a25d2be94863561ae98bd682'>support</a></td>
+                                          <td>0.36637</td>
+                                          <td>0.15424</td>
+                                          <td>0.29749</td>
+                                          <td>0.00166</td>
+                                          <td>302</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/a9c449d4fa44e9e5a41c574ae55ce4d9'>program</a></td>
+                                          <td>0.34829</td>
+                                          <td>0.13682</td>
+                                          <td>0.26628</td>
+                                          <td>0.00148</td>
+                                          <td>269</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/a43c1b0aa53a0c908810c06ab1ff3967'>input</a></td>
+                                          <td>0.33985</td>
+                                          <td>0.12862</td>
+                                          <td>0.2518</td>
+                                          <td>0.00138</td>
+                                          <td>252</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/d66636b253cb346dbb6240e30def3618'>quality</a></td>
+                                          <td>0.32848</td>
+                                          <td>0.11837</td>
+                                          <td>0.231</td>
+                                          <td>0.00127</td>
+                                          <td>232</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/3f86cc36e1df1334da973da6771b8160'>editing</a></td>
+                                          <td>0.32727</td>
+                                          <td>0.11939</td>
+                                          <td>0.22523</td>
+                                          <td>0.00128</td>
+                                          <td>234</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/196884a8c0c95ff3a3c0520c91596964'>modeling</a></td>
+                                          <td>0.31141</td>
+                                          <td>0.10453</td>
+                                          <td>0.19713</td>
+                                          <td>0.00112</td>
+                                          <td>205</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/a76637b62ea99acda12f5859313f539a'>interesting</a></td>
+                                          <td>0.31132</td>
+                                          <td>0.09787</td>
+                                          <td>0.20793</td>
+                                          <td>0.00106</td>
+                                          <td>193</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/9c614fe7bc0dce6760fbb34780e4c62'>future research</a></td>
+                                          <td>0.30483</td>
+                                          <td>0.15783</td>
+                                          <td>0.08639</td>
+                                          <td>0.00044</td>
+                                          <td>81</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/df53ca268240ca76670c8566ee54568a'>computer</a></td>
+                                          <td>0.30468</td>
+                                          <td>0.09531</td>
+                                          <td>0.19009</td>
+                                          <td>0.00103</td>
+                                          <td>188</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/6f129a2e6e103ea342a085875931830b'>such</a></td>
+                                          <td>0.30231</td>
+                                          <td>0.09172</td>
+                                          <td>0.18815</td>
+                                          <td>0.00099</td>
+                                          <td>180</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/1b045b51a4fd78f8207efd3703448156'>acknowledgements</a></td>
+                                          <td>0.29097</td>
+                                          <td>0.07994</td>
+                                          <td>0.17</td>
+                                          <td>0.00086</td>
+                                          <td>157</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/ce495ab8d79db0d37413d8e95b54e606'>multiple</a></td>
+                                          <td>0.28954</td>
+                                          <td>0.07994</td>
+                                          <td>0.16524</td>
+                                          <td>0.00086</td>
+                                          <td>157</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/70dda5dfb8053dc6d1c492574bce9bfd'>color</a></td>
+                                          <td>0.28792</td>
+                                          <td>0.08557</td>
+                                          <td>0.15043</td>
+                                          <td>0.00092</td>
+                                          <td>168</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/8b04d5e3775d298e78455efc5ca404d5'>first</a></td>
+                                          <td>0.27386</td>
+                                          <td>0.06405</td>
+                                          <td>0.13944</td>
+                                          <td>0.0007</td>
+                                          <td>127</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/3ca14c518d1bf901acc339e7c9cd6d7f'>hardware</a></td>
+                                          <td>0.27381</td>
+                                          <td>0.06918</td>
+                                          <td>0.13075</td>
+                                          <td>0.00075</td>
+                                          <td>136</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/cb5e100e5a9a3e7f6d1fd97512215282'>error</a></td>
+                                          <td>0.27098</td>
+                                          <td>0.06713</td>
+                                          <td>0.12471</td>
+                                          <td>0.00072</td>
+                                          <td>132</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/3676d55f84497cbeadfc614c1b1b62fc'>application</a></td>
+                                          <td>0.27007</td>
+                                          <td>0.06354</td>
+                                          <td>0.12768</td>
+                                          <td>0.00069</td>
+                                          <td>125</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/cdb36c370b737074c455bf1ee75a2f56'>spatial</a></td>
+                                          <td>0.26837</td>
+                                          <td>0.062</td>
+                                          <td>0.12456</td>
+                                          <td>0.00067</td>
+                                          <td>122</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/d9a79ae75898a1e6edac75f1cc24ea2a'>special thanks</a></td>
+                                          <td>0.26815</td>
+                                          <td>0.10453</td>
+                                          <td>0.05295</td>
+                                          <td>0.00028</td>
+                                          <td>51</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/23d13b7ddada9fe41c1eb99463699309'>computational</a></td>
+                                          <td>0.26814</td>
+                                          <td>0.06456</td>
+                                          <td>0.11954</td>
+                                          <td>0.0007</td>
+                                          <td>127</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/eb5c1399a871211c7e7ed732d15e3a8b'>small</a></td>
+                                          <td>0.26758</td>
+                                          <td>0.06098</td>
+                                          <td>0.12363</td>
+                                          <td>0.00066</td>
+                                          <td>120</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/dd5c07036f2975ff4bce568b6511d3bc'>single</a></td>
+                                          <td>0.26744</td>
+                                          <td>0.06098</td>
+                                          <td>0.12317</td>
+                                          <td>0.00066</td>
+                                          <td>120</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/d638d193eb29ac87c0950ab36b80e0e8'>novel</a></td>
+                                          <td>0.26541</td>
+                                          <td>0.05995</td>
+                                          <td>0.11813</td>
+                                          <td>0.00065</td>
+                                          <td>118</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/8dbdda48fb8748d6746f1965824e966a'>simple</a></td>
+                                          <td>0.26275</td>
+                                          <td>0.05483</td>
+                                          <td>0.11778</td>
+                                          <td>0.00059</td>
+                                          <td>108</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/c9e9a848920877e76685b2e4e76de38d'>level</a></td>
+                                          <td>0.25685</td>
+                                          <td>0.0538</td>
+                                          <td>0.09983</td>
+                                          <td>0.00058</td>
+                                          <td>106</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/59906a0d7937e3fcc028c1af163a6e95'>acknowledgments</a></td>
+                                          <td>0.25658</td>
+                                          <td>0.0497</td>
+                                          <td>0.10576</td>
+                                          <td>0.00054</td>
+                                          <td>98</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/50301c95f5dd8a0b04e4a3dacadb421d'>experiments</a></td>
+                                          <td>0.25643</td>
+                                          <td>0.0497</td>
+                                          <td>0.10524</td>
+                                          <td>0.00054</td>
+                                          <td>98</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/67e68763bdf85464da75bf85e2a66700'>many thanks</a></td>
+                                          <td>0.25563</td>
+                                          <td>0.08404</td>
+                                          <td>0.04538</td>
+                                          <td>0.00022</td>
+                                          <td>41</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/2327346e833efcd6b2e7b3f0a4df8ebb'>previous</a></td>
+                                          <td>0.25558</td>
+                                          <td>0.0497</td>
+                                          <td>0.10243</td>
+                                          <td>0.00054</td>
+                                          <td>99</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/6ba8844da718b4a65f60dbfd0d92d6ef'>vector</a></td>
+                                          <td>0.25354</td>
+                                          <td>0.05124</td>
+                                          <td>0.09306</td>
+                                          <td>0.00055</td>
+                                          <td>101</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/210ab9e731c9c36c2c38db15c28a8d1c'>volume</a></td>
+                                          <td>0.25141</td>
+                                          <td>0.05175</td>
+                                          <td>0.0851</td>
+                                          <td>0.00056</td>
+                                          <td>102</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/d7c95dd61cc3588432f3b3eef94101e9'>basis</a></td>
+                                          <td>0.24822</td>
+                                          <td>0.04458</td>
+                                          <td>0.08642</td>
+                                          <td>0.00048</td>
+                                          <td>88</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/4f56ab24bb6d815a48b8968a3b157470'>siggraph</a></td>
+                                          <td>0.24564</td>
+                                          <td>0.03689</td>
+                                          <td>0.09064</td>
+                                          <td>0.00042</td>
+                                          <td>76</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/c13367945d5d4c91047b3b50234aa7ab'>code</a></td>
+                                          <td>0.24235</td>
+                                          <td>0.03946</td>
+                                          <td>0.07541</td>
+                                          <td>0.00043</td>
+                                          <td>78</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/295ad6c0a8105d407ebc940294ae6e12'>dynamic range</a></td>
+                                          <td>0.24233</td>
+                                          <td>0.06559</td>
+                                          <td>0.03178</td>
+                                          <td>0.00018</td>
+                                          <td>33</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/6a7f245843454cf4f28ad7c5e2572aa2'>elements</a></td>
+                                          <td>0.24075</td>
+                                          <td>0.03741</td>
+                                          <td>0.0735</td>
+                                          <td>0.00041</td>
+                                          <td>74</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/b5b399ec1fcfe753f58dbafa197efdc1'>conditions</a></td>
+                                          <td>0.24056</td>
+                                          <td>0.03587</td>
+                                          <td>0.07542</td>
+                                          <td>0.00039</td>
+                                          <td>71</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/1fd2976f80f44fffce1adbddc9401357'>light transport</a></td>
+                                          <td>0.23998</td>
+                                          <td>0.06149</td>
+                                          <td>0.03079</td>
+                                          <td>0.00017</td>
+                                          <td>31</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/5fc685faa53475ba3cdb84bb3cab833f'>optimal</a></td>
+                                          <td>0.23704</td>
+                                          <td>0.03279</td>
+                                          <td>0.06881</td>
+                                          <td>0.00036</td>
+                                          <td>65</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/ab4086ecd47c568d5ba5739d4078988f'>pixel</a></td>
+                                          <td>0.23699</td>
+                                          <td>0.03484</td>
+                                          <td>0.06523</td>
+                                          <td>0.00038</td>
+                                          <td>69</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/a8cfde6331bd59eb2ac96f8911c4b666'>object</a></td>
+                                          <td>0.23645</td>
+                                          <td>0.03279</td>
+                                          <td>0.06685</td>
+                                          <td>0.00036</td>
+                                          <td>65</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/4efa264f5ef3e1a5c95736e07544ebf0'>curve</a></td>
+                                          <td>0.23625</td>
+                                          <td>0.03433</td>
+                                          <td>0.0636</td>
+                                          <td>0.00037</td>
+                                          <td>68</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/4ab15f883f924d2985f14996226a497a'>light fields</a></td>
+                                          <td>0.23587</td>
+                                          <td>0.05739</td>
+                                          <td>0.02391</td>
+                                          <td>0.00016</td>
+                                          <td>29</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/51dc30ddc473d43a6011e9ebba6ca770'>peter</a></td>
+                                          <td>0.23462</td>
+                                          <td>0.03126</td>
+                                          <td>0.06331</td>
+                                          <td>0.00034</td>
+                                          <td>62</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/5e8ff9bf55ba3508199d22e984129be6'>sample</a></td>
+                                          <td>0.23394</td>
+                                          <td>0.03075</td>
+                                          <td>0.06188</td>
+                                          <td>0.00033</td>
+                                          <td>61</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/4b82677b6c1408df4be21ada9a584fde'>area</a></td>
+                                          <td>0.23311</td>
+                                          <td>0.02972</td>
+                                          <td>0.06082</td>
+                                          <td>0.00032</td>
+                                          <td>59</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/5e2bab0ecb94c4ea40777733195abe1b'>others</a></td>
+                                          <td>0.23221</td>
+                                          <td>0.02767</td>
+                                          <td>0.06124</td>
+                                          <td>0.00031</td>
+                                          <td>56</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/5c18ef72771564b7f43c497dc507aeab'>context</a></td>
+                                          <td>0.23215</td>
+                                          <td>0.0287</td>
+                                          <td>0.05934</td>
+                                          <td>0.00031</td>
+                                          <td>57</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/35f3675343000d6bb5f10ce451a571a4'>density</a></td>
+                                          <td>0.23151</td>
+                                          <td>0.02972</td>
+                                          <td>0.05551</td>
+                                          <td>0.00032</td>
+                                          <td>59</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/d053fa838d40f4ecda6835e3ca2d5721'>light field</a></td>
+                                          <td>0.23118</td>
+                                          <td>0.04919</td>
+                                          <td>0.02196</td>
+                                          <td>0.00014</td>
+                                          <td>25</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/8c40400c009918b5f10b73f9a0e47398'>practice</a></td>
+                                          <td>0.23005</td>
+                                          <td>0.02511</td>
+                                          <td>0.05831</td>
+                                          <td>0.00027</td>
+                                          <td>50</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/9b5b7dc72a254aa3dfb342852eb9b4bc'>previous work</a></td>
+                                          <td>0.22942</td>
+                                          <td>0.04509</td>
+                                          <td>0.0229</td>
+                                          <td>0.00013</td>
+                                          <td>23</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/817d7d587258bac88b24567b17bdda87'>triangles</a></td>
+                                          <td>0.22905</td>
+                                          <td>0.02511</td>
+                                          <td>0.05498</td>
+                                          <td>0.00027</td>
+                                          <td>50</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/d6fe1d0be6347b8ef2427fa629c04485'>path</a></td>
+                                          <td>0.22883</td>
+                                          <td>0.02716</td>
+                                          <td>0.05085</td>
+                                          <td>0.0003</td>
+                                          <td>54</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/5dabba66ddc7b1e6f193ff73d3c55e94'>sparse</a></td>
+                                          <td>0.22882</td>
+                                          <td>0.02665</td>
+                                          <td>0.05166</td>
+                                          <td>0.00029</td>
+                                          <td>53</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/ac1a453d0cdc1f19d9479ccfaa8b082c'>velocity</a></td>
+                                          <td>0.22872</td>
+                                          <td>0.02818</td>
+                                          <td>0.04875</td>
+                                          <td>0.00031</td>
+                                          <td>56</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/28a6a1d04103dd43b8d5d1d940612e84'>indirect illumination</a></td>
+                                          <td>0.22839</td>
+                                          <td>0.04304</td>
+                                          <td>0.02289</td>
+                                          <td>0.00012</td>
+                                          <td>22</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/c00f0c4675b91fb8b918e4079a0b1bac'>standard</a></td>
+                                          <td>0.22774</td>
+                                          <td>0.0246</td>
+                                          <td>0.05149</td>
+                                          <td>0.00027</td>
+                                          <td>49</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/55a93e485e9fdc93b348b530b393098d'>previous methods</a></td>
+                                          <td>0.2273</td>
+                                          <td>0.04099</td>
+                                          <td>0.02266</td>
+                                          <td>0.00012</td>
+                                          <td>21</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/2ffe4e77325d9a7152f7086ea7aa5114'>max</a></td>
+                                          <td>0.22729</td>
+                                          <td>0.02613</td>
+                                          <td>0.0474</td>
+                                          <td>0.00029</td>
+                                          <td>52</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/73308b64b7f54ef79a2e055b86944f4b'>volumetric</a></td>
+                                          <td>0.22705</td>
+                                          <td>0.0246</td>
+                                          <td>0.04916</td>
+                                          <td>0.00027</td>
+                                          <td>49</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/cef44b46f16ae8ecf664df4266ffdbf9'>triangle</a></td>
+                                          <td>0.22688</td>
+                                          <td>0.02408</td>
+                                          <td>0.04946</td>
+                                          <td>0.00026</td>
+                                          <td>48</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/b2127725e5fafd5aee37859213fb9006'>temporal coherence</a></td>
+                                          <td>0.22646</td>
+                                          <td>0.04099</td>
+                                          <td>0.01988</td>
+                                          <td>0.00011</td>
+                                          <td>20</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/4ccdcbc7ec60819cfb8bca1c20862b69'>hdr</a></td>
+                                          <td>0.226</td>
+                                          <td>0.02716</td>
+                                          <td>0.0414</td>
+                                          <td>0.0003</td>
+                                          <td>54</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/a91c78e040f7b9d158f381e197f8beb4'>inverse</a></td>
+                                          <td>0.22598</td>
+                                          <td>0.02306</td>
+                                          <td>0.04817</td>
+                                          <td>0.00025</td>
+                                          <td>46</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/3fcdb73d36d54f2cc22d0f68e6b6e182'>form</a></td>
+                                          <td>0.22564</td>
+                                          <td>0.02255</td>
+                                          <td>0.04789</td>
+                                          <td>0.00025</td>
+                                          <td>45</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/d4dc9002bb4398d3fb37e3ed5a3c9ce9'>light sources</a></td>
+                                          <td>0.22539</td>
+                                          <td>0.03894</td>
+                                          <td>0.01973</td>
+                                          <td>0.0001</td>
+                                          <td>19</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/368f3648391bcbbf02582d1108188863'>sharp features</a></td>
+                                          <td>0.2253</td>
+                                          <td>0.03894</td>
+                                          <td>0.01944</td>
+                                          <td>0.0001</td>
+                                          <td>19</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/b8263d341de01f741e4deadfb18f9eb'>sound</a></td>
+                                          <td>0.22435</td>
+                                          <td>0.02408</td>
+                                          <td>0.04103</td>
+                                          <td>0.00026</td>
+                                          <td>48</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/adb00236071c05878eaeec5b3b96103d'>respect</a></td>
+                                          <td>0.22423</td>
+                                          <td>0.0205</td>
+                                          <td>0.0466</td>
+                                          <td>0.00022</td>
+                                          <td>40</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/1bda80f2be4d3658e0baa43fbe7ae8c1'>view</a></td>
+                                          <td>0.22178</td>
+                                          <td>0.01947</td>
+                                          <td>0.04015</td>
+                                          <td>0.00021</td>
+                                          <td>39</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/405aaff66082ffe7231d7c1f79926c17'>nature</a></td>
+                                          <td>0.22173</td>
+                                          <td>0.01896</td>
+                                          <td>0.04083</td>
+                                          <td>0.00021</td>
+                                          <td>38</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/5ef76d30bf9232902687324b5bfa0bd2'>use</a></td>
+                                          <td>0.22046</td>
+                                          <td>0.01845</td>
+                                          <td>0.03745</td>
+                                          <td>0.0002</td>
+                                          <td>37</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/e268443e43d93dab7ebef303bbe9642f'>account</a></td>
+                                          <td>0.22032</td>
+                                          <td>0.01742</td>
+                                          <td>0.03868</td>
+                                          <td>0.00019</td>
+                                          <td>35</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/7c4f29407893c334a6cb7a87bf045c0d'>right</a></td>
+                                          <td>0.21947</td>
+                                          <td>0.01742</td>
+                                          <td>0.03588</td>
+                                          <td>0.00019</td>
+                                          <td>35</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/2b2ef32ec9cc65e7dff900a35e88a586'>different types</a></td>
+                                          <td>0.21852</td>
+                                          <td>0.0287</td>
+                                          <td>0.01391</td>
+                                          <td>0.00008</td>
+                                          <td>14</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/441f9e2d94c39a70e21b83829259aa4'>artist</a></td>
+                                          <td>0.21743</td>
+                                          <td>0.01537</td>
+                                          <td>0.03248</td>
+                                          <td>0.00017</td>
+                                          <td>31</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/e727c5b7969a0924044ea82db6406337'>generating</a></td>
+                                          <td>0.21726</td>
+                                          <td>0.01537</td>
+                                          <td>0.03193</td>
+                                          <td>0.00017</td>
+                                          <td>31</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/98c652fc0c0e074399f11684b82a204b'>fluid simulation</a></td>
+                                          <td>0.21717</td>
+                                          <td>0.02665</td>
+                                          <td>0.01282</td>
+                                          <td>0.00008</td>
+                                          <td>14</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/fff25994ee3941b225ba898fd17d186f'>fine</a></td>
+                                          <td>0.21696</td>
+                                          <td>0.01537</td>
+                                          <td>0.03091</td>
+                                          <td>0.00017</td>
+                                          <td>31</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/834feae744c43369c32b2cdbf2ada1e6'>sketch</a></td>
+                                          <td>0.21695</td>
+                                          <td>0.01486</td>
+                                          <td>0.03175</td>
+                                          <td>0.00016</td>
+                                          <td>30</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/c6d79e22d837d4172867f7dce96d2a62'>spectral</a></td>
+                                          <td>0.21654</td>
+                                          <td>0.01537</td>
+                                          <td>0.0295</td>
+                                          <td>0.00017</td>
+                                          <td>31</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/f56b53e412e87751f665cb9f9061e50b'>layer</a></td>
+                                          <td>0.21628</td>
+                                          <td>0.01537</td>
+                                          <td>0.02864</td>
+                                          <td>0.00017</td>
+                                          <td>31</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/abac83435858c33190a090825015e3f1'>light source</a></td>
+                                          <td>0.21597</td>
+                                          <td>0.0246</td>
+                                          <td>0.01225</td>
+                                          <td>0.00007</td>
+                                          <td>13</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/11198b294adbcf089f9d27990258fd22'>increase</a></td>
+                                          <td>0.21593</td>
+                                          <td>0.01435</td>
+                                          <td>0.02918</td>
+                                          <td>0.00016</td>
+                                          <td>29</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/94b791f85a0a4577ba4200bfd03d68e8'>coupling</a></td>
+                                          <td>0.21568</td>
+                                          <td>0.01486</td>
+                                          <td>0.0275</td>
+                                          <td>0.00016</td>
+                                          <td>30</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/6de001201911c5c9361c398bd7e9a79'>nonlinear</a></td>
+                                          <td>0.2148</td>
+                                          <td>0.01332</td>
+                                          <td>0.02714</td>
+                                          <td>0.00015</td>
+                                          <td>27</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/3be411765e710adc7764f5056e44138c'>planar</a></td>
+                                          <td>0.21476</td>
+                                          <td>0.01332</td>
+                                          <td>0.02698</td>
+                                          <td>0.00015</td>
+                                          <td>27</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/22aadb26447d87b550b155a4d764fad0'>cross</a></td>
+                                          <td>0.21459</td>
+                                          <td>0.01384</td>
+                                          <td>0.02558</td>
+                                          <td>0.00015</td>
+                                          <td>28</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/46d47672cf6212d201d6e8b0c191e73'>course</a></td>
+                                          <td>0.21436</td>
+                                          <td>0.0123</td>
+                                          <td>0.02737</td>
+                                          <td>0.00014</td>
+                                          <td>25</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/67784531f1646b3a9e5d82adf8c8fa0e'>general purpose</a></td>
+                                          <td>0.21349</td>
+                                          <td>0.0205</td>
+                                          <td>0.0108</td>
+                                          <td>0.00006</td>
+                                          <td>11</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/b67affc6b1965cb2522c05b599db1b90'>linear system</a></td>
+                                          <td>0.2132</td>
+                                          <td>0.0205</td>
+                                          <td>0.00985</td>
+                                          <td>0.00006</td>
+                                          <td>11</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/eb0baac19797b0360943f9d0a6985dcc'>soft shadows</a></td>
+                                          <td>0.21252</td>
+                                          <td>0.01845</td>
+                                          <td>0.01098</td>
+                                          <td>0.00005</td>
+                                          <td>10</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/f32491216b1df670c85a6101e215498a'>human motion</a></td>
+                                          <td>0.21195</td>
+                                          <td>0.01845</td>
+                                          <td>0.0091</td>
+                                          <td>0.00005</td>
+                                          <td>10</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/2fa47f7c65fec19cc163b195725e3844'>length</a></td>
+                                          <td>0.21184</td>
+                                          <td>0.01025</td>
+                                          <td>0.02239</td>
+                                          <td>0.00012</td>
+                                          <td>21</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/66f6181bcb4cff4cd38fbc804a036db6'>template</a></td>
+                                          <td>0.21173</td>
+                                          <td>0.01076</td>
+                                          <td>0.02118</td>
+                                          <td>0.00012</td>
+                                          <td>22</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/3ec0c37a35847fb90c487214c292e9ff'>physical properties</a></td>
+                                          <td>0.2108</td>
+                                          <td>0.0164</td>
+                                          <td>0.00866</td>
+                                          <td>0.00004</td>
+                                          <td>8</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/e590d806e23a19ac2b7e16e920cc5427'>facial animation</a></td>
+                                          <td>0.21078</td>
+                                          <td>0.0164</td>
+                                          <td>0.00861</td>
+                                          <td>0.00005</td>
+                                          <td>9</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/8d27600b0cae5308441ddf6d9bb3c74c'>cell</a></td>
+                                          <td>0.21053</td>
+                                          <td>0.00974</td>
+                                          <td>0.01886</td>
+                                          <td>0.00011</td>
+                                          <td>20</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/1f4b7a7edd78431269cbbab0e3e0270'>eulerian</a></td>
+                                          <td>0.21019</td>
+                                          <td>0.00922</td>
+                                          <td>0.0186</td>
+                                          <td>0.0001</td>
+                                          <td>19</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/ebd556e6dfc99dbed29675ce1c6c68e5'>sun</a></td>
+                                          <td>0.21016</td>
+                                          <td>0.00871</td>
+                                          <td>0.01936</td>
+                                          <td>0.0001</td>
+                                          <td>18</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/60aef5b4c954c9f7ac9016310c55aac7'>influence</a></td>
+                                          <td>0.21015</td>
+                                          <td>0.00922</td>
+                                          <td>0.01845</td>
+                                          <td>0.0001</td>
+                                          <td>19</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/3e072748feb6ecd1b1ba397704e009c0'>incident</a></td>
+                                          <td>0.21009</td>
+                                          <td>0.00922</td>
+                                          <td>0.01826</td>
+                                          <td>0.0001</td>
+                                          <td>19</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/5f2bc8db49c998db9503b97f3c005f25'>noisy</a></td>
+                                          <td>0.21004</td>
+                                          <td>0.0082</td>
+                                          <td>0.0198</td>
+                                          <td>0.00009</td>
+                                          <td>17</td>
+                                          </tr>
+                                          <tr>
+                                          <td><a href='http://drinventor.dia.fi.upm.es/api/0.2/terms/5ecaf0d3af3004219bc6b5907d19b6d9'>erc</a></td>
+                                          <td>0.20984</td>
+                                          <td>0.00871</td>
+                                          <td>0.01827</td>
+                                          <td>0.0001</td>
+                                          <td>18</td>
+                                          </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="panel panel-default">
+                  <div class="panel-footer">
+                    <table style="width:100%">
+                      <tr>
+                        <td><img src="images/logo_dri.png" width="33" height="33" alt="dr inventor"></td>
+                        <td><center>This research project receives funding from the European Commission&#39;s Seventh Framework Programme.<br/>Activity ICT (FP7-ICT-2013.8.1), Grant agreement no: 611383</center></td>
+                        <td><img src="images/euflag.jpg" width="33" height="33" alt="european"></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <!-- /.row -->
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+
+</body>
+
+</html>

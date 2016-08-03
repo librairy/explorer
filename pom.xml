@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.librairy</groupId>
 	<artifactId>explorer</artifactId>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.4-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>explorer</name>
 	<description>librairy explorer</description>
@@ -59,7 +59,7 @@
 		<beanutils.version>1.9.2</beanutils.version>
 		<camel.euia.version>1.0.0</camel.euia.version>
 		<camel.oaipmh.version>1.0.5</camel.oaipmh.version>
-		<camel.version>2.15.2</camel.version>
+		<camel.version>2.15.2</camel.version><!-- 2.15.2 -->
 		<cloning.version>1.9.1</cloning.version>
 		<coreNlpExtensions.version>1.0</coreNlpExtensions.version>
 		<commons.lang.version>2.6</commons.lang.version>
@@ -103,12 +103,12 @@
 		<rabbitmq.version>3.5.6</rabbitmq.version>
 		<ressist.version>0.0.6</ressist.version>
 		<restlet.version>2.3.5</restlet.version>
-		<scala.version>2.11.2</scala.version>
+		<scala.version>2.10.6</scala.version><!-- 2.11.2 -->
 		<scalatest.version>2.2.4</scalatest.version>
 		<servlet.api.version>2.4</servlet.api.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<solr.version>5.4.0</solr.version>
-		<spark.version>1.5.0</spark.version>
+		<spark.version>1.6.1</spark.version>
 		<springboot.version>1.2.1.RELEASE</springboot.version>
 		<spring.data.commons.version>1.12.0.M1</spring.data.commons.version>
 		<spring.data.jpa.version>1.10.0.M1</spring.data.jpa.version>
@@ -417,7 +417,6 @@
 			</dependency>
 
 			<!-- Networking Libraries -->
-
 			<dependency>
 				<groupId>commons-httpclient</groupId>
 				<artifactId>commons-httpclient</artifactId>
@@ -849,14 +848,30 @@
 		<dependency>
 			<groupId>org.librairy</groupId>
 			<artifactId>librairy-boot</artifactId>
-			<version>${librairy.version}</version>
+			<version>0.5</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.librairy</groupId>
+			<artifactId>modeler-lda</artifactId>
+			<version>0.3</version>
+			<classifier>lib</classifier>
+		</dependency>
+
+		<!-- Meta Programming -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
+
 
 		<!-- Spring Web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 		</dependency>
+
 
 		<!-- Unit tests -->
 		<dependency>
@@ -997,6 +1012,7 @@
 
 	<build>
 		<finalName>api</finalName>
+
 		<plugins>
 
 			<!-- Maven Test Plugin -->
@@ -1180,6 +1196,10 @@
 							<name>MESSAGE_BROKER_PORT</name>
 							<value>5041</value>
 						</systemProperty>
+						<systemProperty>
+							<name>LIBRAIRY_URI</name>
+							<value>http://drinventor.eu/</value>
+						</systemProperty>
 					</systemProperties>
 				</configuration>
 			</plugin>
@@ -1188,7 +1208,7 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.2.3</version>
+				<version>0.4.11</version><!--0.2.3-->
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
@@ -1198,9 +1218,16 @@
 							<directory>${project.build.directory}</directory>
 							<include>${project.build.finalName}.war</include>
 						</resource>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>src/main/web</directory>
+							<include>**</include>
+						</resource>
 					</resources>
+					<forceTags>true</forceTags>
 					<imageTags>
 						<imageTag>${project.version}</imageTag>
+						<imageTag>latest</imageTag>
 					</imageTags>
 				</configuration>
 			</plugin>

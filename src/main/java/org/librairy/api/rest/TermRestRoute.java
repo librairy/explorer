@@ -7,6 +7,7 @@ import org.librairy.api.model.relations.MentionsI;
 import org.librairy.api.model.relations.ProbabilityI;
 import org.librairy.api.model.relations.WeightTimesI;
 import org.librairy.api.model.resources.TermI;
+import org.librairy.api.model.resources.TermO;
 import org.librairy.model.domain.resources.Term;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +28,16 @@ public class TermRestRoute extends RestRoute {
         definition = addRelationCRUD(definition, "domains", ProbabilityI.class, AppearedI.class, "where appears");
         definition = addRelationCRUD(definition, "words", WeightTimesI.class, MentionsI.class, "mentioned by");
         return definition;
+
+
+//        return definitions.rest("/terms").description("rest service for management")
+//
+//                .get("/{id}")
+//                .description("More details about  a by id").outType(TermO.class)
+////                .param().name("verbose").type(RestParamType.query).defaultValue("false").description("Verbose order details").endParam()
+//                .produces("application/json").to("bean:termService?method=get(${header.id})")
+//
+//                ;
 
 
     }

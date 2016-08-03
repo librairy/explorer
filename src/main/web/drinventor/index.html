@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="DrInventor Repository">
+    <meta name="author" content="cbadenes">
+
+    <title>drinventor repository</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">DrInventor Repository</a>
+          </div>
+          <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav side-nav">
+                  <!--<li class="active">
+                      <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                  </li>-->
+                  <li class="active">
+                      <a href="javascript:;" data-toggle="collapse" data-target="#explore"><i class="fa fa-fw fa-search"></i> Explore <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="explore">
+                          <li>
+                            <a href="ex-corpus.html"><i class="fa fa-copy"></i> Corpus</a>
+                          </li>
+                          <li>
+                              <a href="ex-documents.html"><i class="fa fa-file-text-o"></i> Documents</a>
+                          </li>
+                          <li>
+                              <a href="ex-topics.html"><i class="fa fa-tags"></i> Topics</a>
+                          </li>
+                          <li>
+                              <a href="ex-terms.html"><i class="fa fa-comment-o"></i> Terms</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="javascript:;" data-toggle="collapse" data-target="#discover"><i class="fa fa-fw fa-magic"></i> Discover <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="discover">
+                          <li>
+                              <a href="dis-relations.html"><i class="fa fa-exchange"></i> Relations</a>
+                          </li>
+                          <li>
+                              <a href="dis-matches.html"><i class="fa fa-search-plus"></i> Matches</a>
+                          </li>
+                          <li>
+                              <a href="dis-paths.html"><i class="fa fa-sitemap"></i> Paths</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            SIGGRAPH corpus <small>(2002 - 2016)</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                SIGGRAPH (short for Special Interest Group on Computer GRAPHics and Interactive Techniques) is the name of the annual conference on computer graphics (CG) convened by the ACM SIGGRAPH organization. The conference is attended by tens of thousands of computer professionals.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-files-o fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">1492</div>
+                                        <div>Papers!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-font fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">83453</div>
+                                        <div>Words!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-indent fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">576</div>
+                                        <div>Terms!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tags fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">7</div>
+                                        <div>Topics!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Distribution</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="siggraph-documents"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-copy fa-fw"></i> Documents</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Year</th>
+                                                <th>Title</th>
+                                                <th>Author/s</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+	<td>2012</td>
+	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/a54f603e5fcc082fa15db846ceca1d54'>A Search-Classify Approach for Cluttered Indoor Scene Understanding</a></td>
+	<td>Liangliang Nan, Ke Xie, Andrei Sharf</td>
+</tr>
+<tr>
+	<td>2013</td>
+	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/e03a956cf308bc4f9d4aea2ec5084798'>A Compact Random-Access Representation for Urban Modeling and Rendering</a></td>
+	<td>Zhengzheng Kuang, Bin Chan, Yizhou Yu, Wenping Wang</td>
+</tr>
+<tr>
+	<td>2014</td>
+	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/12658e2ebdd6b45d957fc2100d2569b3'>Interactive Intrinsic Video Editing</a></td>
+	<td>Hanspeter Pfister</td>
+</tr>
+<tr>
+	<td>2015</td>
+	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/102ad666e8b644726c9c6bfebdd3ed5b'>Matching Real Fabrics with Micro-Appearance Models</a></td>
+	<td>Khungurn, Pramook, Schroeder, Daniel, Zhao, Shuang, Bala, Kavita, Marschner, Steve</td>
+</tr>
+<tr>
+	<td>2016</td>
+	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/e5c8431d6eb915b601f1bedcf7fd8eb'>Shadow Theatre: Discovering Human Motion from a Sequence of Silhouettes</a></td>
+	<td>TJ Holowaychuk</td>
+</tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="ex-corpus.html">View All Documents <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="panel panel-default">
+                  <div class="panel-footer">
+                    <table style="width:100%">
+                      <tr>
+                        <td><img src="images/logo_dri.png" width="33" height="33" alt="dr inventor"></td>
+                        <td><center>This research project receives funding from the European Commission&#39;s Seventh Framework Programme.<br/>Activity ICT (FP7-ICT-2013.8.1), Grant agreement no: 611383</center></td>
+                        <td><img src="images/euflag.jpg" width="33" height="33" alt="european"></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+    <!-- SIGGRAPH Charts -->
+    <script>
+    new Morris.Bar({
+      // ID of the element in which to draw the chart.
+      element: 'siggraph-documents',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2002', value: 64 },
+        { year: '2003', value: 81 },
+        { year: '2004', value: 74 },
+        { year: '2005', value: 106 },
+        { year: '2006', value: 79 },
+        { year: '2007', value: 108 },
+        { year: '2008', value: 68 },
+        { year: '2009', value: 142 },
+        { year: '2010', value: 134 },
+        { year: '2011', value: 126 },
+        { year: '2012', value: 110 },
+        { year: '2013', value: 149 },
+        { year: '2014', value: 146 },
+        { year: '2015', value: 33 },
+        { year: '2016', value: 72 }
+      ],
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['value'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['Value']
+    });
+    </script>
+</body>
+
+</html>
