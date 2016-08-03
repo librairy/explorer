@@ -13,4 +13,19 @@ public class WeightResourceI {
     String resource;
 
     String description;
+
+    public WeightResourceI setWeight(Double weight){
+        this.weight = weight;
+        return this;
+    }
+
+    public WeightResourceI setResource(String resource){
+        this.resource = resource;
+        return this;
+    }
+
+    public WeightResourceI setDescription(String description){
+        this.description = description;
+        return this;
+    }
 }
