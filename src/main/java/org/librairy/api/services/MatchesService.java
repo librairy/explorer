@@ -35,6 +35,10 @@ public class MatchesService extends AbstractResourceService<Filter> {
     @Autowired
     ElasticsearchTemplate elasticsearchTemplate;
 
+    @Autowired
+    EnricherService enricherService;
+
+
     private static final Logger LOG = LoggerFactory.getLogger(MatchesService.class);
 
     public MatchesService() {
@@ -59,33 +63,6 @@ public class MatchesService extends AbstractResourceService<Filter> {
 
     public List<WeightResourceI> listMatches(String id) throws IOException, ClassNotFoundException {
         return matches(id, "documents", "items", "parts", "words", "domains", "topics");
-    }
-
-    private String retrieveContent(WeightResourceI resource){
-
-        switch (uriGenerator.getResourceFrom(resource.getResource())){
-            case DOCUMENT:
-                return udm.read(Resource.Type.DOCUMENT).byUri(resource.getResource()).get().asDocument().getTitle();
-            case ITEM:
-                return StringUtils.substring(udm.read(Resource.Type.ITEM).byUri(resource.getResource()).get().asItem()
-                        .getContent(),0,100)+"..";
-            case PART:
-                return StringUtils.substring(udm.read(Resource.Type.PART).byUri(resource.getResource()).get().asPart()
-                        .getContent(),0,100)+"..";
-            case ANALYSIS:
-                return udm.read(Resource.Type.ANALYSIS).byUri(resource.getResource()).get().asAnalysis().getDescription();
-            case DOMAIN:
-                return udm.read(Resource.Type.DOMAIN).byUri(resource.getResource()).get().asDomain().getName();
-            case SOURCE:
-                return udm.read(Resource.Type.SOURCE).byUri(resource.getResource()).get().asSource().getName();
-            case TERM:
-                return udm.read(Resource.Type.TERM).byUri(resource.getResource()).get().asTerm().getContent();
-            case WORD:
-                return udm.read(Resource.Type.WORD).byUri(resource.getResource()).get().asWord().getContent();
-            case TOPIC:
-                return udm.read(Resource.Type.TOPIC).byUri(resource.getResource()).get().asTopic().getContent();
-            default: return "";
-        }
     }
 
     private List<WeightResourceI> matches(String filterId, String... type){
@@ -123,7 +100,7 @@ public class MatchesService extends AbstractResourceService<Filter> {
         };
 
         return elasticsearchTemplate.query(searchQuery, result).stream()
-                .map(res -> res.setDescription(retrieveContent(res)))
+                .map(res -> res.setDescription(enricherService.composeDescriptionFrom(res.getResource())))
                 .collect(Collectors.toList());
     }
 
