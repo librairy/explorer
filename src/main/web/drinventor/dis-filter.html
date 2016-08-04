@@ -92,110 +92,85 @@
 
         <div id="page-wrapper">
 
-            <div class="container-fluid">
+
+
+            <div class="container-fluid" id="filter-panel">
 
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            SIGGRAPH corpus <small>(2002 - 2016)</small>
+                            Filtering Documents by Text
                         </h1>
                         <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-database"></i>  <a href="index.html">Repository</a>
+                            </li>
                             <li class="active">
-                                SIGGRAPH (short for Special Interest Group on Computer GRAPHics and Interactive Techniques) is the name of the annual conference on computer graphics (CG) convened by the ACM SIGGRAPH organization. The conference is attended by tens of thousands of computer professionals.
+                                <i class="fa fa-copy"></i> Filters
                             </li>
                         </ol>
                     </div>
                 </div>
-                <!-- /.row -->
 
+                <!-- Page Explanation 
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-files-o fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">1492</div>
-                                        <div>Papers!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                            <h4>Given an excerpt of plain text, DR Inventor platform is able to retrieve the most relevant scientific papers elaborating on similar topics so the user can get more insights about the initial research field expressed in the filter.</h4>
+                        </ol>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-font fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">83453</div>
-                                        <div>Words!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-yellow">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-indent fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">576</div>
-                                        <div>Terms!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-tags fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">7</div>
-                                        <div>Topics!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div>-->
+
+
+
                 <!-- /.row -->
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="panel panel-default">
+                            <div class="panel panel-info">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Distribution</h3>
+                                <h3 class="panel-title">Enter Filtering Text</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="siggraph-documents"></div>
+                                <div class="form-group-filterinput">
+                                    <!-- <label>Text area</label> -->
+                                    <textarea id="textarea-filter"class="form-control" rows="3" style="margin: 0px -0.5px 0px 0px; height: 125px;">Glucose oxidase-based biofuel cells are a promising source of alternative energy for small device applications, but still face the challenge of achieving robust electrical contact between the redox enzymes and the current collector. This paper reports on the design of an electrode consisting of glucose oxidase covalently attached to gold nanoparticles that are assembled onto a genetically engineered M13 bacteriophage using EDC-NHS chemistry. The engineered phage is modified at the pIII protein to attach onto a gold substrate and serves as a high-surface-area template. The resulting “nanomesh” architecture exhibits direct electron transfer (DET) and achieves a higher peak current per unit area of 1.2 mA/cm2 compared to most other DET attachment schemes. The final enzyme surface coverage on the electrode was calculated to be approximately 4.74 × 10–8 mol/cm2, which is a significant improvement over most current glucose oxidase (GOx) DET attachment methods.</textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
 
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <center style="margin-bottom: 20px">
+                           <button id="resetFilter" type="button" class="btn btn-lg btn-default">
+                            Reset
+
+                            </button>
+                           <button id="launchFilter" type="button" class="btn btn-lg btn-info"data-loading-text="<i class='fa fa-spinner fa-spin '></i> Retrieving Data...">
+                           Search
+                           </button>
+                        </center>
+                    </div>
+                </div>
+
+
+
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-copy fa-fw"></i> Documents</h3>
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Documents</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
+                                    <table class="table table-bordered table-hover table-striped" id="tableFilterResult">
                                         <thead>
                                             <tr>
                                                 <th>Year</th>
@@ -204,42 +179,22 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          <tr>
-	<td>2012</td>
-	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/a54f603e5fcc082fa15db846ceca1d54'>A Search-Classify Approach for Cluttered Indoor Scene Understanding</a></td>
-	<td>Liangliang Nan, Ke Xie, Andrei Sharf</td>
-</tr>
-<tr>
-	<td>2013</td>
-	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/e03a956cf308bc4f9d4aea2ec5084798'>A Compact Random-Access Representation for Urban Modeling and Rendering</a></td>
-	<td>Zhengzheng Kuang, Bin Chan, Yizhou Yu, Wenping Wang</td>
-</tr>
-<tr>
-	<td>2014</td>
-	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/12658e2ebdd6b45d957fc2100d2569b3'>Interactive Intrinsic Video Editing</a></td>
-	<td>Hanspeter Pfister</td>
-</tr>
-<tr>
-	<td>2015</td>
-	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/102ad666e8b644726c9c6bfebdd3ed5b'>Matching Real Fabrics with Micro-Appearance Models</a></td>
-	<td>Khungurn, Pramook, Schroeder, Daniel, Zhao, Shuang, Bala, Kavita, Marschner, Steve</td>
-</tr>
-<tr>
-	<td>2016</td>
-	<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/documents/e5c8431d6eb915b601f1bedcf7fd8eb'>Shadow Theatre: Discovering Human Motion from a Sequence of Silhouettes</a></td>
-	<td>TJ Holowaychuk</td>
-</tr>
+ 
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="text-right">
-                                    <a href="ex-corpus.html">View All Documents <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="#">View All Documents <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
+
+            </div>
+        <!-- /#filter-panel-->
+
 
                 <div class="panel panel-default">
                   <div class="panel-footer">
@@ -276,36 +231,75 @@
 
     <!-- SIGGRAPH Charts -->
     <script>
-    new Morris.Bar({
-      // ID of the element in which to draw the chart.
-      element: 'siggraph-documents',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
-      data: [
-        { year: '2002', value: 64 },
-        { year: '2003', value: 81 },
-        { year: '2004', value: 74 },
-        { year: '2005', value: 106 },
-        { year: '2006', value: 79 },
-        { year: '2007', value: 108 },
-        { year: '2008', value: 68 },
-        { year: '2009', value: 142 },
-        { year: '2010', value: 134 },
-        { year: '2011', value: 126 },
-        { year: '2012', value: 110 },
-        { year: '2013', value: 149 },
-        { year: '2014', value: 146 },
-        { year: '2015', value: 33 },
-        { year: '2016', value: 72 }
-      ],
-      // The name of the data record attribute that contains x-values.
-      xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
-      ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
-      labels: ['Value']
-    });
+    
+
+    var buttonResetFilter = document.getElementById('resetFilter');
+    buttonResetFilter.addEventListener('click', function() {
+        $('#textarea-filter').val('');
+    }, false);
+
+
+    var buttonLaunchFilter = document.getElementById('launchFilter');
+    buttonLaunchFilter.addEventListener('click', function() {
+        var DrInventorAPI = "http://drinventor.dia.fi.upm.es:80/api/0.2/filters";
+        var myJSObject = new Object();
+        myJSObject.content = $('#textarea-filter').val();
+
+        var $this = $(this);
+        $this.button('loading');
+
+        $.ajax ({
+            type: "POST",
+            url: DrInventorAPI,
+            dataType: "json",
+            headers: {'Content-Type': 'application/json'},
+            data: JSON.stringify(myJSObject)
+        })
+        .done(function (data) {
+            retrieveFilteredSimilarDocuments(data.uri); 
+        })
+        .fail(function (data) {
+           alert("Error: " + data); 
+        });
+    }, false);
+
+
+
+
+
+    function retrieveFilteredSimilarDocuments (uri){
+        while (uri.indexOf("/") !== -1) {
+            uri = uri.substring(uri.indexOf("/")+1);
+        }
+
+        var DrInventorAPIsimilarFilters = "http://drinventor.dia.fi.upm.es:80/api/0.2/filters/"+uri+"/similar/documents";
+
+          $.getJSON( DrInventorAPIsimilarFilters)
+            .done(function( data ) {
+              $.each( data, function( i) {
+                //$( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+                printDocInTable(this.resource, this.description);
+              });
+              $('#launchFilter').button('reset');
+            });
+
+    }
+
+    function printDocInTable (uri, title){
+        while (uri.indexOf("/") !== -1) {
+            uri = uri.substring(uri.indexOf("/")+1);
+        }
+
+
+        var DrInventorAPIdocs = "http://drinventor.dia.fi.upm.es:80/api/0.2/documents/"+uri;
+
+          $.getJSON( DrInventorAPIdocs)
+            .done(function( data ) {
+                $('#tableFilterResult > tbody:last-child').append("<tr><td>"+data.publishedOn+"</td><td><a target=\"_blank\" href=\""+DrInventorAPIdocs+"\">"+data.title+"</a></td><td>"+data.authoredBy+"</td></tr>");
+            });
+
+    }
+
     </script>
 </body>
 
