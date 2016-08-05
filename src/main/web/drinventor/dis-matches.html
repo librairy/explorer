@@ -135,7 +135,7 @@
                             <div class="panel-body">
                                 <div class="form-group-filterinput">
                                     <!-- <label>Text area</label> -->
-                                    <textarea id="textarea-filter"class="form-control" rows="3" style="margin: 0px -0.5px 0px 0px; height: 100px;">Leaf Lightening</textarea>
+                                    <textarea id="textarea-filter"class="form-control" rows="3" style="margin: 0px -0.5px 0px 0px; height: 100px;">vertices or pixel</textarea>
                                 </div>
                             </div>
                         </div>
@@ -173,9 +173,9 @@
                                     <table class="table table-bordered table-hover table-striped" id="tableFilterResult">
                                         <thead>
                                             <tr>
-                                                <th>Year</th>
-                                                <th>Title</th>
-                                                <th>Author/s</th>
+                                                <th>Resource</th>
+                                                <th>Weight</th>
+                                                <!-- / <th>Author/s</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -272,33 +272,38 @@
             uri = uri.substring(uri.indexOf("/")+1);
         }
 
-        var DrInventorAPIsimilarFilters = "http://drinventor.dia.fi.upm.es:80/api/0.2/filters/"+uri+"/matches/documents";
+        var DrInventorAPIsimilarFilters = "http://drinventor.dia.fi.upm.es:80/api/0.2/filters/"+uri+"/matches/items";
 
           $.getJSON( DrInventorAPIsimilarFilters)
             .done(function( data ) {
               $.each( data, function( i) {
                 //$( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
-                printDocInTable(this.resource, this.description);
+                printDocInTable(this.resource, this.weight);
               });
               $('#launchFilter').button('reset');
             });
 
     }
 
-    function printDocInTable (uri, title){
+    function printDocInTable (uri, weight){
         var itemType  = "";
+        var originalUri = uri;
         while (uri.indexOf("/") !== -1) {
             itemType = uri.substring(0, uri.indexOf("/"));
             uri = uri.substring(uri.indexOf("/")+1);
         }
 
-
         var DrInventorAPIdocs = "http://drinventor.dia.fi.upm.es:80/api/0.2/"+itemType+"/"+uri;
+
+        $('#tableFilterResult > tbody:last-child').append("<tr><td><a target=\"_blank\" href=\""+DrInventorAPIdocs+"\">"+originalUri+"</a></td><td>"+weight+"</td></tr>");
+
+
+        /*var DrInventorAPIdocs = "http://drinventor.dia.fi.upm.es:80/api/0.2/"+itemType+"/"+uri;
 
           $.getJSON( DrInventorAPIdocs)
             .done(function( data ) {
                 $('#tableFilterResult > tbody:last-child').append("<tr><td>"+data.publishedOn+"</td><td><a target=\"_blank\" href=\""+DrInventorAPIdocs+"\">"+data.title+"</a></td><td>"+data.authoredBy+"</td></tr>");
-            });
+            });*/
 
     }
 
