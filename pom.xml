@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.librairy</groupId>
 	<artifactId>explorer</artifactId>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.5</version>
 	<packaging>war</packaging>
 	<name>explorer</name>
 	<description>librairy explorer</description>
@@ -1280,6 +1280,7 @@
 				<updatePolicy>always</updatePolicy>
 			</snapshots>
 		</repository>
+
 	</repositories>
 
 	<!-- Report -->

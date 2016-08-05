@@ -2,16 +2,13 @@ package org.librairy.api.converters;
 
 import org.apache.camel.Converter;
 import org.apache.camel.TypeConversionException;
-import org.apache.commons.beanutils.BeanUtils;
 import org.librairy.api.model.resources.DomainI;
 import org.librairy.api.model.resources.FilterI;
+import org.librairy.api.model.resources.PathI;
 import org.librairy.api.model.resources.SourceI;
-import org.librairy.api.model.resources.TermO;
 import org.librairy.model.domain.resources.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by cbadenes on 11/02/16.
@@ -45,6 +42,14 @@ public class ResourceConverter {
         return resource;
     }
 
+    @Converter
+    public static Path toResource(PathI facade) throws TypeConversionException {
+        Path resource = Resource.newPath();
+        resource.setStart(facade.getStart());
+        resource.setEnd(facade.getEnd());
+        return resource;
+    }
+
     //TODO Document
 
     //TODO Item
@@ -56,14 +61,4 @@ public class ResourceConverter {
     //TODO Word
 
     //TODO Term
-    @Converter
-    public static TermO toResource(Term term) throws TypeConversionException, InvocationTargetException,
-            IllegalAccessException {
-        LOG.info("Trying to convert Term to TermO...");
-        TermO tf = new TermO();
-        BeanUtils.copyProperties(tf,term);
-        return tf;
-    }
-
-
 }

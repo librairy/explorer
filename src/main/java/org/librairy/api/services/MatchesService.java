@@ -1,40 +1,30 @@
 package org.librairy.api.services;
 
-import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.ml.feature.CountVectorizerModel;
-import org.apache.spark.mllib.clustering.LocalLDAModel;
-import org.apache.spark.mllib.linalg.Vector;
-import org.apache.spark.mllib.linalg.Vectors;
-import org.apache.spark.rdd.RDD;
-import org.apache.spark.sql.DataFrame;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.RowFactory;
+import com.google.common.base.Strings;
+import org.apache.commons.lang.StringUtils;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.librairy.api.model.relations.WeightResourceI;
-import org.librairy.model.domain.relations.Relationship;
-import org.librairy.model.domain.resources.Document;
 import org.librairy.model.domain.resources.Filter;
-import org.librairy.model.domain.resources.Item;
 import org.librairy.model.domain.resources.Resource;
-import org.librairy.modeler.lda.builder.OnlineLDABuilder;
-import org.librairy.modeler.lda.functions.RowToPair;
-import org.librairy.modeler.lda.models.similarity.RelationalSimilarity;
-import org.librairy.storage.generator.URIGenerator;
-import org.librairy.storage.system.document.domain.DocumentDocument;
-import org.librairy.storage.system.document.repository.DocumentDocumentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.ResultsExtractor;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Component;
-import scala.Tuple2;
-import scala.reflect.ClassTag$;
 
-import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.elasticsearch.index.query.QueryBuilders.matchPhraseQuery;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -42,11 +32,12 @@ import java.util.stream.Collectors;
 @Component
 public class MatchesService extends AbstractResourceService<Filter> {
 
-    //TODO Update Camel to 2.17.x to define this as query param
-    String n = "20";
+    @Autowired
+    ElasticsearchTemplate elasticsearchTemplate;
 
     @Autowired
-    DocumentDocumentRepository documentRepository;
+    EnricherService enricherService;
+
 
     private static final Logger LOG = LoggerFactory.getLogger(MatchesService.class);
 
@@ -56,32 +47,61 @@ public class MatchesService extends AbstractResourceService<Filter> {
 
 
     public List<WeightResourceI> listMatchedDocuments(String id) throws IOException, ClassNotFoundException {
-        String uri = uriGenerator.from(Resource.Type.FILTER, id);
-        Integer top = Integer.valueOf(n);
-        return null;
+        return matches(id, "documents");
     }
 
 
     public List<WeightResourceI> listMatchedItems(String id) throws IOException, ClassNotFoundException {
-        //TODO Handle Items
-        String uri = uriGenerator.from(Resource.Type.FILTER, id);
-        Integer top = Integer.valueOf(n);
-        return null;
+        return matches(id, "items");
     }
 
 
     public List<WeightResourceI> listMatchedParts(String id) throws IOException, ClassNotFoundException {
-        //TODO Handle Parts
-        String uri = uriGenerator.from(Resource.Type.FILTER, id);
-        Integer top = Integer.valueOf(n);
-        return null;
+        return matches(id, "parts");
     }
 
 
     public List<WeightResourceI> listMatches(String id) throws IOException, ClassNotFoundException {
-        //TODO Handle All the types
-        String uri = uriGenerator.from(Resource.Type.FILTER, id);
-        Integer top = Integer.valueOf(n);
-        return null;
+        return matches(id, "documents", "items", "parts", "words", "domains", "topics");
     }
+
+    private List<WeightResourceI> matches(String filterId, String... type){
+
+        String uri = uriGenerator.from(Resource.Type.FILTER, filterId);
+        Filter filter = udm.read(Resource.Type.FILTER).byUri(uri).get().asFilter();
+
+
+        SearchQuery searchQuery = new NativeSearchQueryBuilder()
+                .withIndices("research")
+                .withTypes(type)
+                .withQuery(matchPhraseQuery("content",filter.getContent()))
+                .withSort(SortBuilders.fieldSort("_score").order(SortOrder.DESC))
+                .build();
+
+        ResultsExtractor<List<WeightResourceI>> result = new ResultsExtractor<List<WeightResourceI>>() {
+            @Override
+            public List<WeightResourceI> extract(SearchResponse searchResponse) {
+                List<WeightResourceI> resultList = new ArrayList<>();
+                LOG.info("Took: " + searchResponse.getTook().toString());
+
+                SearchHits hits = searchResponse.getHits();
+
+                LOG.info("Total Hits: " + hits.totalHits());
+
+                for (SearchHit hit : hits.hits()){
+                    WeightResourceI wresource = new WeightResourceI();
+                    wresource.setResource(hit.getId());
+                    wresource.setWeight(Double.valueOf(hit.getScore()));
+                    resultList.add(wresource);
+                }
+
+                return resultList;
+            }
+        };
+
+        return elasticsearchTemplate.query(searchQuery, result).stream()
+                .map(res -> res.setDescription(enricherService.composeDescriptionFrom(res.getResource())))
+                .collect(Collectors.toList());
+    }
+
 }
