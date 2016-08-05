@@ -2,10 +2,16 @@ package org.librairy.api.model.relations;
 
 import lombok.Data;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Created by cbadenes on 22/01/16.
  */
 @Data
+@XmlRootElement(name = "document")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class WeightResourceI {
 
     Double weight;
