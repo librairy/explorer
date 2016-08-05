@@ -75,7 +75,7 @@
                       <a href="javascript:;" data-toggle="collapse" data-target="#discover"><i class="fa fa-fw fa-magic"></i> Discover <i class="fa fa-fw fa-caret-down"></i></a>
                       <ul id="discover">
                           <li>
-                              <a href="dis-relations.html"><i class="fa fa-exchange"></i> Relations</a>
+                              <a href="dis-filter.html"><i class="fa fa-exchange"></i> Filters</a>
                           </li>
                           <li>
                               <a href="dis-matches.html"><i class="fa fa-search-plus"></i> Matches</a>
@@ -195,6 +195,14 @@
                                 <div id="similar-documents" style="height:300px;"></div>
                               </div>
                       </div>
+                      <div class="panel panel-default">
+                              <div class="panel-heading">
+                                  <h3 class="panel-title"><i class="fa fa-tag fa-fw"></i> Content</h3>
+                              </div>
+                              <div class="panel-body">
+                                <div id="document-content" style="height:300px;"></div>
+                              </div>
+                      </div>
                 </div>
               </div>
                 <!-- /.row -->
@@ -273,6 +281,30 @@
       .id("name")
       .draw()
 
+    </script>
+
+
+    <script>
+    // sample data array
+    var trade_data = [
+      { "word": "image", "weight": 7},
+      { "word": "figure", "weight": 5.81},
+      { "word": "model", "weight": 4.9},
+      { "word": "method", "weight": 4.84},
+      { "word": "tree", "weight": 10.79},
+      { "word": "branch", "weight": 5.62},
+      { "word": "plant", "weight": 3.62},
+      { "word": "mesh", "weight": 3.58}
+    ];
+    // instantiate d3plus
+    d3plus.viz()
+    .container("#document-content")
+    .data(trade_data)
+    .type("tree_map")
+    .id("word")
+    .size("weight")
+    .labels({"align": "left", "valign": "top"})
+    .draw();
     </script>
 
 </body>
