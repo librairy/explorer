@@ -107,7 +107,7 @@
                                 <i class="fa fa-database"></i>  <a href="index.html">Repository</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-copy"></i> Filters
+                                <i class="fa fa-filter"></i> Filters
                             </li>
                         </ol>
                     </div>
@@ -242,6 +242,9 @@
         var myJSObject = new Object();
         myJSObject.content = $('#textarea-filter').val();
 
+
+
+
         var $this = $(this);
         $this.button('loading');
 
@@ -258,6 +261,8 @@
         .fail(function (data) {
            alert("Error: " + data); 
         });
+
+
     }, false);
 
 
@@ -275,6 +280,9 @@
             .done(function( data ) {
               $.each( data, function( i) {
                 //$( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+                //CleanUpTable
+               $("#tableFilterResult tbody tr").remove();
+
                 printDocInTable(this.resource, this.description);
               });
               $('#launchFilter').button('reset');

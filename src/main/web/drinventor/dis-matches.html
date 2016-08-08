@@ -107,7 +107,7 @@
                                 <i class="fa fa-database"></i>  <a href="index.html">Repository</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-copy"></i> Matches
+                                <i class="fa fa-search-plus"></i> Matches
                             </li>
                         </ol>
                     </div>
@@ -275,6 +275,7 @@
             .done(function( data ) {
               $.each( data, function( i) {
                 //$( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+                $("#tableFilterResult tbody tr").remove();
                 printDocInTable(this.resource, this.weight);
               });
               $('#launchFilter').button('reset');
