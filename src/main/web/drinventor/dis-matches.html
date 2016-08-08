@@ -254,9 +254,9 @@
         })
         .done(function (data) {
             $("#tableFilterResult tbody tr").remove();
-            retrieveFilteredSimilarItems(data.uri);
-            retrieveFilteredSimilarParts(data.uri); 
-            retrieveFilteredSimilarDocuments(data.uri); 
+            retrieveFilteredSimilarResources(data.uri);
+            //retrieveFilteredSimilarParts(data.uri); 
+            //retrieveFilteredSimilarDocuments(data.uri); 
  
         })
         .fail(function (data) {
@@ -265,49 +265,12 @@
     }, false);
 
 
-
-    function retrieveFilteredSimilarItems (uri){
+    function retrieveFilteredSimilarResources (uri){
         while (uri.indexOf("/") !== -1) {
             uri = uri.substring(uri.indexOf("/")+1);
         }
 
-        var DrInventorAPIsimilarFilters = "http://drinventor.dia.fi.upm.es:80/api/0.2/filters/"+uri+"/matches/items";
-
-          $.getJSON( DrInventorAPIsimilarFilters)
-            .done(function( data ) {
-              $.each( data, function( i) {
-                //$( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
-                printDocInTable(this.resource, this.weight);
-              });
-              $('#launchFilter').button('reset');
-            });
-
-    }
-
-    function retrieveFilteredSimilarParts (uri){
-        while (uri.indexOf("/") !== -1) {
-            uri = uri.substring(uri.indexOf("/")+1);
-        }
-
-        var DrInventorAPIsimilarFilters = "http://drinventor.dia.fi.upm.es:80/api/0.2/filters/"+uri+"/matches/parts";
-
-          $.getJSON( DrInventorAPIsimilarFilters)
-            .done(function( data ) {
-              $.each( data, function( i) {
-                //$( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
-                printDocInTable(this.resource, this.weight);
-              });
-              $('#launchFilter').button('reset');
-            });
-
-    }
-
-    function retrieveFilteredSimilarDocuments (uri){
-        while (uri.indexOf("/") !== -1) {
-            uri = uri.substring(uri.indexOf("/")+1);
-        }
-
-        var DrInventorAPIsimilarFilters = "http://drinventor.dia.fi.upm.es:80/api/0.2/filters/"+uri+"/matches/documents";
+        var DrInventorAPIsimilarFilters = "http://drinventor.dia.fi.upm.es:80/api/0.2/filters/"+uri+"/matches";
 
           $.getJSON( DrInventorAPIsimilarFilters)
             .done(function( data ) {
