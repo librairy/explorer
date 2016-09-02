@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -27,12 +28,14 @@ public class DomainService extends AbstractResourceService<Domain> {
     // CONTAINS -> Document
     public List<String> listDocuments(String id) {
         String uri = uriGenerator.from(Resource.Type.DOMAIN, id);
-        return udm.find(Resource.Type.DOCUMENT).from(Resource.Type.DOMAIN, uri);
+        return udm.find(Resource.Type.DOCUMENT).from(Resource.Type.DOMAIN, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeDocuments(String id) {
         String uri = uriGenerator.from(Resource.Type.DOMAIN, id);
-        udm.delete(Relation.Type.CONTAINS).in(Resource.Type.DOMAIN, uri);
+
+        udm.find(Relation.Type.CONTAINS).from(Resource.Type.DOMAIN, uri)
+                .forEach(rel -> udm.delete(Relation.Type.CONTAINS).byUri(rel.getUri()));
     }
 
     public RelationI getDocuments(String startId, String endId) {
@@ -51,7 +54,8 @@ public class DomainService extends AbstractResourceService<Domain> {
     public void removeDocuments(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.DOMAIN, startId);
         String iuri = uriGenerator.from(Resource.Type.DOCUMENT, endId);
-        udm.find(Relation.Type.CONTAINS).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.CONTAINS).byUri(relation.getUri()));
+        udm.find(Relation.Type.CONTAINS).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type.CONTAINS).byUri
+                (relation.getUri()));
     }
 
 

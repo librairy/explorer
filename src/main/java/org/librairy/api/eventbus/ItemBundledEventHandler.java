@@ -65,13 +65,13 @@ public class ItemBundledEventHandler implements EventBusSubscriber {
             Relation relation = event.to(Relation.class);
 
             // BUNDLES relation
-            List<String> domains = udm.find(Resource.Type.DOMAIN).from(Resource.Type.DOCUMENT, relation
+            List<Resource> domains = udm.find(Resource.Type.DOMAIN).from(Resource.Type.DOCUMENT, relation
                     .getStartUri());
 
             // Remove corpus serialization for these domains
             if (!domains.isEmpty()){
                 domains.forEach(domain -> {
-                    String id = URIGenerator.retrieveId(domain);
+                    String id = URIGenerator.retrieveId(domain.getUri());
                     Path corpusPath = Paths.get(modelFolder,domainId,"corpus.gz");
                     try {
                         Files.deleteIfExists(corpusPath);

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -25,12 +26,13 @@ public class PartService extends AbstractResourceService<Part> {
     // SIMILAR_TO -> Part
     public List<String> listParts(String id) {
         String uri = uriGenerator.from(Resource.Type.PART, id);
-        return udm.find(Resource.Type.PART).from(Resource.Type.PART, uri);
+        return udm.find(Resource.Type.PART).from(Resource.Type.PART, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeParts(String id) {
         String uri = uriGenerator.from(Resource.Type.PART, id);
-        udm.delete(Relation.Type.SIMILAR_TO_PARTS).in(Resource.Type.PART, uri);
+        udm.find(Relation.Type.SIMILAR_TO_PARTS).from(Resource.Type.PART, uri).forEach(rel->udm.delete(Relation.Type
+                .SIMILAR_TO_PARTS).byUri(rel.getUri()));
     }
 
     public SimilarI getParts(String startId, String endId) {
@@ -43,7 +45,7 @@ public class PartService extends AbstractResourceService<Part> {
     public void addParts(String startId, String endId, WeightDomainI weightI) {
         String startUri = uriGenerator.from(Resource.Type.PART, startId);
         String endUri = uriGenerator.from(Resource.Type.PART, endId);
-        SimilarToParts relation = Relation.newSimilarToParts(startUri, endUri);
+        SimilarToParts relation = Relation.newSimilarToParts(startUri, endUri, weightI.getDomain());
         relation.setWeight(weightI.getWeight());
         relation.setDomain(weightI.getDomain());
         udm.save(relation);
@@ -52,18 +54,20 @@ public class PartService extends AbstractResourceService<Part> {
     public void removeParts(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.PART, startId);
         String iuri = uriGenerator.from(Resource.Type.PART, endId);
-        udm.find(Relation.Type.SIMILAR_TO_PARTS).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.SIMILAR_TO_PARTS).byUri(relation.getUri()));
+        udm.find(Relation.Type.SIMILAR_TO_PARTS).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type
+                .SIMILAR_TO_PARTS).byUri(relation.getUri()));
     }
 
     // DESCRIBES -> Item
     public List<String> listItems(String id) {
         String uri = uriGenerator.from(Resource.Type.PART, id);
-        return udm.find(Resource.Type.ITEM).from(Resource.Type.PART, uri);
+        return udm.find(Resource.Type.ITEM).from(Resource.Type.PART, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeItems(String id) {
         String uri = uriGenerator.from(Resource.Type.PART, id);
-        udm.delete(Relation.Type.DESCRIBES).in(Resource.Type.PART, uri);
+        udm.find(Relation.Type.DESCRIBES).from(Resource.Type.PART, uri).forEach(rel->udm.delete(Relation.Type
+                .DESCRIBES).byUri(rel.getUri()));
     }
 
     public RelationI getItems(String startId, String endId) {
@@ -82,18 +86,20 @@ public class PartService extends AbstractResourceService<Part> {
     public void removeItems(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.PART, startId);
         String iuri = uriGenerator.from(Resource.Type.ITEM, endId);
-        udm.find(Relation.Type.DESCRIBES).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.DESCRIBES).byUri(relation.getUri()));
+        udm.find(Relation.Type.DESCRIBES).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type.DESCRIBES).byUri
+                (relation.getUri()));
     }
 
     // DEALS_WITH -> Topic
     public List<String> listTopics(String id) {
         String uri = uriGenerator.from(Resource.Type.PART, id);
-        return udm.find(Resource.Type.TOPIC).from(Resource.Type.PART, uri);
+        return udm.find(Resource.Type.TOPIC).from(Resource.Type.PART, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeTopics(String id) {
         String uri = uriGenerator.from(Resource.Type.PART, id);
-        udm.delete(Relation.Type.DEALS_WITH_FROM_PART).in(Resource.Type.PART, uri);
+        udm.find(Relation.Type.DEALS_WITH_FROM_PART).from(Resource.Type.PART, uri).forEach(rel->udm.delete(Relation
+                .Type.DEALS_WITH_FROM_PART).byUri(rel.getUri()));
     }
 
     public DealsI getTopics(String startId, String endId) {
@@ -114,7 +120,8 @@ public class PartService extends AbstractResourceService<Part> {
     public void removeTopics(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.PART, startId);
         String iuri = uriGenerator.from(Resource.Type.TOPIC, endId);
-        udm.find(Relation.Type.DEALS_WITH_FROM_PART).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.DEALS_WITH_FROM_PART).byUri(relation.getUri()));
+        udm.find(Relation.Type.DEALS_WITH_FROM_PART).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type
+                .DEALS_WITH_FROM_PART).byUri(relation.getUri()));
     }
 
 }

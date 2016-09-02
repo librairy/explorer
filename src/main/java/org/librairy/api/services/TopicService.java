@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -27,12 +28,13 @@ public class TopicService extends AbstractResourceService<Topic> {
     // MENTIONS -> Word
     public List<String> listWords(String id) {
         String uri = uriGenerator.from(Resource.Type.TOPIC, id);
-        return udm.find(Resource.Type.WORD).from(Resource.Type.TOPIC, uri);
+        return udm.find(Resource.Type.WORD).from(Resource.Type.TOPIC, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeWords(String id) {
         String uri = uriGenerator.from(Resource.Type.TOPIC, id);
-        udm.delete(Relation.Type.MENTIONS_FROM_TOPIC).in(Resource.Type.TOPIC, uri);
+        udm.find(Relation.Type.MENTIONS_FROM_TOPIC).from(Resource.Type.TOPIC, uri).forEach(rel->udm.delete(Relation
+                .Type.MENTIONS_FROM_TOPIC).byUri(rel.getUri()));
     }
 
     public MentionsI getWords(String startId, String endId) {
@@ -54,18 +56,20 @@ public class TopicService extends AbstractResourceService<Topic> {
     public void removeWords(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.TOPIC, startId);
         String iuri = uriGenerator.from(Resource.Type.WORD, endId);
-        udm.find(Relation.Type.MENTIONS_FROM_TOPIC).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.MENTIONS_FROM_TOPIC).byUri(relation.getUri()));
+        udm.find(Relation.Type.MENTIONS_FROM_TOPIC).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type
+                .MENTIONS_FROM_TOPIC).byUri(relation.getUri()));
     }
 
     // EMERGES_IN -> Domain
     public List<String> listDomains(String id) {
         String uri = uriGenerator.from(Resource.Type.TOPIC, id);
-        return udm.find(Resource.Type.DOMAIN).from(Resource.Type.TOPIC, uri);
+        return udm.find(Resource.Type.DOMAIN).from(Resource.Type.TOPIC, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeDomains(String id) {
         String uri = uriGenerator.from(Resource.Type.TOPIC, id);
-        udm.delete(Relation.Type.EMERGES_IN).in(Resource.Type.TOPIC, uri);
+        udm.find(Relation.Type.EMERGES_IN).from(Resource.Type.TOPIC, uri).forEach(rel->udm.delete(Relation.Type
+                .EMERGES_IN).byUri(rel.getUri()));
     }
 
     public EmergesI getDomains(String startId, String endId) {
@@ -86,6 +90,7 @@ public class TopicService extends AbstractResourceService<Topic> {
     public void removeDomains(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.TOPIC, startId);
         String iuri = uriGenerator.from(Resource.Type.DOMAIN, endId);
-        udm.find(Relation.Type.EMERGES_IN).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.EMERGES_IN).byUri(relation.getUri()));
+        udm.find(Relation.Type.EMERGES_IN).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type.EMERGES_IN)
+                .byUri(relation.getUri()));
     }
 }

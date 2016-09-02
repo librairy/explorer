@@ -1,25 +1,13 @@
 package org.librairy.api.services;
 
-import com.google.common.collect.ImmutableMap;
 import org.apache.commons.lang.StringUtils;
-import org.librairy.api.model.relations.WeightResourceI;
-import org.librairy.model.domain.relations.Relation;
-import org.librairy.model.domain.resources.Filter;
-import org.librairy.model.domain.resources.Path;
 import org.librairy.model.domain.resources.Resource;
 import org.librairy.storage.UDM;
 import org.librairy.storage.generator.URIGenerator;
-import org.librairy.storage.system.graph.template.TemplateExecutor;
-import org.librairy.storage.system.graph.template.edges.SimilarDocEdgeTemplate;
-import org.neo4j.ogm.model.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -30,13 +18,10 @@ public class EnricherService {
     @Autowired
     UDM udm;
 
-    @Autowired
-    URIGenerator uriGenerator;
-
     private static final Logger LOG = LoggerFactory.getLogger(EnricherService.class);
 
     public String composeDescriptionFrom(String uri){
-        switch (uriGenerator.getResourceFrom(uri)){
+        switch (URIGenerator.typeFrom(uri)){
             case DOCUMENT:
                 return udm.read(Resource.Type.DOCUMENT).byUri(uri).get().asDocument().getTitle();
             case ITEM:

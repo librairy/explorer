@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -28,12 +29,13 @@ public class ItemService extends AbstractResourceService<Item> {
     // DEALS_WITH -> Topic
     public List<String> listTopics(String id) {
         String uri = uriGenerator.from(Resource.Type.ITEM, id);
-        return udm.find(Resource.Type.TOPIC).from(Resource.Type.ITEM, uri);
+        return udm.find(Resource.Type.TOPIC).from(Resource.Type.ITEM, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeTopics(String id) {
         String uri = uriGenerator.from(Resource.Type.ITEM, id);
-        udm.delete(Relation.Type.DEALS_WITH_FROM_ITEM).in(Resource.Type.ITEM, uri);
+        udm.find(Relation.Type.DEALS_WITH_FROM_ITEM).from(Resource.Type.ITEM, uri).forEach(rel->udm.delete(Relation
+                .Type.DEALS_WITH_FROM_ITEM).byUri(rel.getUri()));
     }
 
     public DealsI getTopics(String startId, String endId) {
@@ -54,19 +56,21 @@ public class ItemService extends AbstractResourceService<Item> {
     public void removeTopics(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.ITEM, startId);
         String iuri = uriGenerator.from(Resource.Type.TOPIC, endId);
-        udm.find(Relation.Type.DEALS_WITH_FROM_ITEM).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.DEALS_WITH_FROM_ITEM).byUri(relation.getUri()));
+        udm.find(Relation.Type.DEALS_WITH_FROM_ITEM).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type
+                .DEALS_WITH_FROM_ITEM).byUri(relation.getUri()));
     }
 
 
     // SIMILAR_TO -> Item
     public List<String> listItems(String id) {
         String uri = uriGenerator.from(Resource.Type.ITEM, id);
-        return udm.find(Resource.Type.ITEM).from(Resource.Type.ITEM, uri);
+        return udm.find(Resource.Type.ITEM).from(Resource.Type.ITEM, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeItems(String id) {
         String uri = uriGenerator.from(Resource.Type.ITEM, id);
-        udm.delete(Relation.Type.SIMILAR_TO_ITEMS).in(Resource.Type.ITEM, uri);
+        udm.find(Relation.Type.SIMILAR_TO_ITEMS).from(Resource.Type.ITEM, uri).forEach(rel->udm.delete(Relation.Type
+                .SIMILAR_TO_ITEMS).byUri(rel.getUri()));
     }
 
     public SimilarI getItems(String startId, String endId) {
@@ -79,7 +83,7 @@ public class ItemService extends AbstractResourceService<Item> {
     public void addItems(String startId, String endId, WeightDomainI weightI) {
         String startUri = uriGenerator.from(Resource.Type.ITEM, startId);
         String endUri = uriGenerator.from(Resource.Type.ITEM, endId);
-        SimilarToItems relation = Relation.newSimilarToItems(startUri, endUri);
+        SimilarToItems relation = Relation.newSimilarToItems(startUri, endUri, weightI.getDomain());
         relation.setWeight(weightI.getWeight());
         relation.setDomain(weightI.getDomain());
         udm.save(relation);
@@ -88,6 +92,7 @@ public class ItemService extends AbstractResourceService<Item> {
     public void removeItems(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.ITEM, startId);
         String iuri = uriGenerator.from(Resource.Type.ITEM, endId);
-        udm.find(Relation.Type.SIMILAR_TO_ITEMS).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.SIMILAR_TO_ITEMS).byUri(relation.getUri()));
+        udm.find(Relation.Type.SIMILAR_TO_ITEMS).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type
+                .SIMILAR_TO_ITEMS).byUri(relation.getUri()));
     }
 }

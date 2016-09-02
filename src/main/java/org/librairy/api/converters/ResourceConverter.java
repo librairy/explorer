@@ -20,16 +20,14 @@ public class ResourceConverter {
 
     @Converter
     public static Domain toResource(DomainI facade) throws TypeConversionException {
-        Domain resource = Resource.newDomain();
-        resource.setName(facade.getName());
+        Domain resource = Resource.newDomain(facade.getName());
         resource.setDescription(facade.getDescription());
         return resource;
     }
 
     @Converter
     public static Source toResource(SourceI facade) throws TypeConversionException {
-        Source resource = Resource.newSource();
-        resource.setName(facade.getName());
+        Source resource = Resource.newSource(facade.getName());
         resource.setDescription(facade.getDescription());
         resource.setUrl(facade.getUrl());
         return resource;
@@ -37,17 +35,12 @@ public class ResourceConverter {
 
     @Converter
     public static Filter toResource(FilterI facade) throws TypeConversionException {
-        Filter resource = Resource.newFilter();
-        resource.setContent(facade.getContent());
-        return resource;
+        return Resource.newFilter(facade.getContent());
     }
 
     @Converter
     public static Path toResource(PathI facade) throws TypeConversionException {
-        Path resource = Resource.newPath();
-        resource.setStart(facade.getStart());
-        resource.setEnd(facade.getEnd());
-        return resource;
+        return Resource.newPath(facade.getStart(),facade.getEnd());
     }
 
     //TODO Document
