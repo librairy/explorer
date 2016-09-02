@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -27,12 +28,13 @@ public class WordService extends AbstractResourceService<Word> {
     // PAIRS_WITH -> Word
     public List<String> listWords(String id) {
         String uri = uriGenerator.from(Resource.Type.WORD, id);
-        return udm.find(Resource.Type.WORD).from(Resource.Type.WORD, uri);
+        return udm.find(Resource.Type.WORD).from(Resource.Type.WORD, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeWords(String id) {
         String uri = uriGenerator.from(Resource.Type.WORD, id);
-        udm.delete(Relation.Type.PAIRS_WITH).in(Resource.Type.WORD, uri);
+        udm.find(Relation.Type.PAIRS_WITH).from(Resource.Type.WORD, uri).forEach(rel->udm.delete(Relation.Type
+                .PAIRS_WITH).byUri(rel.getUri()));
     }
 
     public SimilarI getWords(String startId, String endId) {
@@ -45,7 +47,7 @@ public class WordService extends AbstractResourceService<Word> {
     public void addWords(String startId, String endId, WeightDomainI rel) {
         String startUri = uriGenerator.from(Resource.Type.WORD, startId);
         String endUri = uriGenerator.from(Resource.Type.WORD, endId);
-        PairsWith relation = Relation.newPairsWith(startUri, endUri);
+        PairsWith relation = Relation.newPairsWith(startUri, endUri, rel.getDomain());
         relation.setDomain(rel.getDomain());
         relation.setWeight(rel.getWeight());
         udm.save(relation);
@@ -54,25 +56,27 @@ public class WordService extends AbstractResourceService<Word> {
     public void removeWords(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.WORD, startId);
         String iuri = uriGenerator.from(Resource.Type.WORD, endId);
-        udm.find(Relation.Type.PAIRS_WITH).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.PAIRS_WITH).byUri(relation.getUri()));
+        udm.find(Relation.Type.PAIRS_WITH).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type.PAIRS_WITH)
+                .byUri(relation.getUri()));
     }
 
 
     // EMBEDDED_IN -> Domain
     public List<String> listDomains(String id) {
         String uri = uriGenerator.from(Resource.Type.WORD, id);
-        return udm.find(Resource.Type.DOMAIN).from(Resource.Type.WORD, uri);
+        return udm.find(Resource.Type.DOMAIN).from(Resource.Type.WORD, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeDomains(String id) {
         String uri = uriGenerator.from(Resource.Type.WORD, id);
-        udm.delete(Relation.Type.EMBEDDED_IN).in(Resource.Type.WORD, uri);
+        udm.find(Relation.Type.EMBEDDED_IN).from(Resource.Type.WORD, uri).forEach(rel->udm.delete(Relation.Type
+                .EMBEDDED_IN).byUri(rel.getUri()));
     }
 
     public EmbeddedI getDomains(String startId, String endId) {
         String startUri = uriGenerator.from(Resource.Type.WORD, startId);
         String endUri = uriGenerator.from(Resource.Type.DOMAIN, endId);
-        Optional<EmbeddedI> result = udm.find(Relation.Type.EMBEDDED_IN).btw(startUri, endUri).stream().map(relation -> (EmbeddedIn) relation).map(relation -> new EmbeddedI(relation.getUri(), relation.getCreationTime(), relation.getVector())).findFirst();
+        Optional<EmbeddedI> result = udm.find(Relation.Type.EMBEDDED_IN).btw(startUri, endUri).stream().map(relation -> (EmbeddedIn) relation).map(relation -> new EmbeddedI(relation.getUri(), relation.getCreationTime())).findFirst();
         return (result.isPresent()) ? result.get() : null;
     }
 
@@ -80,13 +84,13 @@ public class WordService extends AbstractResourceService<Word> {
         String startUri = uriGenerator.from(Resource.Type.WORD, startId);
         String endUri = uriGenerator.from(Resource.Type.DOMAIN, endId);
         EmbeddedIn relation = Relation.newEmbeddedIn(startUri, endUri);
-        relation.setVector(rel.getVector());
         udm.save(relation);
     }
 
     public void removeDomains(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.WORD, startId);
         String iuri = uriGenerator.from(Resource.Type.DOMAIN, endId);
-        udm.find(Relation.Type.EMBEDDED_IN).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.EMBEDDED_IN).byUri(relation.getUri()));
+        udm.find(Relation.Type.EMBEDDED_IN).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type.EMBEDDED_IN)
+                .byUri(relation.getUri()));
     }
 }

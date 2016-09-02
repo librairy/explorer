@@ -15,9 +15,9 @@ import java.util.List;
 /**
  * Created by cbadenes on 18/01/16.
  */
-@Configuration
-@ComponentScan({"org.librairy.api", "org.librairy.storage", "org.librairy.eventbus"})
-@PropertySource({"classpath:api.properties", "classpath:eventbus.properties", "classpath:storage.properties"})
+@Configuration("explorer")
+@ComponentScan({"org.librairy"})
+@PropertySource({"classpath:api.properties", "classpath:boot.properties", "classpath:lda-modeler.properties"})
 public class Config {
 
 

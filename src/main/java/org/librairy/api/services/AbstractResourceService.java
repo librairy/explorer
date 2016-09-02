@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -63,7 +64,7 @@ public abstract class AbstractResourceService<T extends Resource> {
     }
 
     public List<String> list() {
-        return udm.find(type).all();
+        return udm.find(type).all().stream().map(res -> res.getUri()).collect(Collectors.toList());
     }
 
 

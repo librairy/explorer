@@ -1,5 +1,6 @@
 package org.librairy.api.services;
 
+import com.google.common.base.Strings;
 import org.librairy.api.model.relations.RelationI;
 import org.librairy.api.model.resources.SourceI;
 import org.librairy.model.domain.relations.Relation;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -31,9 +33,10 @@ public class SourceService extends AbstractResourceService<Source> {
 
         LOG.info("Trying to create: " + resource);
 
-        Source source = Resource.newSource();
+        Source source = Resource.newSource(resource.getName());
         BeanUtils.copyProperties(resource, source);
-        source.setUri(uriGenerator.newFor(Resource.Type.SOURCE));
+        if (Strings.isNullOrEmpty(resource.getName())) resource.setName(resource.getUrl());
+        source.setUri(uriGenerator.basedOnContent(Resource.Type.SOURCE,resource.getName()));
         source.setCreationTime(TimeUtils.asISO());
         udm.save(source);
         return source;
@@ -57,12 +60,13 @@ public class SourceService extends AbstractResourceService<Source> {
     // PROVIDES -> Document
     public List<String> listDocuments(String id) {
         String uri = uriGenerator.from(Resource.Type.SOURCE, id);
-        return udm.find(Resource.Type.DOCUMENT).from(Resource.Type.SOURCE, uri);
+        return udm.find(Resource.Type.DOCUMENT).from(Resource.Type.SOURCE, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeDocuments(String id) {
         String uri = uriGenerator.from(Resource.Type.SOURCE, id);
-        udm.delete(Relation.Type.PROVIDES).in(Resource.Type.SOURCE, uri);
+        udm.find(Relation.Type.PROVIDES).from(Resource.Type.SOURCE, uri).forEach(rel->udm.delete(Relation.Type
+                .PROVIDES).byUri(rel.getUri()));
     }
 
     public RelationI getDocuments(String startId, String endId) {
@@ -81,18 +85,20 @@ public class SourceService extends AbstractResourceService<Source> {
     public void removeDocuments(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.SOURCE, startId);
         String iuri = uriGenerator.from(Resource.Type.DOCUMENT, endId);
-        udm.find(Relation.Type.PROVIDES).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.PROVIDES).byUri(relation.getUri()));
+        udm.find(Relation.Type.PROVIDES).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type.PROVIDES).byUri
+                (relation.getUri()));
     }
 
     // COMPOSES -> Document
     public List<String> listDomains(String id) {
         String uri = uriGenerator.from(Resource.Type.SOURCE, id);
-        return udm.find(Resource.Type.DOMAIN).from(Resource.Type.SOURCE, uri);
+        return udm.find(Resource.Type.DOMAIN).from(Resource.Type.SOURCE, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeDomains(String id) {
         String uri = uriGenerator.from(Resource.Type.SOURCE, id);
-        udm.delete(Relation.Type.COMPOSES).in(Resource.Type.SOURCE, uri);
+        udm.find(Relation.Type.COMPOSES).from(Resource.Type.SOURCE, uri).forEach(rel->udm.delete(Relation.Type
+                .COMPOSES).byUri(rel.getUri()));
     }
 
     public RelationI getDomains(String startId, String endId) {
@@ -111,7 +117,8 @@ public class SourceService extends AbstractResourceService<Source> {
     public void removeDomains(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.SOURCE, startId);
         String iuri = uriGenerator.from(Resource.Type.DOMAIN, endId);
-        udm.find(Relation.Type.COMPOSES).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.COMPOSES).byUri(relation.getUri()));
+        udm.find(Relation.Type.COMPOSES).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type.COMPOSES).byUri
+                (relation.getUri()));
     }
 
 }

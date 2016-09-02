@@ -14,15 +14,12 @@ public class EmbeddedI {
 
     ;
 
-    public EmbeddedI(String uri, String creationTime, float[] vector) {
+    public EmbeddedI(String uri, String creationTime) {
         this.uri = uri;
         this.creationTime = creationTime;
-        this.vector = vector;
     }
 
     String uri;
 
     String creationTime = TimeUtils.asISO();
-
-    float[] vector;
 }

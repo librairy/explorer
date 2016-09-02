@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="DrInventor Repository">
+    <meta name="author" content="cbadenes">
+
+    <title>drinventor repository</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">DrInventor Repository</a>
+          </div>
+          <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav side-nav">
+                  <!--<li class="active">
+                      <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                  </li>-->
+                  <li class="active">
+                      <a href="javascript:;" data-toggle="collapse" data-target="#explore"><i class="fa fa-fw fa-search"></i> Explore <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="explore">
+                          <li>
+                            <a href="ex-corpus.html"><i class="fa fa-copy"></i> Corpus</a>
+                          </li>
+                          <li>
+                              <a href="ex-documents.html"><i class="fa fa-file-text-o"></i> Documents</a>
+                          </li>
+                          <li>
+                              <a href="ex-topics.html"><i class="fa fa-tags"></i> Topics</a>
+                          </li>
+                          <li>
+                              <a href="ex-terms.html"><i class="fa fa-comment-o"></i> Terms</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="javascript:;" data-toggle="collapse" data-target="#discover"><i class="fa fa-fw fa-magic"></i> Discover <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="discover">
+                          <li>
+                              <a href="dis-filter.html"><i class="fa fa-filter"></i> Filters</a>
+                          </li>
+                          <li>
+                              <a href="dis-matches.html"><i class="fa fa-search-plus"></i> Matches</a>
+                          </li>
+                          <li>
+                              <a href="dis-paths.html"><i class="fa fa-sitemap"></i> Paths</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Topics
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-database"></i>  <a href="index.html">Repository</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-tags"></i> Topics
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Topics Distribution</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="siggraph-topics"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+
+                    <!-- Topic 1 -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-tag fa-fw"></i> <a href='http://drinventor.dia.fi.upm.es/api/0.2/topics/acb0972c27d6096c4d6b6f89c15a44af'>Topic 1</a></h3>
+                            </div>
+                            <div class="panel-body">
+
+                              <div class="col-lg-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Word</th>
+                                                <th>Weight</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/mesh'>mesh</a></td>
+<td>0.02090429584608874</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/point'>point</a></td>
+<td>0.019696457259860915</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/surface'>surface</a></td>
+<td>0.016447012720720404</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/vertex'>vertex</a></td>
+<td>0.014182339804711468</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/figure'>figure</a></td>
+<td>0.013379305048952113</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/shape'>shape</a></td>
+<td>0.012562901402597575</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/model'>model</a></td>
+<td>0.011452739786788096</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/deformation'>deformation</a></td>
+<td>0.009916351859445125</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/edge'>edge</a></td>
+<td>0.009093607693691731</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/method'>method</a></td>
+<td>0.007838189832284652</td>
+</tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="ex-topics-1.html">View Top Documents <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Evolution</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="topic1-dist"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                          </div>
+
+
+
+
+                        </div>
+                    </div>
+
+
+
+                  </div>
+                  <!-- /.row -->
+
+                    <div class="row">
+
+
+                    <!-- Topic 2 -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-tag fa-fw"></i> <a href='http://drinventor.dia.fi.upm.es/api/0.2/topics/8617654279396256e3f97933205e9807'>Topic 2</a></h3>
+                            </div>
+                            <div class="panel-body">
+
+                              <div class="col-lg-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Word</th>
+                                                <th>Weight</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/camera'>camera</a></td>
+<td>0.027294683771808142</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/video'>video</a></td>
+<td>0.02483044432294254</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/image'>image</a></td>
+<td>0.022937245218959745</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/motion'>motion</a></td>
+<td>0.0208712012317474</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/frame'>frame</a></td>
+<td>0.02077156880190313</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/pixel'>pixel</a></td>
+<td>0.010210853819430654</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/scene'>scene</a></td>
+<td>0.008973024059960795</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/figure'>figure</a></td>
+<td>0.008948760285369024</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/color'>color</a></td>
+<td>0.007157043433528709</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/background'>background</a></td>
+<td>0.00694276639887848</td>
+</tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="ex-topics-2.html">View Top Documents <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Evolution</h3>
+                                      </div>
+                                      <div class="panel-body">
+                                          <div id="topic2-dist"></div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                  </div>
+                  <!-- /.row -->
+
+                    <div class="row">
+
+
+                    <!-- Topic 2 -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-tag fa-fw"></i> <a href='http://drinventor.dia.fi.upm.es/api/0.2/topics/d6fd22f2f4735923b89cde588972bacf'>Topic 3</a></h3>
+                            </div>
+                            <div class="panel-body">
+
+                              <div class="col-lg-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Word</th>
+                                                <th>Weight</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/path'>path</a></td>
+<td>0.02354009572622941</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/algorithm'>algorithm</a></td>
+<td>0.012426339719844927</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/point'>point</a></td>
+<td>0.007390401067003505</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/photon'>photon</a></td>
+<td>0.006538627213562467</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/image'>image</a></td>
+<td>0.005735092108613998</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/vertex'>vertex</a></td>
+<td>0.005589133417288972</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/estimator'>estimator</a></td>
+<td>0.005454945307428694</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/figure'>figure</a></td>
+<td>0.00517551641115944</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/space'>space</a></td>
+<td>0.004792450168608742</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/transport'>transport</a></td>
+<td>0.004292905667751619</td>
+</tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="ex-topics-3.html">View Top Documents <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Evolution</h3>
+                                      </div>
+                                      <div class="panel-body">
+                                          <div id="topic3-dist"></div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+
+
+                    <!-- Topic 3 -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-tag fa-fw"></i> <a href='http://drinventor.dia.fi.upm.es/api/0.2/topics/6982c58129104ed592ef00365b0c408f'>Topic 4</a></h3>
+                            </div>
+                            <div class="panel-body">
+
+                              <div class="col-lg-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Word</th>
+                                                <th>Weight</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/surface'>surface</a></td>
+<td>0.011329446747521116</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/figure'>figure</a></td>
+<td>0.010913238349502141</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/point'>point</a></td>
+<td>0.01012019291405215</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/sample'>sample</a></td>
+<td>0.009518206373083914</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/method'>method</a></td>
+<td>0.00921623386822151</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/algorithm'>algorithm</a></td>
+<td>0.008861544133622834</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/image'>image</a></td>
+<td>0.007314342952973429</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/time'>time</a></td>
+<td>0.007220251618672451</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/function'>function</a></td>
+<td>0.007214822169353141</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/graphics'>graphics</a></td>
+<td>0.0069498488659992036</td>
+</tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="ex-topics-4.html">View Top Documents <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Evolution</h3>
+                                      </div>
+                                      <div class="panel-body">
+                                          <div id="topic4-dist"></div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                  </div>
+                  <!-- /.row -->
+
+
+                    <div class="row">
+
+
+                    <!-- Topic 4 -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-tag fa-fw"></i> <a href='http://drinventor.dia.fi.upm.es/api/0.2/topics/29c200fae24ffdf1f03c78854a012f2e'>Topic 5</a></h3>
+                            </div>
+                            <div class="panel-body">
+
+                              <div class="col-lg-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Word</th>
+                                                <th>Weight</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/image'>image</a></td>
+<td>0.016061453549205067</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/figure'>figure</a></td>
+<td>0.013327616015382179</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/model'>model</a></td>
+<td>0.01123869380356847</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/method'>method</a></td>
+<td>0.011100345190147482</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/motion'>motion</a></td>
+<td>0.008637806070256085</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/surface'>surface</a></td>
+<td>0.007577884842412413</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/graphics'>graphics</a></td>
+<td>0.006780213871502419</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/object'>object</a></td>
+<td>0.0066943239762289886</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/result'>result</a></td>
+<td>0.006677964975047172</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/algorithm'>algorithm</a></td>
+<td>0.006624352225043497</td>
+</tr>
+                                          </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="ex-topics-5.html">View Top Documents <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Evolution</h3>
+                                      </div>
+                                      <div class="panel-body">
+                                          <div id="topic5-dist"></div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+
+
+                    <!-- Topic 5 -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-tag fa-fw"></i> <a href='http://drinventor.dia.fi.upm.es/api/0.2/topics/e541b4b026d8542f4c0c995f1911db04'>Topic 6</a></h3>
+                            </div>
+                            <div class="panel-body">
+
+                              <div class="col-lg-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Word</th>
+                                                <th>Weight</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/image'>image</a></td>
+<td>0.028652349576792423</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/hair'>hair</a></td>
+<td>0.026691884428625103</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/color'>color</a></td>
+<td>0.019846382251382022</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/model'>model</a></td>
+<td>0.014574366383021143</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/figure'>figure</a></td>
+<td>0.009136101266996306</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/strand'>strand</a></td>
+<td>0.009028730267996363</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/luminance'>luminance</a></td>
+<td>0.008097549235718916</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/contrast'>contrast</a></td>
+<td>0.006161545246426147</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/appearance'>appearance</a></td>
+<td>0.005730698888490756</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/synthesis'>synthesis</a></td>
+<td>0.005698363036762284</td>
+</tr>
+                                          </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="ex-topics-6.html">View Top Documents <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Evolution</h3>
+                                      </div>
+                                      <div class="panel-body">
+                                          <div id="topic6-dist"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                  </div>
+                  <!-- /.row -->
+
+                    <div class="row">
+
+
+                    <!-- Topic 6 -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-tag fa-fw"></i><a href='http://drinventor.dia.fi.upm.es/api/0.2/topics/28ea36b7c2d287cf9a70aa5aaf3a55d'>Topic 7</a></h3>
+                            </div>
+                            <div class="panel-body">
+
+                              <div class="col-lg-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Word</th>
+                                                <th>Weight</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/tree'>tree</a></td>
+<td>0.027486367903747408</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/branch'>branch</a></td>
+<td>0.014308213766022941</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/plant'>plant</a></td>
+<td>0.009217249177129194</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/model'>model</a></td>
+<td>0.008392487512546317</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/leaf'>leaf</a></td>
+<td>0.005915710059675646</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/method'>method</a></td>
+<td>0.005116773973347677</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/growth'>growth</a></td>
+<td>0.00459652909059757</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/figure'>figure</a></td>
+<td>0.004055753978011213</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/algorithm'>algorithm</a></td>
+<td>0.003859145612464932</td>
+</tr>
+<tr>
+<td><a href='http://drinventor.dia.fi.upm.es/api/0.2/words/modeling'>modeling</a></td>
+<td>0.0036669009434527515</td>
+</tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="ex-topics-7.html">View Top Documents <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Evolution</h3>
+                                      </div>
+                                      <div class="panel-body">
+                                          <div id="topic7-dist"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    </div>
+                    <!-- /.row -->
+
+            <div class="panel panel-default">
+              <div class="panel-footer">
+                <table style="width:100%">
+                  <tr>
+                    <td><img src="images/logo_dri.png" width="33" height="33" alt="dr inventor"></td>
+                    <td><center>This research project receives funding from the European Commission&#39;s Seventh Framework Programme.<br/>Activity ICT (FP7-ICT-2013.8.1), Grant agreement no: 611383</center></td>
+                    <td><img src="images/euflag.jpg" width="33" height="33" alt="european"></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- load D3js -->
+    <script src="js/d3.js"></script>
+
+    <!-- load D3plus after D3js -->
+    <script src="js/d3plus.js"></script>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+    <!-- Topics Distribution -->
+    <script>
+    new Morris.Bar({
+      // ID of the element in which to draw the chart.
+      element: 'siggraph-topics',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { label: 'Topic 1', value: 254 },
+        { label: 'Topic 2', value: 113 },
+        { label: 'Topic 3', value: 9 },
+        { label: 'Topic 4', value: 321 },
+        { label: 'Topic 5', value: 721 },
+        { label: 'Topic 6', value: 66 },
+        { label: 'Topic 7', value: 7 }
+      ],
+      resize: true,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'label',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['value'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['Value']
+    });
+    </script>
+
+    <!-- Topic 1 Distribution -->
+    <script>
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'topic1-dist',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2002', total: 10, rate: 15 },
+        { year: '2003', total: 15, rate: 18 },
+        { year: '2004', total: 17, rate: 22 },
+        { year: '2005', total: 18, rate: 16 },
+        { year: '2006', total: 16, rate: 20 },
+        { year: '2007', total: 20, rate: 18 },
+        { year: '2008', total: 11, rate: 16 },
+        { year: '2009', total: 21, rate: 14 },
+        { year: '2010', total: 22, rate: 16 },
+        { year: '2011', total: 18, rate: 14 },
+        { year: '2012', total: 13, rate: 11 },
+        { year: '2013', total: 24, rate: 16 },
+        { year: '2014', total: 27, rate: 18 },
+        { year: '2015', total: 7, rate: 21 },
+        { year: '2016', total: 15, rate: 20 }
+      ],
+      resize: true,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['total','rate'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['total','rate']
+    });
+    </script>
+
+
+    <!-- Topic 2 Distribution -->
+    <script>
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'topic2-dist',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2002', total: 2, rate: 3 },
+        { year: '2003', total: 5, rate: 6 },
+        { year: '2004', total: 5, rate: 6 },
+        { year: '2005', total: 9, rate: 8 },
+        { year: '2006', total: 7, rate: 8 },
+        { year: '2007', total: 12, rate: 11 },
+        { year: '2008', total: 5, rate: 7 },
+        { year: '2009', total: 15, rate: 10 },
+        { year: '2010', total: 8, rate: 5 },
+        { year: '2011', total: 7, rate: 5 },
+        { year: '2012', total: 7, rate: 6 },
+        { year: '2013', total: 16, rate: 10 },
+        { year: '2014', total: 9, rate: 6 },
+        { year: '2015', total: 1, rate: 3 },
+        { year: '2016', total: 5, rate: 6 }
+      ],
+      resize: true,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['total','rate'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['total','rate']
+    });
+    </script>
+
+    <!-- Topic 3 Distribution -->
+    <script>
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'topic3-dist',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2002', total: 0, rate: 0 },
+        { year: '2003', total: 0, rate: 0 },
+        { year: '2004', total: 0, rate: 0 },
+        { year: '2005', total: 1, rate: 0 },
+        { year: '2006', total: 0, rate: 0 },
+        { year: '2007', total: 0, rate: 0 },
+        { year: '2008', total: 0, rate: 0 },
+        { year: '2009', total: 0, rate: 0 },
+        { year: '2010', total: 0, rate: 0 },
+        { year: '2011', total: 0, rate: 0 },
+        { year: '2012', total: 3, rate: 2 },
+        { year: '2013', total: 0, rate: 0 },
+        { year: '2014', total: 4, rate: 2 },
+        { year: '2015', total: 0, rate: 0 },
+        { year: '2016', total: 1, rate: 1 }
+      ],
+      resize: true,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['total','rate'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['total','rate']
+
+    });
+    </script>
+
+    <!-- Topic 4 Distribution -->
+    <script>
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'topic4-dist',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2002', total: 17, rate: 26 },
+        { year: '2003', total: 30, rate: 37 },
+        { year: '2004', total: 16, rate: 21 },
+        { year: '2005', total: 33, rate: 31 },
+        { year: '2006', total: 20, rate: 25 },
+        { year: '2007', total: 22, rate: 20 },
+        { year: '2008', total: 14, rate: 20 },
+        { year: '2009', total: 27, rate: 19 },
+        { year: '2010', total: 26, rate: 19 },
+        { year: '2011', total: 27, rate: 21 },
+        { year: '2012', total: 16, rate: 14 },
+        { year: '2013', total: 22, rate: 14 },
+        { year: '2014', total: 31, rate: 21 },
+        { year: '2015', total: 7, rate: 21 },
+        { year: '2016', total: 13, rate: 18 }
+      ],
+      resize: true,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['total','rate'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['total','rate']
+
+    });
+    </script>
+
+    <!-- Topic 5 Distribution -->
+    <script>
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'topic5-dist',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2002', total: 30, rate: 46 },
+        { year: '2003', total: 30, rate: 37 },
+        { year: '2004', total: 32, rate: 43 },
+        { year: '2005', total: 38, rate: 35 },
+        { year: '2006', total: 28, rate: 35 },
+        { year: '2007', total: 51, rate: 47 },
+        { year: '2008', total: 34, rate: 50 },
+        { year: '2009', total: 69, rate: 48 },
+        { year: '2010', total: 74, rate: 55 },
+        { year: '2011', total: 67, rate: 53 },
+        { year: '2012', total: 63, rate: 57 },
+        { year: '2013', total: 82, rate: 55 },
+        { year: '2014', total: 70, rate: 47 },
+        { year: '2015', total: 17, rate: 51 },
+        { year: '2016', total: 36, rate: 50 }
+      ],
+      resize: true,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['total','rate'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['total','rate']
+
+    });
+    </script>
+
+    <!-- Topic 6 Distribution -->
+    <script>
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'topic6-dist',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2002', total: 5, rate: 7 },
+        { year: '2003', total: 1, rate: 1 },
+        { year: '2004', total: 4, rate: 5 },
+        { year: '2005', total: 6, rate: 5 },
+        { year: '2006', total: 8, rate: 10 },
+        { year: '2007', total: 3, rate: 2 },
+        { year: '2008', total: 2, rate: 2 },
+        { year: '2009', total: 9, rate: 6 },
+        { year: '2010', total: 4, rate: 2 },
+        { year: '2011', total: 6, rate: 4 },
+        { year: '2012', total: 6, rate: 5 },
+        { year: '2013', total: 4, rate: 2 },
+        { year: '2014', total: 5, rate: 3 },
+        { year: '2015', total: 1, rate: 3 },
+        { year: '2016', total: 2, rate: 2 }
+      ],
+      resize: true,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['total','rate'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['total','rate']
+
+    });
+    </script>
+
+    <!-- Topic 7 Distribution -->
+    <script>
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'topic7-dist',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2002', total: 0, rate: 0 },
+        { year: '2003', total: 0, rate: 0 },
+        { year: '2004', total: 0, rate: 0 },
+        { year: '2005', total: 1, rate: 0 },
+        { year: '2006', total: 0, rate: 0 },
+        { year: '2007', total: 0, rate: 0 },
+        { year: '2008', total: 2, rate: 2 },
+        { year: '2009', total: 1, rate: 0 },
+        { year: '2010', total: 0, rate: 0 },
+        { year: '2011', total: 1, rate: 0 },
+        { year: '2012', total: 1, rate: 0 },
+        { year: '2013', total: 1, rate: 0 },
+        { year: '2014', total: 0, rate: 0 },
+        { year: '2015', total: 0, rate: 0 },
+        { year: '2016', total: 0, rate: 0 }
+      ],
+      resize: true,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['total','rate'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['total','rate']
+
+    });
+    </script>
+
+</body>
+
+</html>

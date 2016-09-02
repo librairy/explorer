@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="DrInventor Repository">
+    <meta name="author" content="cbadenes">
+
+    <title>drinventor repository</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">DrInventor Repository</a>
+          </div>
+          <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav side-nav">
+                  <!--<li class="active">
+                      <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                  </li>-->
+                  <li class="active">
+                      <a href="javascript:;" data-toggle="collapse" data-target="#explore"><i class="fa fa-fw fa-search"></i> Explore <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="explore">
+                          <li>
+                            <a href="ex-corpus.html"><i class="fa fa-copy"></i> Corpus</a>
+                          </li>
+                          <li>
+                              <a href="ex-documents.html"><i class="fa fa-file-text-o"></i> Documents</a>
+                          </li>
+                          <li>
+                              <a href="ex-topics.html"><i class="fa fa-tags"></i> Topics</a>
+                          </li>
+                          <li>
+                              <a href="ex-terms.html"><i class="fa fa-comment-o"></i> Terms</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="javascript:;" data-toggle="collapse" data-target="#discover"><i class="fa fa-fw fa-magic"></i> Discover <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="discover">
+                          <li>
+                              <a href="dis-filter.html"><i class="fa fa-filter"></i> Filters</a>
+                          </li>
+                          <li>
+                              <a href="dis-matches.html"><i class="fa fa-search-plus"></i> Matches</a>
+                          </li>
+                          <li>
+                              <a href="dis-paths.html"><i class="fa fa-sitemap"></i> Paths</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </nav>
+
+        <div id="page-wrapper">
+
+
+
+            <div class="container-fluid" id="filter-panel">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Exploring Paths between Documents
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-database"></i>  <a href="index.html">Repository</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-sitemap"></i> Paths
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Page Explanation 
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                            <h4>Given an excerpt of plain text, DR Inventor platform is able to retrieve the most relevant scientific papers elaborating on similar topics so the user can get more insights about the initial research field expressed in the filter.</h4>
+                        </ol>
+                    </div>
+                </div>-->
+
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                            <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">ORIGIN Document</h3>
+                            </div>
+                            <div class="panel-body" >
+                                <div class="form-group-pathorigin">
+                                    <!-- <label>Text area</label> -->
+                                    <div id="listOriginDocuments" class="list-group" style="max-height:200px; overflow-y: scroll;">
+                                        <a class="list-group-item active" >
+                                            <h4 class="list-group-item-heading">Multiplexed Metropolis Light Transport</h4>
+                                            <p class="list-group-item-text">Toshiya Hachisuka, Anton S. Kaplanyan, Carsten Dachsbacher</p>
+                                            <p class="id hidden">c6de4c05616fc8945c2e3eaa55584f58</p>
+
+                                        </a>
+                                        <a class="list-group-item">
+                                            <h4 class="list-group-item-heading">A Path Space Extension for Robust Light Transport Simulation</h4>
+                                            <p class="list-group-item-text">Toshiya Hachisuka, Jacopo Pantaleoni, Henrik Wann Jensen</p>
+                                            <p class="id hidden">1272dcda72fe3b84579224a63a44dafa</p>
+
+                                        </a>
+                                        <a  class="list-group-item">
+                                            <h4 class="list-group-item-heading">Unifying Points, Beams, and Paths in Volumetric Light Transport Simulation</h4>
+                                            <p class="list-group-item-text">Jaroslav Krivánek, Iliyan Georgiev, Toshiya Hachisuka, Petr Vévoda, Martin Sik, Derek Nowrouzezahrai, Wojciech Jarosz</p>
+                                            <p class="id hidden">634b9381c3325ffa0229490308b4a097</p>
+
+                                        </a>
+                                        <a class="list-group-item">
+                                            <h4 class="list-group-item-heading">Manifold Exploration: A Markov Chain Monte Carlo Technique for Rendering Scenes with Difficult Specular Transport</h4>
+                                            <p class="list-group-item-text">Wenzel Jakob, Steve Marschner</p>
+                                            <p class="id hidden">fd867ed8b51f4ba9dadd2994e9e73b47</p>
+
+                                        </a>
+                                        <a  class="list-group-item">
+                                            <h4 class="list-group-item-heading">Light Transport Simulation with Vertex Connection and Merging</h4>
+                                            <p class="list-group-item-text">TIliyan Georgiev, Jaroslav Krivánek, Tomás Davidovic, Philipp Slusallek</p>
+                                            <p class="id hidden">94aa07458bc14aa148e44f5951ac5481</p>
+
+                                        </a>
+                                        <a  class="list-group-item">
+                                            <h4 class="list-group-item-heading">Energy Redistribution Path Tracing</h4>
+                                            <p class="list-group-item-text">David Cline, Justin Talbot, Parris K. Egbert</p>
+                                            <p class="id hidden">c3ed94476a9c83b574c2daa3ee1ce5e1</p>
+
+                                        </a>
+                                    </div>
+                                </div>
+                                <div> <center>
+                                    <button id="originDocumentSelection" type="button" class="btn btn-lg btn-info">
+                                        Select Origin Document
+                                    </button>
+                                </div> </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+
+
+                <div id="PathOfDocuments" class="row hidden">
+                    <div class="col-lg-12">
+                        <div class="panel-body" style="padding-left: 100px; padding-right: 100px; ">
+                                <div class="form-group-pathdestination">
+                                    <!-- <label>Text area</label> -->
+                                    <div id="listPathDocuments" class="list-group" >
+                                     <!--     <a  class="list-group-item" style="background-color: #ddd; border-color:#222">
+                                            <center>
+                                            <h4 class="list-group-item-heading">3D Polyomino Puzzle</h4>
+                                            <p class="list-group-item-text">Barbara Solenthaler, Renato Pajarola.</p>
+                                            </center>
+                                        </a>
+                                        <a  class="list-group-item" style="background-color: #ddd; border-color:#222">
+                                            <center>
+                                            <h4 class="list-group-item-heading">T-splines and T-NURCCs</h4>
+                                            <p class="list-group-item-text"> Hong Cheng, Haoyang Zhuang, Yanli Ji, , Guo Ye, Yang Zhao.</p>
+                                            </center>
+                                        </a>
+                                        <a  class="list-group-item" style="background-color: #ddd; border-color:#222">
+                                            <center>
+                                            <h4 class="list-group-item-heading">Converting 3D Furniture Models to Fabricatable Parts and Connectors</h4>
+                                            <p class="list-group-item-text">Manfred Lau, Akira Ohgawara, Jun Mitani, Takeo Igarashi.</p>
+                                            </center>
+                                        </a>
+                                        <a class="list-group-item" style="background-color: #ddd; border-color:#222">
+                                            <center>
+                                            <h4 class="list-group-item-heading">Symmetry Factored Embedding And Distance</h4>
+                                            <p class="list-group-item-text">Thomas Neumann 0007, Kiran Varanasi, Stephan Wenger, Markus Wacker, Marcus A. Magnor, Christian Theobalt.</p>
+                                            </center>
+                                        </a>
+                                        <a  class="list-group-item" style="background-color: #ddd; border-color:#222">
+                                            <center>
+                                            <h4 class="list-group-item-heading">Sparse Localized Deformation Components</h4>
+                                            <p class="list-group-item-text">Thomas J. Cashman, Ursula H. Augsdörfer, Neil A. Dodgson, Malcolm A. Sabin.</p>
+                                            </center>
+                                        </a>
+                                        <a  class="list-group-item" style="background-color: #ddd; border-color:#222">
+                                            <center>
+                                            <h4 class="list-group-item-heading">A New Grid Structure for Domain Extension</h4>
+                                            <p class="list-group-item-text">Victor Ostromoukhov.</p>
+                                            </center>
+                                        </a>-->
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+
+
+
+                <div id="destinationDocumentPath" class="row hidden">
+                        <div class="col-lg-12">
+                            <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">DESTINATION Document</h3>
+                            </div>
+                            <div class="panel-body" >
+                                <div class="form-group-pathdestination">
+                                    <!-- <label>Text area</label> -->
+                                    <div id="listDestinationDocuments" class="list-group" style="max-height:200px; overflow-y: scroll;">
+                                        <a class="list-group-item active">
+                                            <h4 class="list-group-item-heading">Simulating and compensating changes in appearance between day and night vision</h4>
+                                            <p class="list-group-item-text">Robert Wanat, Rafal K. Mantiuk</p>
+                                            <p class="id hidden">bdf9e7ba8beb111c93dd7f1d507dc6bb</p>
+
+                                        </a>
+                                        <a  class="list-group-item">
+                                            <h4 class="list-group-item-heading">Modeling Human Color Perception under Extended Luminance Levels</h4>
+                                            <p class="list-group-item-text"> Min H. Kim, Tim Weyrich, Jan Kautz</p>
+                                            <p class="id hidden">fcba8be335e309c59404e7ccefc51371</p>
+                                        </a>
+                                        <a  class="list-group-item">
+                                            <h4 class="list-group-item-heading">Color Compatibility From Large Datasets</h4>
+                                            <p class="list-group-item-text">Peter O'Donovan, Aseem Agarwala, Aaron Hertzmann</p>
+                                            <p class="id hidden">50f454542e54599cca8cfb698dc23050</p>
+                                        </a>
+                                        <a class="list-group-item">
+                                            <h4 class="list-group-item-heading">HDR-VDP-2: A calibrated visual metric for visibility and quality predictions in all luminance conditions</h4>
+                                            <p class="list-group-item-text">Rafal Mantiuk, Kil Joong Kim, Allan G. Rempel, Wolfgang Heidrich</p>
+                                            <p class="id hidden">f564d7fa6b7709dbf7932fc1c8b803cd</p>
+                                        </a>
+                                        <a  class="list-group-item">
+                                            <h4 class="list-group-item-heading">Transferring Color to Greyscale Images</h4>
+                                            <p class="list-group-item-text">Tomihisa Welsh, Michael Ashikhmin, Klaus Mueller</p>
+                                            <p class="id hidden">23570d9130b3e70e1d8f4bf3cd109921</p>
+                                        </a>
+                                        <a  class="list-group-item">
+                                            <h4 class="list-group-item-heading">Example-Based Hair Geometry Synthesis</h4>
+                                            <p class="list-group-item-text">Lvdi Wang, Yizhou Yu, Kun Zhou, Baining Guo</p>
+                                            <p class="id hidden">156cbd88febec4801e6adaf4fd1b5691</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div> <center>
+                                    <button id="destinationDocumentSelection" type="button" class="btn btn-lg btn-info" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Retrieving Path...">
+                                        Select Destination Document
+                                    </button>
+
+                                </div> </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+
+
+                <div class="panel panel-default">
+                  <div class="panel-footer">
+                    <table style="width:100%">
+                      <tr>
+                        <td><img src="images/logo_dri.png" width="33" height="33" alt="dr inventor"></td>
+                        <td><center>This research project receives funding from the European Commission&#39;s Seventh Framework Programme.<br/>Activity ICT (FP7-ICT-2013.8.1), Grant agreement no: 611383</center></td>
+                        <td><img src="images/euflag.jpg" width="33" height="33" alt="european"></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+    <!-- SIGGRAPH Charts -->
+    <script>
+    
+
+    var buttonSelectOriginDocument = document.getElementById('originDocumentSelection');
+    buttonSelectOriginDocument.addEventListener('click', function() {
+        //$('#textarea-filter').val('');
+
+    $('#destinationDocumentPath').css('display', 'none');
+    $('#destinationDocumentPath').removeClass('hidden');
+
+    $('#destinationDocumentPath').fadeIn( 1300);
+
+    //$('#listOriginDocuments').css('pointer-events', 'none');
+
+       // alert("THIS IS");
+    }, false);
+
+
+    var buttonSelectDestinationDocument = document.getElementById('destinationDocumentSelection');
+    buttonSelectDestinationDocument.addEventListener('click', function() {
+            //$('#textarea-filter').val('');
+
+        var idOrigen = $("#listOriginDocuments > .active .id:first").text();
+        var idDestination = $("#listDestinationDocuments > .active .id:first").text();
+
+        var $this = $(this);
+        $this.button('loading');
+
+        populatePath(idOrigen, idDestination);
+
+
+           // alert("THIS IS");
+    }, false);
+
+
+    $("#listOriginDocuments > .list-group-item").click ( function(event) {
+        $("#listOriginDocuments > .list-group-item").each(function() {
+            $( this ).removeClass('active');
+        });
+        $(this).addClass("active");
+
+    });
+
+    $("#listDestinationDocuments > .list-group-item").click ( function(event) {
+        $("#listDestinationDocuments > .list-group-item").each(function() {
+            $( this ).removeClass('active');
+        });
+        $(this).addClass("active");
+    });
+
+    function populatePath(idOrigen, idDestination){
+      
+        var DrInventorAPIPathDocumentFilters = "http://drinventor.dia.fi.upm.es:80/api/0.2/paths/";
+
+        var myJSObject = new Object();
+        myJSObject.start = "http://drinventor.eu/documents/"+idOrigen;
+        myJSObject.end = "http://drinventor.eu/documents/" + idDestination;
+
+        $.ajax ({
+            type: "POST",
+            url: DrInventorAPIPathDocumentFilters,
+            dataType: "json",
+            headers: {'Content-Type': 'application/json'},
+            data: JSON.stringify(myJSObject)
+        })
+        .done(function (data) {
+            retrieveNodesInPath(data.uri); 
+        })
+        .fail(function (data) {
+           alert("Error: " + data); 
+        });
+    }
+
+    function retrieveNodesInPath(uri){
+        while (uri.indexOf("/") !== -1) {
+            uri = uri.substring(uri.indexOf("/")+1);
+        }
+
+        var DrInventorNodesInPath= "http://drinventor.dia.fi.upm.es:80/api/0.2/paths/"+uri+"/documents";
+
+          $.getJSON( DrInventorNodesInPath)
+            .done(function( data ) {
+              $.each( data, function( i) {
+                //$( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+                printNodeInTable(this.resource, this.description);
+                //alert(this.description);
+              $('#PathOfDocuments').css('display', 'none');
+              $('#PathOfDocuments').removeClass('hidden');
+
+              $('#PathOfDocuments').slideDown( 2000);
+
+              $('#listDestinationDocuments').css('pointer-events', 'none');
+              $('#destinationDocumentSelection').button('reset');
+
+
+
+              });
+
+              $('#destinationDocumentSelection').button('reset');
+
+
+
+            });    
+      }
+
+      function printNodeInTable (uri, title){
+        while (uri.indexOf("/") !== -1) {
+            uri = uri.substring(uri.indexOf("/")+1);
+        }
+
+
+        var DrInventorAPIdocs = "http://drinventor.dia.fi.upm.es:80/api/0.2/documents/"+uri;
+
+          $.getJSON( DrInventorAPIdocs)
+            .done(function( data ) {
+                $('#listPathDocuments').append(
+                      "<a  class=\"list-group-item\" style=\"background-color: #ddd; border-color:#222\">"+
+                              "<center>"+
+                              "<h4 class=\"list-group-item-heading\">"+data.title+"</h4>"+
+                              "<p class=\"list-group-item-text\">"+data.authoredBy+"</p>"+
+                              "</center>"+
+                      "</a>");
+            });
+
+    }
+
+    </script>
+</body>
+
+</html>

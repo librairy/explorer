@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by cbadenes on 18/01/16.
@@ -28,12 +29,14 @@ public class TermService extends AbstractResourceService<Term> {
     // APPEARED_IN -> Domain
     public List<String> listDomains(String id) {
         String uri = uriGenerator.from(Resource.Type.TERM, id);
-        return udm.find(Resource.Type.DOMAIN).from(Resource.Type.TERM, uri);
+        return udm.find(Resource.Type.DOMAIN).from(Resource.Type.TERM, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeDomains(String id) {
         String uri = uriGenerator.from(Resource.Type.TERM, id);
-        udm.delete(Relation.Type.APPEARED_IN).in(Resource.Type.TERM, uri);
+
+        udm.find(Relation.Type.APPEARED_IN)
+                .from(Resource.Type.TERM, uri).forEach(rel -> udm.delete(Relation.Type.APPEARED_IN).byUri(rel.getUri()));
     }
 
     public AppearedI getDomains(String startId, String endId) {
@@ -61,18 +64,20 @@ public class TermService extends AbstractResourceService<Term> {
     public void removeDomains(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.TERM, startId);
         String iuri = uriGenerator.from(Resource.Type.DOMAIN, endId);
-        udm.find(Relation.Type.APPEARED_IN).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.APPEARED_IN).byUri(relation.getUri()));
+        udm.find(Relation.Type.APPEARED_IN).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type.APPEARED_IN)
+                .byUri(relation.getUri()));
     }
 
     // MENTIONS -> Word
     public List<String> listWords(String id) {
         String uri = uriGenerator.from(Resource.Type.TERM, id);
-        return udm.find(Resource.Type.WORD).from(Resource.Type.TERM, uri);
+        return udm.find(Resource.Type.WORD).from(Resource.Type.TERM, uri).stream().map(res->res.getUri()).collect(Collectors.toList());
     }
 
     public void removeWords(String id) {
         String uri = uriGenerator.from(Resource.Type.TERM, id);
-        udm.delete(Relation.Type.MENTIONS_FROM_TERM).in(Resource.Type.TERM, uri);
+        udm.find(Relation.Type.MENTIONS_FROM_TERM)
+                .from(Resource.Type.TERM, uri).forEach(rel -> udm.delete(Relation.Type.MENTIONS_FROM_TERM).byUri(rel.getUri()));
     }
 
     public MentionsI getWords(String startId, String endId) {
@@ -94,7 +99,8 @@ public class TermService extends AbstractResourceService<Term> {
     public void removeWords(String startId, String endId) {
         String duri = uriGenerator.from(Resource.Type.TERM, startId);
         String iuri = uriGenerator.from(Resource.Type.WORD, endId);
-        udm.find(Relation.Type.MENTIONS_FROM_TERM).btw(startId, endId).forEach(relation -> udm.delete(Relation.Type.MENTIONS_FROM_TERM).byUri(relation.getUri()));
+        udm.find(Relation.Type.MENTIONS_FROM_TERM).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type
+                .MENTIONS_FROM_TERM).byUri(relation.getUri()));
     }
 
 }

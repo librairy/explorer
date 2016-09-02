@@ -28,7 +28,6 @@ public class TermRestRoute extends RestRoute {
         definition = addRelationCRUD(definition, "words", WeightTimesI.class, MentionsI.class, "mentioned by");
         return definition;
 
-
     }
 
 
