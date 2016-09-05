@@ -2,12 +2,11 @@ package org.librairy.api;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.spring.SpringCamelContext;
+import org.librairy.annotation.EventListener;
+import org.librairy.annotation.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import java.util.List;
@@ -16,8 +15,19 @@ import java.util.List;
  * Created by cbadenes on 18/01/16.
  */
 @Configuration("explorer")
-@ComponentScan({"org.librairy"})
-@PropertySource({"classpath:api.properties", "classpath:boot.properties", "classpath:lda-modeler.properties"})
+@ComponentScan(basePackages = {
+        "org.librairy.storage",
+        "org.librairy.eventbus",
+        "org.librairy.computing.storage",
+        "org.librairy.computing.cluster",
+        "org.librairy.computing.helper",
+        "org.librairy.modeler.lda.helper",
+        "org.librairy.modeler.lda.builder",
+        "org.librairy.modeler.lda.optimizers",
+        "org.librairy.api"
+},
+        excludeFilters = {@ComponentScan.Filter(EventListener.class),@ComponentScan.Filter(Publisher.class)})
+@PropertySource({"classpath:api.properties", "classpath:boot.properties", "classpath:computing.properties", "classpath:lda-modeler.properties"})
 public class Config {
 
 
