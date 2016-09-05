@@ -8,6 +8,7 @@
     </appender>
 
     <logger name="org.librairy" level="TRACE"/>
+    <logger name="org.springframework" level="ERROR"/>
 
     <root level="ERROR">
         <appender-ref ref="STDOUT" />
