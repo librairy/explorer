@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.librairy</groupId>
 	<artifactId>explorer</artifactId>
-	<version>0.7</version>
+	<version>0.8</version>
 	<packaging>war</packaging>
 	<name>explorer</name>
 	<description>librairy explorer</description>
@@ -84,7 +84,7 @@
 		<jena.version>2.10.1</jena.version>
 		<jgrapht.version>0.9.0</jgrapht.version>
 		<junit.version>4.12</junit.version>
-		<librairy.lda.version>0.9</librairy.lda.version>
+		<librairy.lda.version>0.10</librairy.lda.version>
 		<log4j.version>1.2.17</log4j.version>
 		<log4j.slf4j.version>1.7.14</log4j.slf4j.version>
 		<logback.version>1.1.3</logback.version>
@@ -138,6 +138,15 @@
 
 	<dependencyManagement>
 		<dependencies>
+
+			<!-- librairy boot dependencyManagement -->
+			<dependency>
+				<groupId>org.librairy</groupId>
+				<artifactId>librairy-modeler-lda</artifactId>
+				<version>${librairy.lda.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
 			<!-- Camel Workflow Libraries -->
 			<dependency>
@@ -637,7 +646,25 @@
 			<plugin>
 				<artifactId>maven-deploy-plugin</artifactId>
 				<version>2.8.1</version>
+				<executions>
+					<execution>
+						<id>lib-deploy</id>
+						<goals>
+							<goal>deploy-file</goal>
+						</goals>
+						<phase>deploy</phase>
+						<configuration>
+							<file>${project.build.directory}/${project.build.finalName}-lib.jar</file>
+							<repositoryId>internal.repo::default::file://${project.build.directory}/mvn-repo</repositoryId>
+							<url>file://${project.build.directory}/mvn-repo</url>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>${project.artifactId}</artifactId>
+							<version>${project.version}</version>
+						</configuration>
+					</execution>
+				</executions>
 				<configuration>
+					<skip>true</skip>
 					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
 				</configuration>
 			</plugin>
@@ -753,7 +780,8 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.11</version><!--0.2.3-->
 				<configuration>
-					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<imageName>${docker.image.prefix}/${project.name}</imageName>
+					<serverId>dockerhub</serverId>
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>
