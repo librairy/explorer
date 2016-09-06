@@ -2,7 +2,7 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.librairy</groupId>
-	<artifactId>explorer</artifactId>
+	<artifactId>librairy-explorer</artifactId>
 	<version>0.9</version>
 	<packaging>war</packaging>
 	<name>explorer</name>
@@ -586,9 +586,7 @@
 							<file>${project.build.directory}/${project.build.finalName}-lib.jar</file>
 							<repositoryId>internal.repo::default::file://${project.build.directory}/mvn-repo</repositoryId>
 							<url>file://${project.build.directory}/mvn-repo</url>
-							<groupId>${project.groupId}</groupId>
-							<artifactId>${project.artifactId}</artifactId>
-							<version>${project.version}</version>
+							<pomFile>${project.build.directory}/../pom.xml</pomFile>
 						</configuration>
 					</execution>
 				</executions>
