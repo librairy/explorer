@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.librairy</groupId>
 	<artifactId>librairy-explorer</artifactId>
-	<version>0.12</version>
+	<version>0.13-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>explorer</name>
 	<description>librairy explorer</description>
@@ -606,7 +606,7 @@
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
-				<version>0.12</version>
+				<version>0.13-SNAPSHOT</version>
 				<executions>
 					<execution>
 						<id>jar-deploy</id>
