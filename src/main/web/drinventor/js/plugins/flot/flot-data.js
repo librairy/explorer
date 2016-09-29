@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2016. Universidad Politecnica de Madrid
+ *
+ * @author Badenes Olmedo, Carlos <cbadenes@fi.upm.es>
+ *  
+ */
+
 // Flot Charts sample data for SB Admin template
 
 // Flot Line Chart with Tooltips

@@ -1,7 +1,8 @@
-/*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under the MIT license
+/*
+ * Copyright (c) 2016. Universidad Politecnica de Madrid
+ *
+ * @author Badenes Olmedo, Carlos <cbadenes@fi.upm.es>
+ *  
  */
 
 if (typeof jQuery === 'undefined') {
