@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.librairy.api.Config;
+import org.librairy.api.model.resources.SimilarityI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -28,15 +29,15 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Config.class)
 @TestPropertySource(properties = {
-        "librairy.cassandra.contactpoints       = wiener.dia.fi.upm.es",
-        "librairy.cassandra.port                = 5011",
-        "librairy.cassandra.keyspace            = research",
-        "librairy.elasticsearch.contactpoints   = wiener.dia.fi.upm.es",
-        "librairy.elasticsearch.port            = 5021",
-        "librairy.neo4j.contactpoints           = wiener.dia.fi.upm.es",
-        "librairy.neo4j.port                    = 5030",
+        "librairy.columndb.host       = wiener.dia.fi.upm.es",
+        "librairy.columndb.port                = 5011",
+        "librairy.documentdb.host   = wiener.dia.fi.upm.es",
+        "librairy.documentdb.port            = 5021",
+        "librairy.graphdb.host           = wiener.dia.fi.upm.es",
+        "librairy.graphdb.port                    = 5030",
         "librairy.eventbus.host                 = wiener.dia.fi.upm.es",
-        "librairy.eventbus.port                 = 5041"
+        "librairy.eventbus.port                 = 5041",
+        "librairy.uri = drinventor.eu"
 })
 public class DocumentServiceTest {
 
@@ -50,6 +51,16 @@ public class DocumentServiceTest {
         List<String> docs = documentService.listDocuments(id);
 
         System.out.println(docs);
+
+    }
+
+    @Test
+    public void similarities(){
+        String id = "39d9c4c0bb38b5fd740be63ad4cbb82c";
+
+        List<SimilarityI> sims = documentService.listSimilarities(id);
+
+        System.out.println(sims);
 
     }
 }
