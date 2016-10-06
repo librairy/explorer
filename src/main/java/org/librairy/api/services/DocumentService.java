@@ -1,8 +1,17 @@
+/*
+ * Copyright (c) 2016. Universidad Politecnica de Madrid
+ *
+ * @author Badenes Olmedo, Carlos <cbadenes@fi.upm.es>
+ *
+ */
+
 package org.librairy.api.services;
 
+import com.google.common.base.Strings;
 import org.apache.commons.beanutils.BeanUtils;
 import org.librairy.api.model.relations.*;
 import org.librairy.api.model.resources.DocumentI;
+import org.librairy.api.model.resources.SimilarityI;
 import org.librairy.model.domain.relations.DealsWithFromDocument;
 import org.librairy.model.domain.relations.Relation;
 import org.librairy.model.domain.relations.SimilarToDocuments;
@@ -12,7 +21,9 @@ import org.librairy.model.utils.TimeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import scala.Tuple2;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -153,6 +164,23 @@ public class DocumentService extends AbstractResourceService<Document> {
         String iuri = uriGenerator.from(Resource.Type.TOPIC, endId);
         udm.find(Relation.Type.DEALS_WITH_FROM_DOCUMENT).btw(duri, iuri).forEach(relation -> udm.delete(Relation.Type
                 .DEALS_WITH_FROM_DOCUMENT).byUri(relation.getUri()));
+    }
+
+
+    // SIMILAR_TO -> Documents
+    public List<SimilarityI> listSimilarities(String id) {
+        String uri = uriGenerator.from(Resource.Type.DOCUMENT, id);
+        Integer top = 20;
+
+        return udm.find(Relation.Type.SIMILAR_TO_DOCUMENTS)
+                .from(Resource.Type.DOCUMENT,uri)
+                .stream()
+                .sorted((o1, o2) -> -o1.getWeight().compareTo(o2.getWeight()))
+                .limit(top)
+                .map(relation -> new SimilarityI(relation.getEndUri(),relation.getWeight()))
+                .collect(Collectors.toList());
+
+
     }
 
 }

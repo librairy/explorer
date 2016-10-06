@@ -13,9 +13,15 @@ import lombok.Data;
  * Created by cbadenes on 22/01/16.
  */
 @Data
-public class PathI {
+public class SimilarityI {
 
-    String start;
+    String uri;
 
-    String end;
+    Double score;
+
+    public SimilarityI(String uri, Double score){
+        this.uri = uri;
+        this.score = score;
+    }
+
 }

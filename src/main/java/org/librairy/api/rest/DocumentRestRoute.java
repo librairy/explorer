@@ -1,9 +1,17 @@
+/*
+ * Copyright (c) 2016. Universidad Politecnica de Madrid
+ *
+ * @author Badenes Olmedo, Carlos <cbadenes@fi.upm.es>
+ *
+ */
+
 package org.librairy.api.rest;
 
 import org.apache.camel.model.rest.RestDefinition;
 import org.apache.camel.model.rest.RestsDefinition;
 import org.librairy.api.model.relations.*;
 import org.librairy.api.model.resources.DocumentI;
+import org.librairy.api.model.resources.SimilarityI;
 import org.librairy.model.domain.resources.Document;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +32,12 @@ public class DocumentRestRoute extends RestRoute {
         definition = addRelationCRUD(definition, "items", null, RelationI.class, "bundled by");
         definition = addRelationCRUD(definition, "topics", WeightI.class, DealsI.class, "dealt by");
         definition = addRelationCRUD(definition, "documents", WeightDomainI.class, SimilarI.class, "similar to");
+
+        definition = definition.get("/{id}/similarities").description("List all similarities between this document " +
+                "and others")
+                .outTypeList(SimilarityI.class).produces("application/json")
+                .to("bean:documentService?method=listSimilarities(${header.id})");
+
         return definition;
 
 
