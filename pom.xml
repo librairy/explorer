@@ -33,7 +33,7 @@
 		<developer>
 			<id>cbadenes</id>
 			<name>Carlos Badenes Olmedo</name>
-			<email>cbadenes at fi.upm.es</email>
+			<email>cbadenes at fi.upm.es</email>	
 		</developer>
 	</developers>
 	<prerequisites>
@@ -626,7 +626,7 @@
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
-				<version>0.13-SNAPSHOT</version>
+				<version>0.12</version>
 				<executions>
 					<execution>
 						<id>jar-deploy</id>
