@@ -1,15 +1,45 @@
 [INFO] Scanning for projects...
-[WARNING] The POM for com.github.github:site-maven-plugin:jar:0.13-SNAPSHOT is missing, no dependency information available
-[WARNING] Failed to retrieve plugin descriptor for com.github.github:site-maven-plugin:0.13-SNAPSHOT: Plugin com.github.github:site-maven-plugin:0.13-SNAPSHOT or one of its dependencies could not be resolved: Could not find artifact com.github.github:site-maven-plugin:jar:0.13-SNAPSHOT
 [INFO]                                                                         
 [INFO] ------------------------------------------------------------------------
-[INFO] Building explorer 0.13-SNAPSHOT
+[INFO] Building explorer 0.15-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
-[WARNING] The POM for com.github.github:site-maven-plugin:jar:0.13-SNAPSHOT is missing, no dependency information available
-[WARNING] Failed to retrieve plugin descriptor for com.github.github:site-maven-plugin:0.13-SNAPSHOT: Plugin com.github.github:site-maven-plugin:0.13-SNAPSHOT or one of its dependencies could not be resolved: Could not find artifact com.github.github:site-maven-plugin:jar:0.13-SNAPSHOT
+Downloading: https://raw.github.com/cbadenes/external-libs/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.pom
+Downloading: http://maven.restlet.org/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.pom
+Downloading: https://raw.github.com/cbadenes/test-utils/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.pom
+Downloading: https://raw.github.com/librairy/boot/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.pom
+Downloading: https://raw.github.com/librairy/metrics/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.pom
+Downloading: https://raw.github.com/librairy/computing/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.pom
+[WARNING] The POM for org.json4s:json4s-ext_2.10:jar:3.2.10 is missing, no dependency information available
+Downloading: https://raw.github.com/cbadenes/external-libs/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.pom
+Downloading: http://maven.restlet.org/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.pom
+Downloading: https://raw.github.com/cbadenes/test-utils/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.pom
+Downloading: https://raw.github.com/librairy/boot/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.pom
+Downloading: https://raw.github.com/librairy/metrics/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.pom
+Downloading: https://raw.github.com/librairy/computing/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.pom
+Downloading: https://raw.github.com/librairy/modeler-lda/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.pom
+Downloading: https://repo.maven.apache.org/maven2/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.pom
+3/3 KB   3/3 KB            Downloaded: https://repo.maven.apache.org/maven2/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.pom (3 KB at 9.9 KB/sec)
+Downloading: https://raw.github.com/cbadenes/external-libs/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.jar
+Downloading: https://raw.github.com/cbadenes/external-libs/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.jar
+                  Downloading: http://maven.restlet.org/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.jar
+Downloading: http://maven.restlet.org/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.jar
+                  Downloading: https://raw.github.com/cbadenes/test-utils/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.jar
+Downloading: https://raw.github.com/cbadenes/test-utils/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.jar
+                  Downloading: https://raw.github.com/librairy/boot/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.jar
+Downloading: https://raw.github.com/librairy/boot/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.jar
+                  Downloading: https://raw.github.com/librairy/metrics/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.jar
+Downloading: https://raw.github.com/librairy/metrics/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.jar
+                  Downloading: https://raw.github.com/librairy/computing/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.jar
+Downloading: https://raw.github.com/librairy/computing/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.jar
+                  Downloading: https://raw.github.com/librairy/modeler-lda/mvn-repo/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.jar
+Downloading: https://raw.github.com/librairy/modeler-lda/mvn-repo/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.jar
+                  Downloading: https://repo.maven.apache.org/maven2/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.jar
+Downloading: https://repo.maven.apache.org/maven2/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.jar
+3/73 KB   5/73 KB   8/73 KB   11/73 KB   13/73 KB   16/73 KB   19/73 KB   21/73 KB   24/73 KB   27/73 KB   29/73 KB   32/73 KB   3/68 KB   32/73 KB   5/68 KB   32/73 KB   8/68 KB   32/73 KB   8/68 KB   36/73 KB   8/68 KB   40/73 KB   11/68 KB   40/73 KB   11/68 KB   44/73 KB   11/68 KB   48/73 KB   11/68 KB   52/73 KB   11/68 KB   56/73 KB   11/68 KB   60/73 KB   11/68 KB   64/73 KB   11/68 KB   68/73 KB   11/68 KB   72/73 KB   11/68 KB   73/73 KB   13/68 KB   73/73 KB   16/68 KB   73/73 KB   19/68 KB   73/73 KB   21/68 KB   73/73 KB   24/68 KB   73/73 KB   27/68 KB   73/73 KB   29/68 KB   73/73 KB   32/68 KB   73/73 KB                         Downloaded: https://repo.maven.apache.org/maven2/org/json4s/json4s-ext_2.10/3.2.10/json4s-ext_2.10-3.2.10.jar (73 KB at 601.8 KB/sec)
+36/68 KB              40/68 KB   44/68 KB   48/68 KB   52/68 KB   56/68 KB   60/68 KB   64/68 KB   68/68 KB              Downloaded: https://repo.maven.apache.org/maven2/org/json4s/json4s-native_2.10/3.2.10/json4s-native_2.10-3.2.10.jar (68 KB at 383.6 KB/sec)
 [INFO] 
 [INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ librairy-explorer ---
-[INFO] org.librairy:librairy-explorer:war:0.13-SNAPSHOT
+[INFO] org.librairy:librairy-explorer:war:0.15-SNAPSHOT
 [INFO] +- org.librairy:librairy-modeler-lda:jar:lib:0.15:compile
 [INFO] |  \- org.librairy:librairy-metrics:jar:1.8:compile
 [INFO] |     +- org.librairy:librairy-computing:jar:0.10:compile
@@ -150,7 +180,7 @@
 [INFO] |        +- org.uma.jmetal:jmetal-problem:jar:5.0-Beta-29:compile
 [INFO] |        \- org.apache.maven.reporting:maven-reporting-api:jar:3.0:compile
 [INFO] |           \- org.apache.maven.doxia:doxia-sink-api:jar:1.0:compile
-[INFO] +- org.librairy:librairy-boot:jar:0.23:compile
+[INFO] +- org.librairy:librairy-boot:jar:0.24:compile
 [INFO] |  +- org.projectlombok:lombok:jar:1.16.4:compile
 [INFO] |  +- commons-beanutils:commons-beanutils:jar:1.9.2:compile
 [INFO] |  |  \- commons-collections:commons-collections:jar:3.2.1:compile
@@ -266,13 +296,13 @@
 [INFO] |  |  |  +- com.fasterxml.jackson.module:jackson-module-jsonSchema:jar:2.4.1:compile
 [INFO] |  |  |  +- com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.4.1:compile
 [INFO] |  |  |  |  \- com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.4.1:compile
-[INFO] |  |  |  +- org.json4s:json4s-ext_2.10:jar:3.2.11:compile
-[INFO] |  |  |  +- org.json4s:json4s-native_2.10:jar:3.2.11:compile
-[INFO] |  |  |  |  \- org.json4s:json4s-core_2.10:jar:3.2.11:compile
-[INFO] |  |  |  |     +- org.json4s:json4s-ast_2.10:jar:3.2.11:compile
+[INFO] |  |  |  +- org.json4s:json4s-ext_2.10:jar:3.2.10:compile
+[INFO] |  |  |  +- org.json4s:json4s-native_2.10:jar:3.2.10:compile
+[INFO] |  |  |  |  \- org.json4s:json4s-core_2.10:jar:3.2.10:compile
+[INFO] |  |  |  |     +- org.json4s:json4s-ast_2.10:jar:3.2.10:compile
 [INFO] |  |  |  |     \- org.scala-lang:scalap:jar:2.10.6:compile
 [INFO] |  |  |  |        \- org.scala-lang:scala-compiler:jar:2.10.6:compile
-[INFO] |  |  |  \- org.json4s:json4s-jackson_2.10:jar:3.2.11:compile
+[INFO] |  |  |  \- org.json4s:json4s-jackson_2.10:jar:3.2.10:compile
 [INFO] |  |  +- javax.ws.rs:jsr311-api:jar:1.1.1:compile
 [INFO] |  |  \- org.reflections:reflections:jar:0.9.9:compile
 [INFO] |  |     +- org.javassist:javassist:jar:3.18.2-GA:compile
@@ -297,7 +327,7 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 2.085 s
-[INFO] Finished at: 2016-10-06T17:37:44+02:00
-[INFO] Final Memory: 30M/444M
+[INFO] Total time: 13.260 s
+[INFO] Finished at: 2016-10-10T12:32:20+02:00
+[INFO] Final Memory: 34M/541M
 [INFO] ------------------------------------------------------------------------
