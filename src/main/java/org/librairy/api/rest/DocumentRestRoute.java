@@ -36,7 +36,8 @@ public class DocumentRestRoute extends RestRoute {
         definition = definition.get("/{id}/similarities").description("List all similarities between this document " +
                 "and others")
                 .outTypeList(SimilarityI.class).produces("application/json")
-                .to("bean:documentService?method=listSimilarities(${header.id})");
+                //TODO domain should be a parameter
+                .to("bean:documentService?method=listSimilarities(${header.id},default)");
 
         return definition;
 
