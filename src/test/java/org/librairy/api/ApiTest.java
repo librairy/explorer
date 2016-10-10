@@ -9,6 +9,7 @@ package org.librairy.api;
 
 import es.cbadenes.lab.test.IntegrationTest;
 import org.librairy.api.services.SourceService;
+import org.librairy.computing.storage.LocalFSStorage;
 import org.librairy.model.domain.resources.Source;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -29,6 +30,8 @@ public class ApiTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(ApiTest.class);
 
+    @Autowired
+    LocalFSStorage storage;
 
     @Autowired
     SourceService sourceService;
@@ -37,7 +40,13 @@ public class ApiTest {
     public void rest() throws InterruptedException {
         Source source = sourceService.get("http://librairy.org/sources/f0a820bd-1335-48a1-afe6-f73a6c3baf54");
         System.out.println(source);
+    }
 
+    @Test
+    public void localHome(){
+
+        System.out.println(storage.getHome());
 
     }
+
 }

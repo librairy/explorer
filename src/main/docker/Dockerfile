@@ -6,12 +6,13 @@ RUN rm -rf /usr/local/tomcat/webapps/ROOT/
 ADD drinventor/ /usr/local/tomcat/webapps/ROOT/
 RUN ls -la /usr/local/tomcat/webapps/ROOT/*
 
-ENV LIBRAIRY_HOME /usr/local/tomcat
+ENV LIBRAIRY_HOME /librairy
 
 ADD waitFor.sh /
 RUN chmod +x /waitFor.sh
 
-VOLUME $LIBRAIRY_HOME
+VOLUME /librairy
+VOLUME /usr/local/tomcat
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
