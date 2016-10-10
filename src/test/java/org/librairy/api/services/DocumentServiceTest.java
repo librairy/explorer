@@ -58,7 +58,7 @@ public class DocumentServiceTest {
     public void similarities(){
         String id = "39d9c4c0bb38b5fd740be63ad4cbb82c";
 
-        List<SimilarityI> sims = documentService.listSimilarities(id);
+        List<SimilarityI> sims = documentService.listSimilarities(id,"default");
 
         System.out.println(sims);
 
