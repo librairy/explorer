@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.librairy</groupId>
 	<artifactId>librairy-explorer</artifactId>
-	<version>0.16-SNAPSHOT</version>
+	<version>0.15</version>
 	<packaging>war</packaging>
 	<name>explorer</name>
 	<description>librairy explorer</description>
@@ -33,7 +33,7 @@
 		<developer>
 			<id>cbadenes</id>
 			<name>Carlos Badenes Olmedo</name>
-			<email>cbadenes at fi.upm.es</email>	
+			<email>cbadenes at fi.upm.es</email>
 		</developer>
 	</developers>
 	<prerequisites>

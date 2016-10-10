@@ -18,8 +18,10 @@ import org.librairy.model.domain.relations.SimilarToDocuments;
 import org.librairy.model.domain.resources.Document;
 import org.librairy.model.domain.resources.Resource;
 import org.librairy.model.utils.TimeUtils;
+import org.librairy.storage.system.column.repository.UnifiedColumnRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import scala.Tuple2;
 
@@ -35,6 +37,9 @@ import java.util.stream.Collectors;
 public class DocumentService extends AbstractResourceService<Document> {
 
     private static final Logger LOG = LoggerFactory.getLogger(DocumentService.class);
+
+    @Autowired
+    UnifiedColumnRepository columnRepository;
 
     public DocumentService() {
         super(Resource.Type.DOCUMENT);
@@ -168,13 +173,17 @@ public class DocumentService extends AbstractResourceService<Document> {
 
 
     // SIMILAR_TO -> Documents
-    public List<SimilarityI> listSimilarities(String id) {
+    public List<SimilarityI> listSimilarities(String id, String domainId) {
         String uri = uriGenerator.from(Resource.Type.DOCUMENT, id);
+        String domainUri = uriGenerator.from(Resource.Type.DOMAIN, domainId);
+
         Integer top = 20;
 
         return udm.find(Relation.Type.SIMILAR_TO_DOCUMENTS)
                 .from(Resource.Type.DOCUMENT,uri)
                 .stream()
+                .map(relation -> udm.read(Relation.Type.SIMILAR_TO_DOCUMENTS).byUri(relation.getUri()).get().asSimilarToDocuments())
+                .filter(relation -> relation.getDomain().equalsIgnoreCase(domainUri))
                 .sorted((o1, o2) -> -o1.getWeight().compareTo(o2.getWeight()))
                 .limit(top)
                 .map(relation -> new SimilarityI(relation.getEndUri(),relation.getWeight()))
