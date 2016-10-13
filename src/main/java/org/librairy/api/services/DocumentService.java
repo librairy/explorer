@@ -61,10 +61,11 @@ public class DocumentService extends AbstractResourceService<Document> {
         Document document = Resource.newDocument(resource.getTitle());
         BeanUtils.copyProperties(document, resource);
 
-        document.setFormat("json");
-        document.setRetrievedFrom("api");
-        document.setRetrievedOn(TimeUtils.asISO());
+        if (Strings.isNullOrEmpty(document.getFormat())) document.setFormat("json");
+        if (Strings.isNullOrEmpty(document.getRetrievedFrom())) document.setRetrievedFrom("api");
+        if (Strings.isNullOrEmpty(document.getRetrievedOn())) document.setRetrievedOn(TimeUtils.asISO());
         udm.save(document);
+        LOG.info("New document created: " + document);
         return document;
     }
 

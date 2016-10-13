@@ -38,6 +38,7 @@ public class DeployTest {
     public void deploy() throws InterruptedException {
         Assert.assertTrue(true);
 
+        Thread.sleep(3000000);
 
     }
 }

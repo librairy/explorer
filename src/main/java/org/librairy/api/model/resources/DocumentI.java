@@ -15,6 +15,8 @@ import lombok.Data;
 @Data
 public class DocumentI {
 
+    String uri;
+
     String title;
 
     String subject;
@@ -28,6 +30,8 @@ public class DocumentI {
     String authoredBy;
 
     String retrievedOn;
+
+    String retrievedFrom;
 
     String contributedBy;
 
