@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.librairy</groupId>
 	<artifactId>librairy-explorer</artifactId>
-	<version>0.18</version>
+	<version>0.19</version>
 	<packaging>war</packaging>
 	<name>explorer</name>
 	<description>librairy explorer</description>
