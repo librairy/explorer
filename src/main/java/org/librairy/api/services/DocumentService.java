@@ -178,15 +178,12 @@ public class DocumentService extends AbstractResourceService<Document> {
         String uri = uriGenerator.from(Resource.Type.DOCUMENT, id);
         String domainUri = uriGenerator.from(Resource.Type.DOMAIN, domainId);
 
-//        Integer top = 20;
-
         return udm.find(Relation.Type.SIMILAR_TO_DOCUMENTS)
                 .from(Resource.Type.DOCUMENT,uri)
                 .stream()
                 .map(relation -> udm.read(Relation.Type.SIMILAR_TO_DOCUMENTS).byUri(relation.getUri()).get().asSimilarToDocuments())
                 .filter(relation -> relation.getDomain().equalsIgnoreCase(domainUri))
                 .sorted((o1, o2) -> -o1.getWeight().compareTo(o2.getWeight()))
-//                .limit(top)
                 .map(relation -> new SimilarityI(relation.getEndUri(),relation.getWeight()))
                 .collect(Collectors.toList());
 

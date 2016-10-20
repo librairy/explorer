@@ -7,12 +7,18 @@
 
 package org.librairy.api.services;
 
+import com.google.common.collect.Iterables;
 import es.cbadenes.lab.test.IntegrationTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.librairy.api.Config;
 import org.librairy.api.model.resources.SimilarityI;
+import org.librairy.model.domain.relations.Relation;
+import org.librairy.model.domain.resources.Resource;
+import org.librairy.storage.generator.URIGenerator;
+import org.librairy.storage.system.column.repository.UnifiedColumnRepository;
+import org.librairy.storage.system.graph.repository.edges.SimilarToEdgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -30,19 +36,25 @@ import java.util.List;
 @ContextConfiguration(classes = Config.class)
 @TestPropertySource(properties = {
         "librairy.columndb.host       = wiener.dia.fi.upm.es",
-        "librairy.columndb.port                = 5011",
+//        "librairy.columndb.port                = 5011",
         "librairy.documentdb.host   = wiener.dia.fi.upm.es",
-        "librairy.documentdb.port            = 5021",
+//        "librairy.documentdb.port            = 5021",
         "librairy.graphdb.host           = wiener.dia.fi.upm.es",
-        "librairy.graphdb.port                    = 5030",
+//        "librairy.graphdb.port                    = 5030",
         "librairy.eventbus.host                 = wiener.dia.fi.upm.es",
-        "librairy.eventbus.port                 = 5041",
+//        "librairy.eventbus.port                 = 5041",
         "librairy.uri = drinventor.eu"
 })
 public class DocumentServiceTest {
 
     @Autowired
     DocumentService documentService;
+
+    @Autowired
+    UnifiedColumnRepository columnRepository;
+
+    @Autowired
+    URIGenerator uriGenerator;
 
     @Test
     public void similars(){
@@ -56,11 +68,19 @@ public class DocumentServiceTest {
 
     @Test
     public void similarities(){
-        String id = "39d9c4c0bb38b5fd740be63ad4cbb82c";
+        String id = "8f222f61_3307_4bdd_92cb_e15b935ceeec";
 
         List<SimilarityI> sims = documentService.listSimilarities(id,"default");
 
-        System.out.println(sims);
+        System.out.println("Total:" + sims.size());
 
+        Iterable<Relation> res1 = columnRepository.findBy(Relation.Type.SIMILAR_TO_DOCUMENTS, "start", uriGenerator
+                .from(Resource.Type.DOCUMENT, id));
+        System.out.println("Start: " + Iterables.size(res1));
+
+        Iterable<Relation> res2 = columnRepository.findBy(Relation.Type.SIMILAR_TO_DOCUMENTS, "end", uriGenerator
+                .from(Resource.Type
+                        .DOCUMENT, id));
+        System.out.println("End: " + Iterables.size(res2));
     }
 }
