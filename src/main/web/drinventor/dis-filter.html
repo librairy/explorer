@@ -276,7 +276,7 @@
 
 
 
-    function retrieveFilteredSimilarDocuments (uri){
+    function retrieveFilteredSimilarDocuments (topic){
         while (uri.indexOf("/") !== -1) {
             uri = uri.substring(uri.indexOf("/")+1);
         }
@@ -297,7 +297,7 @@
 
     }
 
-    function printDocInTable (uri, title){
+    function printDocInTable (topic, title){
         while (uri.indexOf("/") !== -1) {
             uri = uri.substring(uri.indexOf("/")+1);
         }

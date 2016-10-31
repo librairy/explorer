@@ -262,8 +262,8 @@
         .done(function (data) {
             $("#tableFilterResult tbody tr").remove();
             retrieveFilteredSimilarResources(data.uri);
-            //retrieveFilteredSimilarParts(data.uri); 
-            //retrieveFilteredSimilarDocuments(data.uri); 
+            //retrieveFilteredSimilarParts(data.topic);
+            //retrieveFilteredSimilarDocuments(data.topic);
  
         })
         .fail(function (data) {
@@ -272,7 +272,7 @@
     }, false);
 
 
-    function retrieveFilteredSimilarResources (uri){
+    function retrieveFilteredSimilarResources (topic){
         while (uri.indexOf("/") !== -1) {
             uri = uri.substring(uri.indexOf("/")+1);
         }
@@ -290,7 +290,7 @@
 
     }
 
-    function printDocInTable (uri, weight){
+    function printDocInTable (topic, weight){
         var itemType  = "";
         var originalUri = uri;
         while (uri.indexOf("/") !== -1) {
@@ -303,7 +303,7 @@
         $('#tableFilterResult > tbody:last-child').append("<tr><td><a target=\"_blank\" href=\""+DrInventorAPIdocs+"\">"+originalUri+"</a></td><td>"+weight+"</td></tr>");
 
 
-        /*var DrInventorAPIdocs = "http://drinventor.dia.fi.upm.es:80/api/0.2/"+itemType+"/"+uri;
+        /*var DrInventorAPIdocs = "http://drinventor.dia.fi.upm.es:80/api/0.2/"+itemType+"/"+topic;
 
           $.getJSON( DrInventorAPIdocs)
             .done(function( data ) {

@@ -14,7 +14,10 @@ import org.junit.runner.RunWith;
 import org.librairy.api.Config;
 import org.librairy.api.model.relations.WeightResourceI;
 import org.librairy.api.model.resources.SimilarityI;
+import org.librairy.api.model.resources.TopicDistributionI;
 import org.librairy.model.domain.resources.Filter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -31,7 +34,12 @@ import java.util.List;
 @Category(IntegrationTest.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Config.class)
+@TestPropertySource(properties = {
+        "librairy.uri       = drinventor.eu"
+})
 public class FilterServiceTest {
+
+    private static final Logger LOG = LoggerFactory.getLogger(FilterServiceTest.class);
 
     @Autowired
     FilterService service;
@@ -48,18 +56,30 @@ public class FilterServiceTest {
                 "quality even at low resolution if the viewing distance is great enough.)");
         Filter aux = service.create(filter);
 
-        System.out.println("Filter created: " + aux);
+        LOG.info("Filter created: " + aux);
 
     }
 
     @Test
     public void similarDocs() throws IOException, ClassNotFoundException {
 
-        String filterId = "ca614f8eba750656f5992905d80738c6";
+        String filterId = "65001b8a8ca40f1b3bcc0580a080b6b4";
 
         List<WeightResourceI> docs = service.listSimilarDocuments(filterId);
 
-        System.out.println(docs);
+        docs.forEach(doc -> LOG.info("DOC: " + doc));
+
+    }
+
+
+    @Test
+    public void topics() throws IOException, ClassNotFoundException {
+
+        String filterId = "65001b8a8ca40f1b3bcc0580a080b6b4";
+
+        List<TopicDistributionI> topics = service.listTopics(filterId);
+
+        topics.forEach(topic -> LOG.info("TOPIC: " + topic));
 
     }
 }

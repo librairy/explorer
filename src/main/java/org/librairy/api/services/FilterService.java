@@ -7,20 +7,26 @@
 
 package org.librairy.api.services;
 
+import org.librairy.api.cache.InferenceCache;
 import org.librairy.api.model.relations.WeightResourceI;
+import org.librairy.api.model.resources.SimilarityI;
+import org.librairy.api.model.resources.TopicDistributionI;
+import org.librairy.api.model.resources.WordDistributionI;
+import org.librairy.model.domain.relations.Relation;
 import org.librairy.model.domain.resources.Filter;
 import org.librairy.model.domain.resources.Resource;
 import org.librairy.modeler.lda.builder.SimilarityBuilder;
 import org.librairy.modeler.lda.builder.TopicsDistributionBuilder;
-import org.librairy.modeler.lda.models.Text;
 import org.librairy.modeler.lda.models.TopicsDistribution;
+import org.librairy.storage.generator.URIGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,11 +42,15 @@ public class FilterService extends AbstractResourceService<Filter> {
     @Autowired
     SimilarityBuilder similarityBuilder;
 
+    @Autowired
+    InferenceCache cache;
+
     //TODO Update Camel to 2.17.x to define this as query param
     String domainId = "default";
 
     //TODO Update Camel to 2.17.x to define this as query param
     String n = "20";
+
 
     private static final Logger LOG = LoggerFactory.getLogger(FilterService.class);
 
@@ -53,8 +63,7 @@ public class FilterService extends AbstractResourceService<Filter> {
         String uri = uriGenerator.from(Resource.Type.FILTER, id);
         String dUri = uriGenerator.from(Resource.Type.DOMAIN, domainId);
         Integer top = Integer.valueOf(n);
-        Filter filter = udm.read(Resource.Type.FILTER).byUri(uri).get().asFilter();
-        return findSimilar(filter.getContent(), dUri, top);
+        return findSimilar(uri, dUri, top);
     }
 
 
@@ -63,8 +72,7 @@ public class FilterService extends AbstractResourceService<Filter> {
         String uri = uriGenerator.from(Resource.Type.FILTER, id);
         String dUri = uriGenerator.from(Resource.Type.DOMAIN, domainId);
         Integer top = Integer.valueOf(n);
-        Filter filter = udm.read(Resource.Type.FILTER).byUri(uri).get().asFilter();
-        return findSimilar(filter.getContent(), dUri, top);
+        return findSimilar(uri, dUri, top);
     }
 
 
@@ -73,8 +81,7 @@ public class FilterService extends AbstractResourceService<Filter> {
         String uri = uriGenerator.from(Resource.Type.FILTER, id);
         String dUri = uriGenerator.from(Resource.Type.DOMAIN, domainId);
         Integer top = Integer.valueOf(n);
-        Filter filter = udm.read(Resource.Type.FILTER).byUri(uri).get().asFilter();
-        return findSimilar(filter.getContent(), dUri, top);
+        return findSimilar(uri, dUri, top);
     }
 
 
@@ -83,25 +90,18 @@ public class FilterService extends AbstractResourceService<Filter> {
         String uri = uriGenerator.from(Resource.Type.FILTER, id);
         String dUri = uriGenerator.from(Resource.Type.DOMAIN, domainId);
         Integer top = Integer.valueOf(n);
-        Filter filter = udm.read(Resource.Type.FILTER).byUri(uri).get().asFilter();
-        return findSimilar(filter.getContent(), dUri, top);
+        return findSimilar(uri, dUri, top);
     }
 
 
-    private List<WeightResourceI> findSimilar(String inputText, String domainUri, int top) throws IOException,
+    private List<WeightResourceI> findSimilar(String filterUri, String domainUri, int top) throws IOException,
             ClassNotFoundException {
 
-        // Compose a given text
-        Text text = new Text();
-        text.setId("given-text");
-        text.setContent(inputText);
-
         // Getting topics distribution for the given text
-        List<TopicsDistribution> inferencedTopics = topicsDistributionBuilder.inference(domainUri, Arrays.asList(new
-                Text[]{text}));
+        TopicsDistribution inferencedTopics = cache.inference(filterUri, domainUri);
 
         // Getting similar items based on that topics distribution
-        return similarityBuilder.topSimilars(Resource.Type.DOCUMENT, domainUri, top, inferencedTopics.get(0).getTopics())
+        return similarityBuilder.topSimilars(Resource.Type.DOCUMENT, domainUri, top, inferencedTopics.getTopics())
                 .stream()
                 .map(similarResource -> {
                     WeightResourceI resource = new WeightResourceI();
@@ -117,5 +117,28 @@ public class FilterService extends AbstractResourceService<Filter> {
     }
 
 
+    public List<TopicDistributionI> listTopics(String id){
+        String uri = uriGenerator.from(Resource.Type.FILTER, id);
+        String dUri = uriGenerator.from(Resource.Type.DOMAIN, domainId);
+        return cache.inference(uri, dUri).getTopics().stream().sorted((o1,o2) -> -o1.getWeight().compareTo(o2
+                .getWeight())).map
+                (td -> {
+            TopicDistributionI tdi = new TopicDistributionI();
+            tdi.setTopic(td.getTopicUri());
+            tdi.setRelevance(td.getWeight());
+
+            List<WordDistributionI> words = udm.find(Relation.Type.MENTIONS_FROM_TOPIC)
+                    .from(Resource.Type.TOPIC,td.getTopicUri())
+                    .stream()
+                    .map(rel ->
+                            new WordDistributionI(udm.read(Resource.Type.WORD).byUri(rel.getEndUri()).get().asWord()
+                                    .getContent(),rel
+                                    .getWeight()))
+                    .collect(Collectors.toList());
+            tdi.setWords(words);
+            return tdi;
+        })
+                .collect(Collectors.toList());
+    }
 
 }

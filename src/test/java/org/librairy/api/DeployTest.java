@@ -33,7 +33,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
         "librairy.documentdb.host   = wiener.dia.fi.upm.es",
         "librairy.graphdb.host           = wiener.dia.fi.upm.es",
         "librairy.eventbus.host                 = wiener.dia.fi.upm.es",
-        "librairy.uri = drinventor.eu"
+        "librairy.topic = drinventor.eu"
 })
 public class DeployTest {
 
