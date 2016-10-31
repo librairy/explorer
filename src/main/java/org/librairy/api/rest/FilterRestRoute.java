@@ -29,6 +29,14 @@ public class FilterRestRoute extends RestRoute {
 
         RestDefinition definition = addResourceCRUD(definitions, FilterI.class, Filter.class);
 
+        // related topics
+        definition = definition.get("/{id}/topics")
+                .description("List topics for the given filter")
+                .outTypeList(WeightResourceI.class)
+                .produces("application/json")
+                .to("bean:filterService?method=listTopics(${header.id})");
+
+
         // similar documents
         definition = definition.get("/{id}/similar/documents")
                 .description("List top similar documents for the given filter")
@@ -49,13 +57,6 @@ public class FilterRestRoute extends RestRoute {
                 .outTypeList(WeightResourceI.class)
                 .produces("application/json")
                 .to("bean:filterService?method=listSimilarParts(${header.id})");
-
-        // similar resources
-        definition = definition.get("/{id}/similar")
-                .description("List top similar resources for the given filter")
-                .outTypeList(WeightResourceI.class)
-                .produces("application/json")
-                .to("bean:filterService?method=listSimilar(${header.id})");
 
         // matched documents
         definition = definition.get("/{id}/matches/documents")

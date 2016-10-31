@@ -52,10 +52,10 @@ public class SourceService extends AbstractResourceService<Source> {
 
     public Source update(String id, SourceI resource) {
         String uri = uriGenerator.from(Resource.Type.SOURCE, id);
-        LOG.debug("updating by uri: " + uri);
+        LOG.debug("updating by topic: " + uri);
         Optional<Resource> result = udm.read(Resource.Type.SOURCE).byUri(uri);
         if (!result.isPresent()) {
-            throw new RuntimeException("Resource does not exist with uri: " + uri);
+            throw new RuntimeException("Resource does not exist with topic: " + uri);
         }
         Source original = (Source) result.get();
         BeanUtils.copyProperties(resource, original);

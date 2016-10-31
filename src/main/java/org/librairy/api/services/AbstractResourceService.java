@@ -48,10 +48,10 @@ public abstract class AbstractResourceService<T extends Resource> {
 
     public T update(String id, T resource) {
         String uri = uriGenerator.from(type, id);
-        LOG.debug("updating by uri: " + uri);
+        LOG.debug("updating by topic: " + uri);
         Optional<Resource> result = udm.read(type).byUri(uri);
         if (!result.isPresent()) {
-            throw new RuntimeException("Resource does not exist with uri: " + uri);
+            throw new RuntimeException("Resource does not exist with topic: " + uri);
         }
         T original = (T) result.get();
         BeanUtils.copyProperties(resource, original);
@@ -62,7 +62,7 @@ public abstract class AbstractResourceService<T extends Resource> {
 
     public void remove(String id) {
         String uri = uriGenerator.from(type, id);
-        LOG.debug("removing by uri: " + uri);
+        LOG.debug("removing by topic: " + uri);
         udm.delete(type).byUri(uri);
     }
 
@@ -77,7 +77,7 @@ public abstract class AbstractResourceService<T extends Resource> {
 
     public T get(String id) {
         String uri = uriGenerator.from(type, id);
-        LOG.debug("getting by uri: " + uri);
+        LOG.debug("getting by topic: " + uri);
         Optional<Resource> result = udm.read(type).byUri(uri);
         if (!result.isPresent())
             return null; //TODO Handle empty result

@@ -43,7 +43,7 @@ import java.util.List;
 //        "librairy.graphdb.port                    = 5030",
         "librairy.eventbus.host                 = wiener.dia.fi.upm.es",
 //        "librairy.eventbus.port                 = 5041",
-        "librairy.uri = drinventor.eu"
+        "librairy.topic = drinventor.eu"
 })
 public class DocumentServiceTest {
 
@@ -68,7 +68,7 @@ public class DocumentServiceTest {
 
     @Test
     public void similarities(){
-        String id = "8f222f61_3307_4bdd_92cb_e15b935ceeec";
+        String id = "00106da3_eb2a_4e3c_9f1b_84b1e8c10870";
 
         List<SimilarityI> sims = documentService.listSimilarities(id,"default");
 

@@ -82,7 +82,7 @@ public class PathService extends AbstractResourceService<Filter> {
 
         Path path = udm.read(Resource.Type.PATH).byUri(uri).get().asPath();
 
-        String query = "match (s : "+type+" { uri : {0} }), (e : "+type+" { uri : {1} }), path = shortestPath ((s)" +
+        String query = "match (s : "+type+" { topic : {0} }), (e : "+type+" { topic : {1} }), path = shortestPath ((s)" +
                 "-[r:SIMILAR_TO*1..10]-(e)) WHERE ALL (r in rels(path) WHERE r.weight > "+minSimilarValue+") return path";
 
 
