@@ -37,7 +37,7 @@ public class RestRouteBuilder extends RouteBuilder {
         restConfiguration()
                 .component("servlet")
                 .scheme("http")
-                .bindingMode(RestBindingMode.auto)
+                .bindingMode(RestBindingMode.auto) //RestBindingMode.auto
                 .skipBindingOnErrorCode(true)
                 .jsonDataFormat("json-jackson")
                 .xmlDataFormat("jaxb")
