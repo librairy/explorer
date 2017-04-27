@@ -54,25 +54,25 @@ public class MatchesService extends AbstractResourceService<Filter> {
 
 
     public List<WeightResourceI> listMatchedDocuments(String id) throws IOException, ClassNotFoundException {
-        return matches(id, "documents");
+        return matches(id, "description", "documents");
     }
 
 
     public List<WeightResourceI> listMatchedItems(String id) throws IOException, ClassNotFoundException {
-        return matches(id, "items");
+        return matches(id, "content","items");
     }
 
 
     public List<WeightResourceI> listMatchedParts(String id) throws IOException, ClassNotFoundException {
-        return matches(id, "parts");
+        return matches(id, "content", "parts");
     }
 
 
     public List<WeightResourceI> listMatches(String id) throws IOException, ClassNotFoundException {
-        return matches(id, "documents", "items", "parts", "words", "domains", "topics");
+        return matches(id, "content", "documents", "items", "parts", "words", "domains", "topics");
     }
 
-    private List<WeightResourceI> matches(String filterId, String... type){
+    private List<WeightResourceI> matches(String filterId, String field, String... type){
 
         String uri = uriGenerator.from(Resource.Type.FILTER, filterId);
         Filter filter = udm.read(Resource.Type.FILTER).byUri(uri).get().asFilter();
@@ -81,7 +81,7 @@ public class MatchesService extends AbstractResourceService<Filter> {
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
                 .withIndices("research")
                 .withTypes(type)
-                .withQuery(matchPhraseQuery("content",filter.getContent()))
+                .withQuery(matchPhraseQuery(field,filter.getContent()))
                 .withSort(SortBuilders.fieldSort("_score").order(SortOrder.DESC))
                 .build();
 

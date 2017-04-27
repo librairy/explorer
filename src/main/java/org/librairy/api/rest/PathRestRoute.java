@@ -39,18 +39,18 @@ public class PathRestRoute extends RestRoute {
                 .to("bean:pathService?method=listDocuments(${header.id})");
 
         // similar items
-        definition = definition.get("/{id}/items")
-                .description("Reading path based on Items to move from the 'start' to the 'end' resource")
-                .outTypeList(WeightResourceI.class)
-                .produces("application/json")
-                .to("bean:pathService?method=listItems(${header.id})");
-
-        // similar parts
-        definition = definition.get("/{id}/parts")
-                .description("Reading path based on Parts to move from the 'start' to the 'end' resource")
-                .outTypeList(WeightResourceI.class)
-                .produces("application/json")
-                .to("bean:pathService?method=listParts(${header.id})");
+//        definition = definition.get("/{id}/items")
+//                .description("Reading path based on Items to move from the 'start' to the 'end' resource")
+//                .outTypeList(WeightResourceI.class)
+//                .produces("application/json")
+//                .to("bean:pathService?method=listItems(${header.id})");
+//
+//        // similar parts
+//        definition = definition.get("/{id}/parts")
+//                .description("Reading path based on Parts to move from the 'start' to the 'end' resource")
+//                .outTypeList(WeightResourceI.class)
+//                .produces("application/json")
+//                .to("bean:pathService?method=listParts(${header.id})");
 
         return definition;
     }

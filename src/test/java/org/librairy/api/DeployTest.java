@@ -29,10 +29,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Config.class)
 @TestPropertySource(properties = {
-        "librairy.columndb.host       = wiener.dia.fi.upm.es",
-        "librairy.documentdb.host   = wiener.dia.fi.upm.es",
-        "librairy.graphdb.host           = wiener.dia.fi.upm.es",
-        "librairy.eventbus.host                 = wiener.dia.fi.upm.es",
+        "librairy.columndb.host             = wiener.dia.fi.upm.es",
+        "librairy.documentdb.host           = wiener.dia.fi.upm.es",
+        "librairy.graphdb.host              = wiener.dia.fi.upm.es",
+        "librairy.eventbus.host             = wiener.dia.fi.upm.es",
         "librairy.topic = drinventor.eu"
 })
 public class DeployTest {
@@ -48,11 +48,11 @@ public class DeployTest {
         Assert.assertTrue(true);
 
         LOG.info("Sleeping...");
+//
+//        service.listSimilarities("0284bdb8_3cf5_404c_b25a_7bd02f8e5684","default").forEach(similarity -> LOG.info
+//                ("Similarity: " + similarity));
 
-        service.listSimilarities("0284bdb8_3cf5_404c_b25a_7bd02f8e5684","default").forEach(similarity -> LOG.info
-                ("Similarity: " + similarity));
-
-        Thread.sleep(3000000);
+        Thread.sleep(Integer.MAX_VALUE);
 
     }
 }

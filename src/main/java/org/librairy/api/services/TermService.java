@@ -7,6 +7,7 @@
 
 package org.librairy.api.services;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.librairy.api.model.relations.AppearedI;
 import org.librairy.api.model.relations.MentionsI;
 import org.librairy.api.model.relations.ProbabilityI;
@@ -18,6 +19,7 @@ import org.librairy.model.domain.resources.Resource;
 import org.librairy.model.domain.resources.Term;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -49,8 +51,28 @@ public class TermService extends AbstractResourceService<Term> {
     public AppearedI getDomains(String startId, String endId) {
         String startUri = uriGenerator.from(Resource.Type.TERM, startId);
         String endUri = uriGenerator.from(Resource.Type.DOMAIN, endId);
-        Optional<AppearedI> result = udm.find(Relation.Type.APPEARED_IN).btw(startUri, endUri).stream().map(relation -> (AppearedIn) relation).map(relation -> new AppearedI(relation.getUri(), relation.getCreationTime(), relation.getCvalue(), relation.getTimes(), relation.getConsensus(), relation.getPertinence(), relation.getSubtermOf(), relation.getSupertermOf(), relation.getTermhood(), relation.getProbability())).findFirst();
-        return (result.isPresent()) ? result.get() : null;
+
+        List<Relation> relation = udm.find(Relation.Type.APPEARED_IN).btw(startUri, endUri);
+
+        if (relation == null || relation.isEmpty()) return null;
+
+        String relUri = relation.get(0).getUri();
+
+        Optional<Relation> relAppearedIn = udm.read(Relation.Type.APPEARED_IN).byUri(relUri);
+
+        if (!relAppearedIn.isPresent()) return null;
+
+        AppearedIn appearedIn = relAppearedIn.get().asAppearedIn();
+        AppearedI result = new AppearedI();
+
+        try {
+            BeanUtils.copyProperties(result, appearedIn);
+            result.setTimes(null);
+            return result;
+        } catch (IllegalAccessException| InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void addDomains(String startId, String endId, ProbabilityI rel) {

@@ -32,7 +32,7 @@ public class TermRestRoute extends RestRoute {
 
         RestDefinition definition = addResourceCRUD(definitions, TermI.class, Term.class);
         definition = addRelationCRUD(definition, "domains", ProbabilityI.class, AppearedI.class, "where appears");
-        definition = addRelationCRUD(definition, "words", WeightTimesI.class, MentionsI.class, "mentioned by");
+//        definition = addRelationCRUD(definition, "words", WeightTimesI.class, MentionsI.class, "mentioned by");
         return definition;
 
     }

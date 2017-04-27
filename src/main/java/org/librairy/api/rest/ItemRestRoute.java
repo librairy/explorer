@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by cbadenes on 25/02/16.
  */
-@Component
+//@Component
 public class ItemRestRoute extends RestRoute {
 
     public ItemRestRoute() {

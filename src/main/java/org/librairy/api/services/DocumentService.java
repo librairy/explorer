@@ -7,8 +7,11 @@
 
 package org.librairy.api.services;
 
+import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.Row;
 import com.google.common.base.Strings;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.librairy.api.model.relations.*;
 import org.librairy.api.model.resources.DocumentI;
 import org.librairy.api.model.resources.SimilarityI;
@@ -45,13 +48,15 @@ public class DocumentService extends AbstractResourceService<Document> {
         super(Resource.Type.DOCUMENT);
     }
 
-
+    @Override
     public Document get(String id) {
         Document document = super.get(id);
+        LOG.info("Getting in Document Service: " + document);
         // TODO Pending to be included by a query parameter
         if (document != null) {
             document.setContent(null);
             document.setTokens(null);
+            document.setUri("http://drinventor.eu/SingleDocVis.php?id="+id);
         }
         return document;
     }
@@ -178,13 +183,23 @@ public class DocumentService extends AbstractResourceService<Document> {
         String uri = uriGenerator.from(Resource.Type.DOCUMENT, id);
         String domainUri = uriGenerator.from(Resource.Type.DOMAIN, domainId);
 
-        return udm.find(Relation.Type.SIMILAR_TO_DOCUMENTS)
-                .from(Resource.Type.DOCUMENT,uri)
+
+        ResultSet resultEnd = sessionManager.getSession().execute("select enduri, weight " +
+                "from research.similarto where " +
+                "starturi='" + uri + "';");
+
+
+        ResultSet resultStart = sessionManager.getSession().execute("select starturi, weight " +
+                "from research.similarto where " +
+                "enduri='" + uri + "';");
+
+        List<Row> rows = resultEnd.all();
+        rows.addAll(resultStart.all());
+
+        return rows
                 .stream()
-                .map(relation -> udm.read(Relation.Type.SIMILAR_TO_DOCUMENTS).byUri(relation.getUri()).get().asSimilarToDocuments())
-                .filter(relation -> relation.getDomain().equalsIgnoreCase(domainUri))
-                .sorted((o1, o2) -> -o1.getWeight().compareTo(o2.getWeight()))
-                .map(relation -> new SimilarityI(relation.getEndUri(),relation.getWeight()))
+                .map(row -> new SimilarityI(row.getString(0),row.getDouble(1)))
+                .sorted((a,b) -> -a.getScore().compareTo(b.getScore()))
                 .collect(Collectors.toList());
 
 

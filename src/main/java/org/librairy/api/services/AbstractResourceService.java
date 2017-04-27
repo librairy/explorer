@@ -7,6 +7,7 @@
 
 package org.librairy.api.services;
 
+import org.librairy.api.dao.SessionManager;
 import org.librairy.model.domain.resources.Resource;
 import org.librairy.storage.UDM;
 import org.librairy.storage.generator.URIGenerator;
@@ -31,6 +32,9 @@ public abstract class AbstractResourceService<T extends Resource> {
 
     @Autowired
     protected UDM udm;
+
+    @Autowired
+    protected SessionManager sessionManager;
 
     @Autowired
     URIGenerator uriGenerator;
@@ -71,7 +75,7 @@ public abstract class AbstractResourceService<T extends Resource> {
     }
 
     public List<String> list() {
-        return udm.find(type).all().stream().map(res -> res.getUri()).collect(Collectors.toList());
+        return udm.find(type).all().stream().map(res -> res.getUri()).distinct().collect(Collectors.toList());
     }
 
 
@@ -79,6 +83,13 @@ public abstract class AbstractResourceService<T extends Resource> {
         String uri = uriGenerator.from(type, id);
         LOG.debug("getting by topic: " + uri);
         Optional<Resource> result = udm.read(type).byUri(uri);
+        switch (type){
+            case DOCUMENT:
+
+                break;
+            default:
+                break;
+        }
         if (!result.isPresent())
             return null; //TODO Handle empty result
         return (T) result.get();

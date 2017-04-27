@@ -70,7 +70,7 @@
         </init-param>
         <init-param>
             <param-name>api.description</param-name>
-            <param-value>librairy application programming interface</param-value>
+            <param-value>application programming interface to explore the DrInventor corpus</param-value>
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>

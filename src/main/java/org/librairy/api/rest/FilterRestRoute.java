@@ -44,19 +44,19 @@ public class FilterRestRoute extends RestRoute {
                 .produces("application/json")
                 .to("bean:filterService?method=listSimilarDocuments(${header.id})");
 
-        // similar items
-        definition = definition.get("/{id}/similar/items")
-                .description("List top the similar items for the given filter")
-                .outTypeList(WeightResourceI.class)
-                .produces("application/json")
-                .to("bean:filterService?method=listSimilarItems(${header.id})");
-
-        // similar parts
-        definition = definition.get("/{id}/similar/parts")
-                .description("List top the similar parts for the given filter")
-                .outTypeList(WeightResourceI.class)
-                .produces("application/json")
-                .to("bean:filterService?method=listSimilarParts(${header.id})");
+//        // similar items
+//        definition = definition.get("/{id}/similar/items")
+//                .description("List top the similar items for the given filter")
+//                .outTypeList(WeightResourceI.class)
+//                .produces("application/json")
+//                .to("bean:filterService?method=listSimilarItems(${header.id})");
+//
+//        // similar parts
+//        definition = definition.get("/{id}/similar/parts")
+//                .description("List top the similar parts for the given filter")
+//                .outTypeList(WeightResourceI.class)
+//                .produces("application/json")
+//                .to("bean:filterService?method=listSimilarParts(${header.id})");
 
         // matched documents
         definition = definition.get("/{id}/matches/documents")
@@ -65,26 +65,26 @@ public class FilterRestRoute extends RestRoute {
                 .produces("application/json")
                 .to("bean:matchesService?method=listMatchedDocuments(${header.id})");
 
-        // matched items
-        definition = definition.get("/{id}/matches/items")
-                .description("List top matched items for the given filter")
-                .outTypeList(WeightResourceI.class)
-                .produces("application/json")
-                .to("bean:matchesService?method=listMatchedItems(${header.id})");
-
-        // matched parts
-        definition = definition.get("/{id}/matches/parts")
-                .description("List top matched parts for the given filter")
-                .outTypeList(WeightResourceI.class)
-                .produces("application/json")
-                .to("bean:matchesService?method=listMatchedParts(${header.id})");
-
-        // matched resources
-        definition = definition.get("/{id}/matches")
-                .description("List top matched resources for the given filter")
-                .outTypeList(WeightResourceI.class)
-                .produces("application/json")
-                .to("bean:matchesService?method=listMatches(${header.id})");
+//        // matched items
+//        definition = definition.get("/{id}/matches/items")
+//                .description("List top matched items for the given filter")
+//                .outTypeList(WeightResourceI.class)
+//                .produces("application/json")
+//                .to("bean:matchesService?method=listMatchedItems(${header.id})");
+//
+//        // matched parts
+//        definition = definition.get("/{id}/matches/parts")
+//                .description("List top matched parts for the given filter")
+//                .outTypeList(WeightResourceI.class)
+//                .produces("application/json")
+//                .to("bean:matchesService?method=listMatchedParts(${header.id})");
+//
+//        // matched resources
+//        definition = definition.get("/{id}/matches")
+//                .description("List top matched resources for the given filter")
+//                .outTypeList(WeightResourceI.class)
+//                .produces("application/json")
+//                .to("bean:matchesService?method=listMatches(${header.id})");
 
         return definition;
     }

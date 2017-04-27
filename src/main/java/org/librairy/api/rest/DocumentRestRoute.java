@@ -29,7 +29,7 @@ public class DocumentRestRoute extends RestRoute {
     public RestDefinition configure(RestsDefinition definitions) {
 
         RestDefinition definition = addResourceCRUD(definitions, DocumentI.class, Document.class);
-        definition = addRelationCRUD(definition, "items", null, RelationI.class, "bundled by");
+//        definition = addRelationCRUD(definition, "items", null, RelationI.class, "bundled by");
         definition = addRelationCRUD(definition, "topics", WeightI.class, DealsI.class, "dealt by");
         definition = addRelationCRUD(definition, "documents", WeightDomainI.class, SimilarI.class, "similar to");
 
