@@ -31,6 +31,7 @@ var AUTOSEARCH_DELAY = 0;
 //when the page is loaded- do this
 $(document).ready(function() {
     $('#solrstrap-hits').append('<div offset="0"></div>');
+    $('#solrstrap-sims').append('<div offset="0"></div>');
     $('#solrstrap-searchbox').attr('value', getURLParam('q'));
     $('#solrstrap-searchbox').focus();
     //when the searchbox is typed- do this
@@ -39,16 +40,16 @@ $(document).ready(function() {
     $(window).bind('hashchange', filterchange);
     $('#solrstrap-searchbox').bind("change", querychange);
     //alert("from-document")
-    $.bbq.pushState({
-        'q': '*'
-    });
-    //firstchange();
+    firstchange();
 });
 
 //jquery plugin allows resultsets to be painted onto any div.
 (function($) {
     $.fn.loadSolrResults = function(q, fq, dq, offset) {
         $(this).getSolrResults(q, fq, dq, offset);
+    };
+    $.fn.loadLibrAIryResults = function(q, fq, dq, offset) {
+        $(this).getLibrAIryResults(q, fq, dq, offset);
     };
 })(jQuery);
 
@@ -373,7 +374,7 @@ function buildLibrAIryParams(q, fq, dq, offset) {
         'url': SOLR_ENDPOINT
     }
     var doc = {
-        'id' : dq[0].substring(4,dq[0].length)
+        'id' : dq[0]
     }
 
     var reference = {
@@ -478,7 +479,8 @@ function add_doc(event) {
     var whence = event.target;
     var docvalue = whence.title;
     var dq = getURLParamArray("dq");
-    var newdoc = 'doc:'+docvalue
+    //var newdoc = 'doc:'+docvalue
+    var newdoc = docvalue
 
     // check if it already exists...
     var existing = $.grep(dq, function(elt, idx) {
@@ -516,21 +518,23 @@ function del_doc(event) {
 function hashchange(event) {
   //alert("hashchange: " + getURLParamArray('offset'))
   $('#solrstrap-hits div[offset="0"]').loadSolrResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
+  $('#solrstrap-hits div[offset="0"]').loadLibrAIryResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
 }
 
 function firstchange(event) {
   //alert("firstchange: " + getURLParamArray('offset'))
   $('#solrstrap-hits div[offset="0"]').loadSolrResults('*', '', '', 0);
+  $('#solrstrap-sims div[offset="0"]').loadLibrAIryResults('*', '', '', 0);
 }
 
 function filterchange(event) {
   //alert("filterchange: " + getURLParamArray('offset'))
   $('#solrstrap-hits div[offset="0"]').loadSolrResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
+  $('#solrstrap-sims div[offset="0"]').loadLibrAIryResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
 }
 
 function handle_submit(event) {
     var q = $.trim($('#solrstrap-searchbox').val());
-    alert("q='"+q+"'")
     if (q !== '') {
         //$.bbq.removeState("fq");
         $.bbq.removeState("q");
@@ -540,7 +544,7 @@ function handle_submit(event) {
     } else{
       $.bbq.removeState("q");
       $.bbq.pushState({
-          'q': '*'
+          'q': ''
       });
     }
     return false;
@@ -565,6 +569,7 @@ function maybe_autosearch() {
     if (q.length > 0 && q !== getURLParam("q")) {
         //alert("maybe_autosearch: " + getURLParamArray('offset'))
         $('#solrstrap-hits div[offset="0"]').loadSolrResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
+        $('#solrstrap-sims div[offset="0"]').loadLibrAIryResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
     } else {
         // $('#solrstrap-hits').css({ opacity: 0.5 });
     }
