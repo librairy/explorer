@@ -1,7 +1,7 @@
 //CONST- CHANGE ALL THESE TO TELL SOLRSTRAP ABOUT THE LOCATION AND STRUCTURE OF YOUR SOLR
 
 var SOLR_ENDPOINT = 'http://librairy.linkeddata.es/data/tbfy'; //SELECT endpoint
-var LIBRAIRY_ENDPOINT = 'http://localhost:8080/api/items'; //SELECT endpoint
+var LIBRAIRY_ENDPOINT = 'http://localhost:7777/ranks'; //SELECT endpoint
 
 var HITTITLE = 'name_s'; //Name of the title field- the heading of each hit
 var HITBODY = 'topics0_t'; //Name of the body field- the teaser text of each hit
@@ -42,13 +42,15 @@ $(document).ready(function() {
     $.bbq.pushState({
         'q': '*'
     });
-    //firstchange();
 });
 
 //jquery plugin allows resultsets to be painted onto any div.
 (function($) {
     $.fn.loadSolrResults = function(q, fq, dq, offset) {
         $(this).getSolrResults(q, fq, dq, offset);
+    };
+    $.fn.loadLibrAIryResults = function(q, fq, dq, offset) {
+        $(this).getLibrAIryResults(q, fq, dq, offset);
     };
 })(jQuery);
 
@@ -125,54 +127,97 @@ $(document).ready(function() {
                 alert("librAIry error status="+status+", Error="+error+", Response=" + xhr.responseText);
             },
             success: function(result, status, xhr) {
-                // console.log(result);
-                //only redraw hits if there are new hits available
-                //alert("librAIry succesfull response: " + result)
-                // console.log(result);
-                //only redraw hits if there are new hits available
-                if (result.length > 0) {
-                    if (offset == 0) {
-                        rs.empty();
-                        //strapline that tells you how many hits you got
-                        rs.append(TEMPLATES.summaryTemplate({
-                            totalresults: result.length,
-                            query: q
-                        }));
-                        rs.siblings().remove();
-                    }
-                    //draw the individual hits
-                    for (var i = 0; i < result.length; i++) {
-                        var title = normalize_ws(result[i]["name"]);
-                        var text = result[i]["score"];
-                        var teaser = result[i]["score"];
-                        var link = result[i]["id"];
+              // console.log(result);
+              //only redraw hits if there are new hits available
+              console.log(JSON.stringify(result.response))
+              $(rs).parent().css({
+                  opacity: 1
+              });
+              if (result.response.docs.length > 0) {
+                  if (offset == 0) {
+                      rs.empty();
+                      //strapline that tells you how many hits you got
+                      rs.append(TEMPLATES.summaryTemplate({
+                          totalresults: result.response.numFound,
+                          query: q
+                      }));
+                      rs.siblings().remove();
+                  }
+                  //draw the individual hits
+                  for (var i = 0; i < result.response.docs.length; i++) {
+                      var title = normalize_ws(get_maybe_highlit(result, i, HITTITLE));
+                      var text = result.response.docs[i]["score"].toString();
+                      var teaser = result.response.docs[i]["score"].toString();
+                      var link = result.response.docs[i][HITLINK];
 
-                        var hit_data = {
-                            title: title,
-                            text: text
-                        };
+                      var hit_data = {
+                          title: title,
+                          text: text
+                      };
 
-                        if (teaser) {
-                            hit_data['teaser'] = teaser;
-                        }
-                        if (link) {
-                            hit_data['link'] = link;
-                        }
+                      if (teaser) {
+                          hit_data['teaser'] = teaser;
+                      }
+                      if (link) {
+                          hit_data['link'] = link;
+                      }
 
-                        rs.append(TEMPLATES.hitTemplate(hit_data));
-                    }
-                    //$(rs).parent().css({
-                    //    opacity: 1
-                    //});
-                    ////if more results to come-set up the autoload div
-                    //if ((+HITSPERPAGE + offset) < +result.length) {
-                    //    //alert(offset)
-                    //    var nextDiv = document.createElement('div');
-                    //    $(nextDiv).attr('offset', +HITSPERPAGE + offset);
-                    //    rs.parent().append(nextDiv);
-                    //    $(nextDiv).loadLibrAIryResultsWhenVisible(q, fq, dq, +HITSPERPAGE + offset);
-                    //}
-                }
+                      rs.append(TEMPLATES.hitTemplate(hit_data));
+                  }
+                  //if more results to come-set up the autoload div
+                  if ((+HITSPERPAGE + offset) < +result.response.numFound) {
+                      //alert(offset)
+                      var nextDiv = document.createElement('div');
+                      $(nextDiv).attr('offset', +HITSPERPAGE + offset);
+                      rs.parent().append(nextDiv);
+                      $(nextDiv).loadSolrResultsWhenVisible(q, fq, dq, +HITSPERPAGE + offset);
+                  }
+                  //facets
+                  $('#solrstrap-facets').empty();
+                  //chosen facets
+                  if (fq.length > 0) {
+                      var fqobjs = [];
+                      for (var i = 0; i < fq.length; i++) {
+                          var m = fq[i].match(/^([^:]+):(.*)/);
+                          if (m) {
+                              fqobjs.push({
+                                  'name': m[1],
+                                  'value': m[2]
+                              });
+                          }
+                      }
+                      $('#solrstrap-facets').append(TEMPLATES.chosenNavTemplate(fqobjs));
+                  }
+                  //chosen docs
+                  if (dq.length > 0) {
+                      var dqobjs = [];
+                      for (var i = 0; i < dq.length; i++) {
+                          var m = dq[i].match(/^([^:]+):(.*)/);
+                          if (m) {
+                            dqobjs.push({
+                              'name': m[1],
+                              'value': m[2]
+                            });
+                          }
+                      }
+                      $('#solrstrap-facets').append(TEMPLATES.chosenDocTemplate(dqobjs));
+                  }
+                  //available facets
+                  for (var k in result.facet_counts.facet_fields) {
+                      if (result.facet_counts.facet_fields[k].length > 0) {
+                          $('#solrstrap-facets')
+                              .append(TEMPLATES.navTemplate({
+                                  title: k,
+                                  navs: makeNavsSensible(result.facet_counts.facet_fields[k])
+                              }));
+                      }
+                  }
+                  $('div.facet > a').click(add_nav);
+                  $('div.chosen-facet > a').click(del_nav);
+
+                  $('div.entry > a').click(add_doc);
+                  $('div.chosen-doc > a').click(del_doc);
+              }
             }
         });
       }
@@ -184,7 +229,6 @@ $(document).ready(function() {
             opacity: 0.5
         });
 
-        alert("query to Solr: " + q)
         $.ajax({
             url: SOLR_ENDPOINT + "/select",
             dataType: 'jsonp',
@@ -194,7 +238,7 @@ $(document).ready(function() {
             success: function(result) {
                 // console.log(result);
                 //only redraw hits if there are new hits available
-                alert("Solr result: " + JSON.stringify(result))
+                console.log(JSON.stringify(result.response))
                 $(rs).parent().css({
                     opacity: 1
                 });
@@ -285,9 +329,6 @@ $(document).ready(function() {
                 }
             }
         });
-
-
-
     };
 })(jQuery);
 
@@ -360,13 +401,23 @@ function buildLibrAIryParams(q, fq, dq, offset) {
 
     var datafields = {
         'id' : "id",
-        'name' : 'name_s'
+        'name' : 'name_s',
+        "score" :"score"
+    }
+
+    var filterValue = ""
+
+    if (fq.length > 0 ){
+      for(let i = 0; i < fq.length-1; i++){
+         filterValue += fq[i] + " AND "
+      }
+      filterValue += fq[fq.length-1]
     }
 
     var datasource = {
         'cache': false,
         'dataFields' : datafields,
-        'filter': "",
+        'filter': filterValue,
         'format' : "SOLR_CORE",
         'offset' : offset,
         'size' : -1,
@@ -388,7 +439,7 @@ function buildLibrAIryParams(q, fq, dq, offset) {
     }
 
     var json = JSON.stringify(request)
-    //alert(json)
+    alert(json)
     return json;
 }
 
@@ -513,19 +564,15 @@ function del_doc(event) {
     return false;
 }
 
-function hashchange(event) {
-  //alert("hashchange: " + getURLParamArray('offset'))
-  $('#solrstrap-hits div[offset="0"]').loadSolrResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
-}
-
-function firstchange(event) {
-  //alert("firstchange: " + getURLParamArray('offset'))
-  $('#solrstrap-hits div[offset="0"]').loadSolrResults('*', '', '', 0);
-}
-
 function filterchange(event) {
-  //alert("filterchange: " + getURLParamArray('offset'))
-  $('#solrstrap-hits div[offset="0"]').loadSolrResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
+  alert("filterchange: " + getURLParamArray('offset'))
+  var dq = getURLParamArray('dq')
+  if (dq.length === 0){
+    $('#solrstrap-hits div[offset="0"]').loadSolrResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
+  }else{
+    $('#solrstrap-hits div[offset="0"]').loadLibrAIryResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
+  }
+
 }
 
 function handle_submit(event) {
@@ -563,7 +610,7 @@ function maybe_autosearch() {
     }
     var q = $.trim($('#solrstrap-searchbox').val());
     if (q.length > 0 && q !== getURLParam("q")) {
-        //alert("maybe_autosearch: " + getURLParamArray('offset'))
+        alert("maybe_autosearch: " + getURLParamArray('offset'))
         $('#solrstrap-hits div[offset="0"]').loadSolrResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
     } else {
         // $('#solrstrap-hits').css({ opacity: 0.5 });
