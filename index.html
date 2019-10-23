@@ -19,7 +19,7 @@
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                <a class="brand" href="#"><img src="https://www.dropbox.com/s/n2cszs9smkypkwg/powered-by-librairy.png?raw=1" width="100" height="60" title="librAIry-explorer" alt="Flower"></a>
+                <a class="brand" href="#"><img src="https://www.dropbox.com/s/n2cszs9smkypkwg/powered-by-librairy.png?raw=1" width="100" height="60" title="librAIry-explorer" alt="logo"></a>
                 <form class="navbar-search" style="float:right">
                     <div id="search-div">
                         <input type="text" class="search-query span8" placeholder="*" value="*" onfocus="this.value = this.value;" id="solrstrap-searchbox" name="q">
@@ -38,16 +38,26 @@
 
     <!--Handlebars layout templates-->
     <script type="text/x-handlebars-template" id="hit-template">
+      <tr>
+        <td>
         <div class="entry">
         {{#if link}}
         <a href='#' title='{{link}}'>{{title}}</a>
-        <a href="http://librairy.linkeddata.es/solr/tbfy/select?q=id:{{link}}" target="_blank">[++]</a><br>
         {{{text}}}
         {{else}}
         <strong>{{{title}}}</strong><br>
         {{{text}}}
         {{/if}}
         </div>
+      </td>
+      <td>
+        <div>
+          {{#if link}}
+          <a href="{{endpoint}}" target="_blank"><img src="https://www.dropbox.com/s/1v05mokd5hcnwts/book.png?raw=1" width="90" height="70" title="document" alt="book"></a><br>
+          {{/if}}
+        </div>
+      </td>
+      </tr>
     </script>
 
     <!-- summary -->

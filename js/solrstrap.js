@@ -10,7 +10,7 @@ var HITTEASER = 'topics0_t'; // Name of field to use for teaser
 var HITLINK = 'id'; // Name of field to use for link
 
 
-var HITSPERPAGE = 20; //page size- hits per page
+var HITSPERPAGE = 25; //page size- hits per page
 
 var FACETS = ['topics0_t', 'lang_s', 'source_s']; //facet categories
 var FACETS_TITLES = {
@@ -67,26 +67,26 @@ $(document).ready(function() {
                     handle_submit();
                 }
                 $(elem).attr('loaded', true);
-                $(elem).getSolrResults(q, fq, dq, offset);
+                $(elem).getSolrResults(getURLParamArray('q'), getURLParamArray('fq'), getURLParamArray('dq'), offset);
                 $(window).unbind('scroll');
             }
         });
     };
-    //$.fn.loadLibrAIryResultsWhenVisible = function(q, fq, dq, offset) {
-    //    elem = this;
-    //    $(window).scroll(function(event) {
-    //        if (isScrolledIntoView(elem) && !$(elem).attr('loaded')) {
-    //            //alert("scroll")
-    //            //dont instantsearch and autoload at the same time
-    //            if ($('#solrstrap-searchbox').val() != getURLParam('q')) {
-    //                handle_submit();
-    //            }
-    //            $(elem).attr('loaded', true);
-    //            $(elem).getLibrAIryResults(q, fq, dq, offset);
-    //            $(window).unbind('scroll');
-    //        }
-    //    });
-    //};
+    $.fn.loadLibrAIryResultsWhenVisible = function(q, fq, dq, offset) {
+        elem = this;
+        $(window).scroll(function(event) {
+            if (isScrolledIntoView(elem) && !$(elem).attr('loaded')) {
+                //alert("scroll")
+                //dont instantsearch and autoload at the same time
+                if ($('#solrstrap-searchbox').val() != getURLParam('q')) {
+                    handle_submit();
+                }
+                $(elem).attr('loaded', true);
+                $(elem).getLibrAIryResults(getURLParamArray('q'), getURLParamArray('fq'), getURLParamArray('dq'), offset);
+                $(window).unbind('scroll');
+            }
+        });
+    };
 })(jQuery);
 
 
@@ -149,6 +149,7 @@ $(document).ready(function() {
                       var text = "["+normalize_ws(get_maybe_highlit(result, i, HITBODY))+"]";
                       var teaser = "["+normalize_ws(get_maybe_highlit(result, i, HITTEASER))+"]";
                       var link = result.response.docs[i][HITLINK];
+                      var endpoint = SOLR_ENDPOINT + "/select?q=id:" + result.response.docs[i][HITLINK];
 
                       var hit_data = {
                           title: title,
@@ -160,17 +161,18 @@ $(document).ready(function() {
                       }
                       if (link) {
                           hit_data['link'] = link;
+                          hit_data['endpoint'] = endpoint;
                       }
 
                       rs.append(TEMPLATES.hitTemplate(hit_data));
                   }
                   //if more results to come-set up the autoload div
                   if ((+HITSPERPAGE + offset) < +result.response.numFound) {
-                      //alert(offset)
+                      //alert("scroll: " + getURLParamArray('fq'))
                       var nextDiv = document.createElement('div');
                       $(nextDiv).attr('offset', +HITSPERPAGE + offset);
                       rs.parent().append(nextDiv);
-                      $(nextDiv).loadSolrResultsWhenVisible(q, fq, dq, +HITSPERPAGE + offset);
+                      $(nextDiv).loadLibrAIryResultsWhenVisible(getURLParamArray('q'), getURLParamArray('fq'), getURLParamArray('dq'), +HITSPERPAGE + offset);
                   }
                   //facets
                   $('#solrstrap-facets').empty();
@@ -261,6 +263,7 @@ $(document).ready(function() {
                         var text = "["+normalize_ws(get_maybe_highlit(result, i, HITBODY))+"]";
                         var teaser = "["+normalize_ws(get_maybe_highlit(result, i, HITTEASER))+"]";
                         var link = result.response.docs[i][HITLINK];
+                        var endpoint = SOLR_ENDPOINT + "/select?q=id:" + result.response.docs[i][HITLINK];
 
                         var hit_data = {
                             title: title,
@@ -272,17 +275,18 @@ $(document).ready(function() {
                         }
                         if (link) {
                             hit_data['link'] = link;
+                            hit_data['endpoint'] = endpoint
                         }
 
                         rs.append(TEMPLATES.hitTemplate(hit_data));
                     }
                     //if more results to come-set up the autoload div
                     if ((+HITSPERPAGE + offset) < +result.response.numFound) {
-                        //alert(offset)
+                        alert("scroll: " + getURLParamArray('fq'))
                         var nextDiv = document.createElement('div');
                         $(nextDiv).attr('offset', +HITSPERPAGE + offset);
                         rs.parent().append(nextDiv);
-                        $(nextDiv).loadSolrResultsWhenVisible(q, fq, dq, +HITSPERPAGE + offset);
+                        $(nextDiv).loadSolrResultsWhenVisible(getURLParamArray('q'), getURLParamArray('fq'), getURLParamArray('dq'), +HITSPERPAGE + offset);
                     }
                     //facets
                     $('#solrstrap-facets').empty();
@@ -357,7 +361,7 @@ function makeNavsSensible(navs) {
     var newNav = {};
     for (var i = 0; i < navs.length; i += 2) {
         newNav[navs[i]] = navs[i + 1];
-    }    
+    }
     return sortProperties(newNav);
 }
 
@@ -591,7 +595,7 @@ function del_doc(event) {
 }
 
 function filterchange(event) {
-  //alert("filterchange: " + getURLParamArray('offset'))
+  alert("filterchange: " + getURLParamArray('fq'))
   var dq = getURLParamArray('dq')
   if (dq.length === 0){
     $('#solrstrap-hits div[offset="0"]').loadSolrResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
@@ -635,19 +639,19 @@ function maybe_autosearch() {
     if (timeoutid) {
         window.clearTimeout(timeoutid);
     }
-    handle_submit()
+    //handle_submit()
 
-    //var dq = getURLParamArray('dq')
+    var dq = getURLParamArray('dq')
 
-    //var q = $.trim($('#solrstrap-searchbox').val());
-    //if (q.length > 0 && q !== getURLParam("q")) {
-    //  //alert("maybe_autosearch: " + getURLParamArray('offset'))
-    //  if (dq.length == 0){
-    //    $('#solrstrap-hits div[offset="0"]').loadSolrResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
-    //  }else{
-    //    $('#solrstrap-hits div[offset="0"]').loadLibrAIryResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
-    //  }
-    //} else {
-    ////    // $('#solrstrap-hits').css({ opacity: 0.5 });
-    //}
+    var q = $.trim($('#solrstrap-searchbox').val());
+    if (q.length > 0 && q !== getURLParam("q")) {
+      //alert("maybe_autosearch: " + getURLParamArray('offset'))
+      if (dq.length == 0){
+        $('#solrstrap-hits div[offset="0"]').loadSolrResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
+      }else{
+        $('#solrstrap-hits div[offset="0"]').loadLibrAIryResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
+      }
+    } else {
+    //    // $('#solrstrap-hits').css({ opacity: 0.5 });
+    }
 }
