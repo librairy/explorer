@@ -357,9 +357,7 @@ function makeNavsSensible(navs) {
     var newNav = {};
     for (var i = 0; i < navs.length; i += 2) {
         newNav[navs[i]] = navs[i + 1];
-    }
-    console.log(JSON.stringify(newNav))
-    console.log(JSON.stringify(sortProperties(newNav)))
+    }    
     return sortProperties(newNav);
 }
 
