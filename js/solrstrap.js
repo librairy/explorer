@@ -104,7 +104,7 @@ $(document).ready(function() {
             FACETS_TITLES[facetname] : facetname);
     });
     $.fn.getLibrAIryResults = function(q, fq, dq, offset) {
-      alert("query to librAIry")
+    //  alert("query to librAIry")
 
       var rs = this;
 
@@ -129,7 +129,7 @@ $(document).ready(function() {
             success: function(result, status, xhr) {
               // console.log(result);
               //only redraw hits if there are new hits available
-              console.log(JSON.stringify(result.response))
+              //console.log(JSON.stringify(result.response))
               $(rs).parent().css({
                   opacity: 1
               });
@@ -146,8 +146,8 @@ $(document).ready(function() {
                   //draw the individual hits
                   for (var i = 0; i < result.response.docs.length; i++) {
                       var title = normalize_ws(get_maybe_highlit(result, i, HITTITLE));
-                      var text = result.response.docs[i]["score"].toString();
-                      var teaser = result.response.docs[i]["score"].toString();
+                      var text = "["+normalize_ws(get_maybe_highlit(result, i, HITBODY))+"]";
+                      var teaser = "["+normalize_ws(get_maybe_highlit(result, i, HITTEASER))+"]";
                       var link = result.response.docs[i][HITLINK];
 
                       var hit_data = {
@@ -235,10 +235,13 @@ $(document).ready(function() {
             data: buildSolrParams(q, fq, dq, offset),
             traditional: true,
             jsonp: 'json.wrf',
+            error: function(result){
+              alert("Error on Solr query! " + result)
+            },
             success: function(result) {
                 // console.log(result);
                 //only redraw hits if there are new hits available
-                console.log(JSON.stringify(result.response))
+                //console.log(JSON.stringify(result.response))
                 $(rs).parent().css({
                     opacity: 1
                 });
@@ -255,8 +258,8 @@ $(document).ready(function() {
                     //draw the individual hits
                     for (var i = 0; i < result.response.docs.length; i++) {
                         var title = normalize_ws(get_maybe_highlit(result, i, HITTITLE));
-                        var text = normalize_ws(get_maybe_highlit(result, i, HITBODY));
-                        var teaser = normalize_ws(get_maybe_highlit(result, i, HITTEASER));
+                        var text = "["+normalize_ws(get_maybe_highlit(result, i, HITBODY))+"]";
+                        var teaser = "["+normalize_ws(get_maybe_highlit(result, i, HITTEASER))+"]";
                         var link = result.response.docs[i][HITLINK];
 
                         var hit_data = {
@@ -333,13 +336,31 @@ $(document).ready(function() {
 })(jQuery);
 
 
+function sortProperties(obj)
+{
+  // convert object into array
+	var sortable=[];
+	for(var key in obj)
+		if(obj.hasOwnProperty(key))
+			sortable.push([key, obj[key]]); // each item is an array in format [key, value]
+
+	// sort items by value
+	sortable.sort(function(a, b)
+	{
+	  return b[1]-a[1]; // compare numbers
+	});
+	return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
+}
+
 //translates the ropey solr facet format to a more sensible map structure
 function makeNavsSensible(navs) {
     var newNav = {};
     for (var i = 0; i < navs.length; i += 2) {
         newNav[navs[i]] = navs[i + 1];
     }
-    return newNav;
+    console.log(JSON.stringify(newNav))
+    console.log(JSON.stringify(sortProperties(newNav)))
+    return sortProperties(newNav);
 }
 
 //utility function for grabbling URLs
@@ -407,12 +428,17 @@ function buildLibrAIryParams(q, fq, dq, offset) {
 
     var filterValue = ""
 
-    if (fq.length > 0 ){
-      for(let i = 0; i < fq.length-1; i++){
-         filterValue += fq[i] + " AND "
-      }
-      filterValue += fq[fq.length-1]
+    if (q  != '') {
+        filterValue += 'name_s:*'+q+"*";
     }
+
+    if (fq.length > 0 ){
+      for(let i = 0; i < fq.length; i++){
+         filterValue += " AND " + fq[i]
+      }
+    }
+
+
 
     var datasource = {
         'cache': false,
@@ -439,7 +465,7 @@ function buildLibrAIryParams(q, fq, dq, offset) {
     }
 
     var json = JSON.stringify(request)
-    alert(json)
+    //alert(json)
     return json;
 }
 
@@ -528,6 +554,7 @@ function del_nav(event) {
 function add_doc(event) {
     var whence = event.target;
     var docvalue = whence.title;
+    //var dq = getURLParamArray("dq");
     var dq = getURLParamArray("dq");
     var newdoc = 'doc:'+docvalue
 
@@ -537,6 +564,7 @@ function add_doc(event) {
     });
 
     if (existing.length === 0) {
+        dq = []
         dq.push(newdoc);
         $.bbq.pushState({
             'dq': dq
@@ -565,7 +593,7 @@ function del_doc(event) {
 }
 
 function filterchange(event) {
-  alert("filterchange: " + getURLParamArray('offset'))
+  //alert("filterchange: " + getURLParamArray('offset'))
   var dq = getURLParamArray('dq')
   if (dq.length === 0){
     $('#solrstrap-hits div[offset="0"]').loadSolrResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
@@ -577,7 +605,7 @@ function filterchange(event) {
 
 function handle_submit(event) {
     var q = $.trim($('#solrstrap-searchbox').val());
-    alert("q='"+q+"'")
+    //alert("q='"+q+"'")
     if (q !== '') {
         //$.bbq.removeState("fq");
         $.bbq.removeState("q");
@@ -605,14 +633,23 @@ function keyuphandler() {
 }
 
 function maybe_autosearch() {
+
     if (timeoutid) {
         window.clearTimeout(timeoutid);
     }
-    var q = $.trim($('#solrstrap-searchbox').val());
-    if (q.length > 0 && q !== getURLParam("q")) {
-        alert("maybe_autosearch: " + getURLParamArray('offset'))
-        $('#solrstrap-hits div[offset="0"]').loadSolrResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
-    } else {
-        // $('#solrstrap-hits').css({ opacity: 0.5 });
-    }
+    handle_submit()
+
+    //var dq = getURLParamArray('dq')
+
+    //var q = $.trim($('#solrstrap-searchbox').val());
+    //if (q.length > 0 && q !== getURLParam("q")) {
+    //  //alert("maybe_autosearch: " + getURLParamArray('offset'))
+    //  if (dq.length == 0){
+    //    $('#solrstrap-hits div[offset="0"]').loadSolrResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
+    //  }else{
+    //    $('#solrstrap-hits div[offset="0"]').loadLibrAIryResults(q, getURLParamArray('fq'), getURLParamArray('dq'), 0);
+    //  }
+    //} else {
+    ////    // $('#solrstrap-hits').css({ opacity: 0.5 });
+    //}
 }
