@@ -106,9 +106,13 @@ $(document).ready(function() {
     $.fn.getLibrAIryResults = function(q, fq, dq, offset) {
     //  alert("query to librAIry")
 
-      var rs = this;
-
       if (dq != ''){
+
+        var rs = this;
+
+        $(rs).parent().css({
+            opacity: 0.5
+        });
 
         $.ajax({
             url: LIBRAIRY_ENDPOINT,
@@ -124,7 +128,7 @@ $(document).ready(function() {
             },
             processData: false,
             error: function (xhr, status, error){
-                alert("librAIry error status="+status+", Error="+error+", Response=" + xhr.responseText);
+                //alert("librAIry error status="+status+", Error="+error+", Response=" + xhr.responseText);
             },
             success: function(result, status, xhr) {
               // console.log(result);
@@ -138,7 +142,7 @@ $(document).ready(function() {
                       rs.empty();
                       //strapline that tells you how many hits you got
                       rs.append(TEMPLATES.summaryTemplate({
-                          totalresults: result.response.numFound,
+                          totalresults: result.response.numFound - 1,
                           query: q
                       }));
                       rs.siblings().remove();
@@ -238,7 +242,7 @@ $(document).ready(function() {
             traditional: true,
             jsonp: 'json.wrf',
             error: function(result){
-              alert("Error on Solr query! " + result)
+              //alert("Error on Solr query! " + result)
             },
             success: function(result) {
                 // console.log(result);
@@ -282,7 +286,7 @@ $(document).ready(function() {
                     }
                     //if more results to come-set up the autoload div
                     if ((+HITSPERPAGE + offset) < +result.response.numFound) {
-                        alert("scroll: " + getURLParamArray('fq'))
+                        //alert("scroll: " + getURLParamArray('fq'))
                         var nextDiv = document.createElement('div');
                         $(nextDiv).attr('offset', +HITSPERPAGE + offset);
                         rs.parent().append(nextDiv);
@@ -595,7 +599,7 @@ function del_doc(event) {
 }
 
 function filterchange(event) {
-  alert("filterchange: " + getURLParamArray('fq'))
+  //alert("filterchange: " + getURLParamArray('fq'))
   var dq = getURLParamArray('dq')
   if (dq.length === 0){
     $('#solrstrap-hits div[offset="0"]').loadSolrResults(getURLParam('q'), getURLParamArray('fq'), getURLParamArray('dq'), 0);
