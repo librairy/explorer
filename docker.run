@@ -1,0 +1,1 @@
+docker run -dit --name tbfy-explorer -p 8585:80 tbfy/explorer:0.1

@@ -1,8 +1,14 @@
 //CONST- CHANGE ALL THESE TO TELL SOLRSTRAP ABOUT THE LOCATION AND STRUCTURE OF YOUR SOLR
 
-var SOLR_ENDPOINT = 'http://librairy.linkeddata.es/data/tbfy'; //SELECT endpoint
-var LIBRAIRY_ENDPOINT = 'http://localhost:7777/ranks'; //SELECT endpoint
-
+//var SOLR_ENDPOINT = 'http://librairy.linkeddata.es/data/tbfy'; //SELECT endpoint
+var SOLR_ENDPOINT = 'http://localhost:8983/solr/documents'; //SELECT endpoint
+var SOLR_EXTERNAL_ENDPOINT = 'http://librairy-solr:8983/solr/documents'; //SELECT endpoint
+//var LIBRAIRY_ENDPOINT = 'http://librairy.linkeddata.es/api/ranks'; //SELECT endpoint
+var LIBRAIRY_ENDPOINT = 'http://localhost:8081/ranks'; //SELECT endpoint
+//var LIBRAIRY_USER = 'oeg'; //SELECT endpoint
+var LIBRAIRY_USER = 'demo'; //SELECT endpoint
+//var LIBRAIRY_PASSWORD = 'oeg2018'; //SELECT endpoint
+var LIBRAIRY_PASSWORD = '2019'; //SELECT endpoint
 var HITTITLE = 'name_s'; //Name of the title field- the heading of each hit
 var HITBODY = 'topics0_t'; //Name of the body field- the teaser text of each hit
 var HITID = 'id' // Name of the id field
@@ -124,7 +130,7 @@ $(document).ready(function() {
                 withCredentials: true
             },
             beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Basic ' + btoa('oeg:oeg2018'));
+                xhr.setRequestHeader('Authorization', 'Basic ' + btoa(LIBRAIRY_USER +':' + LIBRAIRY_PASSWORD));
             },
             processData: false,
             error: function (xhr, status, error){
@@ -163,9 +169,11 @@ $(document).ready(function() {
                       if (teaser) {
                           hit_data['teaser'] = teaser;
                       }
-                      if (link) {
+                      if (link && text != '[]') {
                           hit_data['link'] = link;
-                          hit_data['endpoint'] = endpoint;
+                      }
+                      if (endpoint) {
+                          hit_data['endpoint'] = endpoint
                       }
 
                       rs.append(TEMPLATES.hitTemplate(hit_data));
@@ -277,8 +285,10 @@ $(document).ready(function() {
                         if (teaser) {
                             hit_data['teaser'] = teaser;
                         }
-                        if (link) {
+                        if (link && text != '[]') {
                             hit_data['link'] = link;
+                        }
+                        if (endpoint) {
                             hit_data['endpoint'] = endpoint
                         }
 
@@ -453,7 +463,7 @@ function buildLibrAIryParams(q, fq, dq, offset) {
         'format' : "SOLR_CORE",
         'offset' : offset,
         'size' : -1,
-        'url': SOLR_ENDPOINT
+        'url': SOLR_EXTERNAL_ENDPOINT
     }
     var doc = {
         'id' : dq[0].substring(4,dq[0].length)

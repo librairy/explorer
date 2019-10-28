@@ -1,0 +1,1 @@
+docker build -t tbfy/explorer:0.1 .
