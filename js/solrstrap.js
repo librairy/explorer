@@ -5,7 +5,8 @@ var SOLR_ENDPOINT = 'http://localhost:8983/solr/documents'; //SELECT endpoint
 
 //var SOLR_EXTERNAL_ENDPOINT = 'http://librairy.linkeddata.es/data/tbfy'; //SELECT endpoint
 //var SOLR_EXTERNAL_ENDPOINT = 'http://localhost:8983/solr/documents'; //SELECT endpoint
-var SOLR_EXTERNAL_ENDPOINT = 'http://librairy-solr:8983/solr/documents'; //SELECT endpoint
+//var SOLR_EXTERNAL_ENDPOINT = 'http://librairy-solr:8983/solr/documents'; //SELECT endpoint
+var SOLR_EXTERNAL_ENDPOINT = 'http://librairy-repo:8983/solr/documents'; //SELECT endpoint
 
 //var LIBRAIRY_ENDPOINT = 'http://librairy.linkeddata.es/api/ranks'; //SELECT endpoint
 var LIBRAIRY_ENDPOINT = 'http://localhost:8081/ranks'; //SELECT endpoint
